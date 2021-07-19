@@ -6,7 +6,7 @@
 + [인용구(Quotation)](#인용구Quotation)
 + [주석(Comment)](#주석Comment)
 + [엔티티(Entity)](#엔티티Entity)
-+ [문자셋(Character set)](#문자셋Character set)
++ [문자셋(Character set)](#문자셋Character-set)
 
 ## 제목(Heading)
 
@@ -334,7 +334,7 @@ HTML에서 용어의 축약형을 표현하기 위해서는 `<abbr>`태그(abbre
 란 웹 문서를 제작하는데 쓰이는 프로그래밍 언어인 HTML의 최신규격입니다.</p>
 ```
 
-+ <p><strong><abbr title="HyperText Markup Language 5">HTML5</abbr></strong>에 마우스를 올려보세요!
++ <p><strong><abbr title="HyperText Markup Language 5">HTML5</abbr></strong></p>에 마우스를 올려보세요!
 
 > 주소 표현
 
