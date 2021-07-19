@@ -4,6 +4,9 @@
 + [단락(Paragraph)](#단락Paragraph)
 + [서식(Formatting)](#서식Formatting)
 + [인용구(Quotation)](#인용구Quotation)
++ [주석(Comment)](#주석Comment)
++ [엔티티(Entity)](#엔티티Entity)
++ [문자셋(Character set)](#문자셋Character set)
 
 ## 제목(Heading)
 
@@ -299,7 +302,296 @@ HTML에서 인용구를 표현하는 방법은 다음과 같이 두 가지로 �
 <q>웹 페이지를 만들기 위한 하이퍼텍스트 마크업 언어</q>
 입니다.</p>
 ```
-<h1>q태그를 이용한 짧은 인용구</h1>
-<p>HTML의 정의는
-<q>웹 페이지를 만들기 위한 하이퍼텍스트 마크업 언어</q>
-입니다.</p>
+
+![image](https://user-images.githubusercontent.com/43658658/126156627-310d5713-4305-488d-a566-a988bcb39149.png)
+
+> 블록 인용구
+
+길이가 긴 인용문은 `<blockquote>`태그(block quatation)를 사용하여 표현할 수 있습니다.
+
+`<blockquote>`태그는 이러한 인용 부분을 별도의 단락으로 구분하여 나타냅니다.
+
+```
+<h1>blockquote태그를 이용한 블록 인용구</h1>
+<p>HTML의 정의</p>
+<blockquote>
+인터넷 서비스의 하나인 월드 와이드 웹을 통해 볼 수 있는 문서를 만들 때 사용하는 프로그래밍 언어의 한 종류이다.
+</blockquote>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126156744-451cfb4f-a548-4ac6-abd4-773384f90bdd.png)
+
+> 축약형 표현
+
+HTML에서 용어의 축약형을 표현하기 위해서는 `<abbr>`태그(abbreviation)를 사용합니다.
+
+`<abbr>`태그 위에 마우스를 위치시키면 title 속성에 명시한 용어의 원형이 나타납니다.
+
+```
+<h1>abbr태그를 이용한 축약형 표현</h1>
+<p>아래의 단락에서 HTML5이라는 단어 위에 마우스를 올려놓아 보세요!</p>
+<p><strong><abbr title="HyperText Markup Language 5">HTML5</abbr></strong>
+란 웹 문서를 제작하는데 쓰이는 프로그래밍 언어인 HTML의 최신규격입니다.</p>
+```
+
++ <p><strong><abbr title="HyperText Markup Language 5">HTML5</abbr></strong>에 마우스를 올려보세요!
+
+> 주소 표현
+
+`<address>`태그를 사용하면 HTML에서 주소를 표현할 수 있습니다.
+
+이러한 주소는 이탤릭체로 표현되며, 위아래로 약간의 공백이 자동으로 삽입됩니다.
+
+```
+<h1>address태그를 이용한 주소의 표현</h1>
+<address>
+	서울특별시<br> 
+	강남구 테헤란로
+</address>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126157568-fdb6090f-ebbc-464a-9246-83cdf4795e69.png)
+
+## 주석(Comment)
+
+주석(comment)이란 개발자가 작성한 해당 코드에 대한 이해를 돕는 설명이나 디버깅을 위해 작성한 구문을 의미합니다.
+
+이러한 주석은 다른 HTML 코드와는 달리 웹 브라우저에 의해 표현되지 않습니다.
+
+HTML에서 주석을 표현하는 방법은 다음과 같습니다.
+
+```
+<!-- 주석내용 -->
+```
+
+HTML 주석의 시작 태그`(<!--)`에는 느낌표(!)가 있지만 종료 태그`(-->)`에는 느낌표가 없습니다.
+
+이러한 주석은 HTML 코드의 어느 부분에서라도 사용할 수 있습니다.
+
+또한, 여러 줄에 걸쳐 주석을 작성해도 정확히 인식할 것입니다.
+
+```
+<!-- 작성자 : 홍길동 -->
+<!-- 
+	위와 같이 어려운 코드의 이해를 돕기 위해서 개발자가 적어놓은 설명입니다.
+-->
+```
+
+HTML 주석은 절대 웹 페이지에 나타나지 않습니다.
+
+HTML 코드에 삽입된 주석을 읽고 싶다면, 웹 브라우저의 페이지 소스 보기 등을 통해서 확인할 수 있습니다.
+
++ 익스플로러는 **마우스 오른쪽을 누른 후 소스 보기**를 통해서, 크롬과 파이어폭스에서는 **F12 버튼**으로 HTML 코드를 확인할 수 있습니다.
+
++ HTML 주석 안에 또 다른 주석을 작성할 수는 없습니다.
+
+## 엔티티(Entity)
+
+HTML에는 미리 예약된 몇몇 문자가 있으며, 이러한 문자를 HTML 예약어(reserved characters)라고 부릅니다.
+
+이러한 HTML 예약어를 HTML 코드에서 사용하면, 웹 브라우저는 그것을 평소와는 다른 의미로 해석합니다.
+
+따라서 HTML 예약어를 기존에 사용하던 의미 그대로 사용하기 위해 별도로 만든 문자셋을 엔티티(entity)라고 합니다.
+
+엔티티의 형태는 다음과 같습니다.
+
+```
+&엔티티이름;
+또는
+&#엔티티숫자;
+```
+
+다음 예제는 HTML 코드 내에서 꺾쇠괄호(<>)를 사용하면 웹 브라우저가 그것을 어떻게 해석하는지 보여줍니다.
+
+```
+<h1>HTML 엔티티</h1>
+<p><p> 태그는 두 번째로 큰 제목을 나타내는 태그입니다.</p>
+<p>&lt;p&gt;태그는 단락을 나타내는 태그입니다.</p>
+<!-- &lt : '<'를 의미, &gt : '>'를 의미 -->
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126158492-58a6babc-8b12-4a37-a4df-d85a77b91749.png)
+
+위와 같이 단순히 `<p>`안에 꺾쇠괄호(<>)를 넣게 되면 예약어로 처리되기 때문에 원하는대로 출력이 되지 않습니다.
+
+꺾쇠괄호(<>)를 뜻하는 엔티티인 `&lt`와 `&gt`를 써주어야 합니다.
+
++ 엔티티(entity)의 이름은 대소문자를 구분합니다.
+
++ HTML에서 사용할 수 있는 모든 엔티티에 대한 더 자세한 정보를 원한다면, [W3C 공식 사이트](https://www.w3.org/TR/html4/sgml/entities.html)를 방문하여 확인할 수 있습니다.
+
+> 발음 구별 부호(diacritical marks)
+
+발음을 나타내는 부호를 악센트(accent)라고 합니다.
+
+이러한 악센트는 단독으로는 사용하지 않으며, 보통 다른 문자와 함께 사용됩니다.
+
+이것을 정확하게 표현하기 위하여 HTML에서는 다음과 같은 발음 구별 부호를 별도로 제공하고 있습니다.
+
+HTML에서 제공하는 대표적인 발음 구별 부호(diacritical marks)는 다음과 같습니다.
+
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th style="width: 100px;">발음 구별 부호</th>
+			<th>문자</th>
+			<th>16진수 엔티티</th>
+			<th>결과</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>&nbsp; ̀</td>
+			<td style="text-align: center;">a</td>
+			<td style="text-align: center;">a&amp;#768;</td>
+			<td style="text-align: center;">à</td>
+		</tr>
+		<tr>
+			<td>&nbsp;&nbsp;́</td>
+			<td style="text-align: center;">a</td>
+			<td style="text-align: center;">a&amp;#769;</td>
+			<td style="text-align: center;">á</td>
+		</tr>
+		<tr>
+			<td>̂</td>
+			<td style="text-align: center;">a</td>
+			<td style="text-align: center;">a&amp;#770;</td>
+			<td style="text-align: center;">â</td>
+		</tr>
+		<tr>
+			<td>&nbsp;̃</td>
+			<td style="text-align: center;">a</td>
+			<td style="text-align: center;">a&amp;#771;</td>
+			<td style="text-align: center;">ã</td>
+		</tr>
+		<tr>
+			<td>&nbsp;̀</td>
+			<td style="text-align: center;">O</td>
+			<td style="text-align: center;">O&amp;#768;</td>
+			<td style="text-align: center;">Ò</td>
+		</tr>
+		<tr>
+			<td>&nbsp;́</td>
+			<td style="text-align: center;">O</td>
+			<td style="text-align: center;">O&amp;#769;</td>
+			<td style="text-align: center;">Ó</td>
+		</tr>
+		<tr>
+			<td>̂</td>
+			<td style="text-align: center;">O</td>
+			<td style="text-align: center;">O&amp;#770;</td>
+			<td style="text-align: center;">Ô</td>
+		</tr>
+		<tr>
+			<td>&nbsp;̃</td>
+			<td style="text-align: center;">O</td>
+			<td style="text-align: center;">O&amp;#771;</td>
+			<td style="text-align: center;">Õ</td>
+		</tr>
+	</tbody>
+</table>
+
+
+```
+<h1>발음 구별 기호</h1>
+<p>j에 악센트가 있다는 발음 기호는 [j&#769;]입니다.</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126159567-44ecbed3-071f-4d2d-80e6-1af0cfd2b125.png)
+
+> 심볼(Symbol) 특수문자
+
+HTML 예약어 이외에도 키보드에 입력할 수 없는 문자를 표현하기 위한 심볼 특수문자를 사용할 수 있습니다.
+
+이러한 심볼 특수문자에는 수학 용어, 그리스 문자, 국제 통화 등이 있습니다.
+ 
+HTML에서 제공하는 대표적인 심볼(Symbol) 특수문자는 다음과 같습니다.
+
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th style="width: 100px;">심볼 특수문자</th>
+			<th>엔티티 이름</th>
+			<th>16진수 엔티티</th>
+			<th>설명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>&cent;</td>
+			<td style="text-align: center;">&amp;cent;</td>
+			<td style="text-align: center;">&amp;#162;</td>
+			<td style="text-align: center;">센트</td>
+		</tr>
+		<tr>
+			<td>&pound;</td>
+			<td style="text-align: center;">&amp;pound;</td>
+			<td style="text-align: center;">&amp;#163;</td>
+			<td style="text-align: center;">파운드화</td>
+		</tr>
+		<tr>
+			<td>&yen;</td>
+			<td style="text-align: center;">&amp;yen;</td>
+			<td style="text-align: center;">&amp;#165;</td>
+			<td style="text-align: center;">엔화</td>
+		</tr>
+		<tr>
+			<td>&euro;</td>
+			<td style="text-align: center;">&amp;euro;</td>
+			<td style="text-align: center;">&amp;#8364;</td>
+			<td style="text-align: center;">유로화</td>
+		</tr>
+		<tr>
+			<td>&copy;</td>
+			<td style="text-align: center;">&amp;copy;</td>
+			<td style="text-align: center;">&amp;#169;</td>
+			<td style="text-align: center;">저작권</td>
+		</tr>
+		<tr>
+			<td>&reg;</td>
+			<td style="text-align: center;">&amp;reg;</td>
+			<td style="text-align: center;">&amp;#174;</td>
+			<td style="text-align: center;">등록상표</td>
+		</tr>
+		<tr>
+			<td>&times;</td>
+			<td style="text-align: center;">&amp;times;</td>
+			<td style="text-align: center;">&amp;#215;</td>
+			<td style="text-align: center;">곱셈</td>
+		</tr>
+		<tr>
+			<td>&divide;</td>
+			<td style="text-align: center;">&amp;divide;</td>
+			<td style="text-align: center;">&amp;#247;</td>
+			<td style="text-align: center;">나눗셈</td>
+		</tr>
+	</tbody>
+</table>
+
+
+```
+<h1>심볼</h1>
+<p>&euro;1는 약 \1,300입니다.</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126159951-1b3d2f53-b7ac-49cc-8548-c81e2c4b4c2b.png)
+
+## 문자셋(Character set)
+
+웹 브라우저가 HTML 문서를 정확하게 나타내기 위해서는 해당 문서가 어떠한 문자셋으로 저장되었는지를 알아야 합니다.
+
+따라서 HTML 문서가 저장될 때 사용된 문자셋에 대한 정보를 `<head>`태그 내의 `<meta>`태그에 명시합니다.
+
+- HTML4에서 UTF-8의 경우 : `<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">`
+- HTML5에서 UTF-8의 경우 : `<meta charset="UTF-8">`
+
+> 문자셋의 종류
+
+현재 사용되는 대표적인 문자셋(character set)은 다음과 같습니다.
+
+1. ASCII : 가장 처음 만들어진 문자셋으로, 인터넷에서 사용할 수 있는 127개의 영문자와 숫자로 이루어져 있습니다.
+2. ANSI : 윈도우즈에서 만든 문자셋으로, 총 256개의 문자 코드를 지원합니다.
+3. ISO-8859-1 : 256개의 문자 코드를 지원하는 HTML4의 기본 문자셋입니다.
+4. UTF-8 : 세상에 있는 거의 모든 문자를 표현할 수 있는 유니코드 문자를 지원하는 HTML5의 기본 문자셋입니다.
