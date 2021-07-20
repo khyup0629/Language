@@ -18,7 +18,7 @@ HTML 요소의 style 속성(attribute)을 이용하면 CSS 스타일을 HTML 요
 
 다음 예제는 style 속성을 이용하여 배경색을 변경하는 예제입니다.
 
-```
+``` html
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -39,7 +39,7 @@ HTML 요소의 style 속성(attribute)을 이용하면 CSS 스타일을 HTML 요
 
 다음 예제는 style 속성을 이용하여 글자색을 변경하는 예제입니다.
 
-```
+``` html
 <h1 style="color:maroon">
   style 속성을 이용한 글자색 변경
 </h1>
@@ -51,7 +51,7 @@ HTML 요소의 style 속성(attribute)을 이용하면 CSS 스타일을 HTML 요
 
 다음 예제는 style 속성을 이용하여 글자 크기를 변경하는 예제입니다.
 
-```
+``` html
 <h1 style="font-size:250%">
   style 속성을 이용한 글자 크기 변경
 </h1>
@@ -67,7 +67,7 @@ HTML 요소의 style 속성(attribute)을 이용하면 CSS 스타일을 HTML 요
 
 + justify : 신문이나 잡지와 같이 길이를 유동적으로 조절해서 각 줄의 너비를 똑같이 맞추는 정렬법(양쪽 정렬)
 
-```
+``` html
 <h1 style="text-align:center">
   style 속성을 이용한 문단 정렬 변경
 </h1>
@@ -83,7 +83,7 @@ style 속성값에 사용되는 CSS 속성(property)과 속성값들은 세미�
 
 CSS 속성을 하나만 사용할 때나, 여러 개의 CSS 속성 중 맨 마지막 CSS 속성은 세미콜론(;)을 생략할 수 있습니다.
 
-```
+``` html
 <body style="background-color:#33CCFF">
 	<h1 style="background-color:white; color:maroon; text-align:center; font-size:150%">
 		style 속성을 이용하여 한 번에 스타일링 하기!
@@ -105,7 +105,6 @@ HTML에서 색을 표현하는 방법은 다음과 같이 세 가지 방법이 �
 
 W3C에서 정의한 16개의 HTML4 표준 색상 이름은 아래와 같습니다.
 
-```
 <table class="tb-2" summary="">
 	<thead>
 	</thead>
@@ -144,13 +143,13 @@ W3C에서 정의한 16개의 HTML4 표준 색상 이름은 아래와 같습니�
 		</tr>
 	</tbody>
 </table>
-```
+
 
 현재는 주요 브라우저가 140개의 색상 이름을 모두 지원하고 있습니다.
 
 색상 이름은 대소문자를 구분하지 않습니다.
 
-```
+``` html
 <h1 style="color:blue">색상 이름으로 표현된 파란색</h1>
 <h1 style="color:green">색상 이름으로 표현된 녹색</h1>
 <h1 style="color:silver">색상 이름으로 표현된 은색</h1>
@@ -166,7 +165,7 @@ HTML에서도 위와 같이 세 가지 색을 가지고 색을 표현하는 RGB 
 
 RGB 색상의 기본색(Red, Green, Blue)은 각각 0부터 255까지의 범위를 가집니다.
 
-```
+``` html
 <h1 style="color:rgb(0,0,255)">RGB 색상값으로 표현된 파란색</h1>
 <h1 style="color:rgb(0,128,0)">RGB 색상값으로 표현된 녹색</h1>
 <h1 style="color:rgb(192,192,192)">RGB 색상값으로 표현된 은색</h1>
@@ -182,7 +181,7 @@ RGB 색상의 기본색(Red, Green, Blue)은 각각 0부터 255까지의 범위�
 
 예를 들면, 빨간색을 나타내는 RGB 색상값인 rgb(255,0,0)은 16진수 색상값으로는 #FF0000이 되는 것입니다.
 
-```
+``` html
 <h1 style="color:#0000FF">16진수 색상값으로 표현된 파란색</h1>
 <h1 style="color:#008000">16진수 색상값으로 표현된 녹색</h1>
 <h1 style="color:#C0C0C0">16진수 색상값으로 표현된 은색</h1>
@@ -211,7 +210,7 @@ HTML5 이전까지는 bgcolor 속성을 이용하여 HTML 요소의 배경색을
 
 다음 예제는 CSS 스타일을 이용하여 배경색을 다른 색으로 변경하는 예제입니다.
 
-```
+``` html
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -240,7 +239,7 @@ background 속성을 이용하면 HTML 요소의 배경을 이미지(image)로 �
 
 `<태그이름 background="이미지주소">`
 
-```
+``` html
 <body background="/examples/images/img_background_good.png">
 	<h1>배경으로 이미지 삽입하기</h1>
 </body>
@@ -264,7 +263,7 @@ background 속성을 이용하면 HTML 요소의 배경을 이미지(image)로 �
 
 `<a>`태그는 텍스트나 단락, 이미지 등 다양한 HTML 요소에 사용할 수 있습니다.
 
-```
+``` html
 <h1>a태그로 링크 걸기</h1>
 <a href="/html/intro">
 	<h2>이 링크를 클릭해 보세요!</h2>
@@ -275,7 +274,7 @@ background 속성을 이용하면 HTML 요소의 배경을 이미지(image)로 �
 
 `<a>`태그의 target 속성은 링크로 연결된 문서를 어디에서 열지를 명시합니다.
 
-```
+
 <table class="tb-2" summary="">
 	<thead>
 		<tr class="bg">
@@ -306,7 +305,7 @@ background 속성을 이용하면 HTML 요소의 배경을 이미지(image)로 �
 		</tr>
 	</tbody>
 </table>
-```
+
 
 ``` html
 <h1>a태그의 target 속성값</h1>
@@ -324,7 +323,7 @@ background 속성을 이용하면 HTML 요소의 배경을 이미지(image)로 �
 
 HTML 링크의 상태는 다음과 같이 네 가지로 구분할 수 있습니다.
 
-``` html
+
 <table class="tb-2" summary="">
 	<thead>
 		<tr class="bg">
@@ -351,7 +350,7 @@ HTML 링크의 상태는 다음과 같이 네 가지로 구분할 수 있습니�
 		</tr>
 	</tbody>
 </table>
-```
+
 
 웹 브라우저에서 링크가 연결되어 있는 텍스트의 색상은 다음과 같습니다.
 
