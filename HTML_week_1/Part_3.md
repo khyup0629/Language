@@ -4,6 +4,7 @@
 + [HTML 색](#HTML-색)
 + [HTML 배경](#HTML-배경)
 + [HTML 링크(Link)](#HTML-링크Link)
++ [HTML 이미지(Image)](#HTML-이미지Image)
 + 
 
 ## HTML 스타일(Style)
@@ -105,45 +106,7 @@ HTML에서 색을 표현하는 방법은 다음과 같이 세 가지 방법이 �
 
 W3C에서 정의한 16개의 HTML4 표준 색상 이름은 아래와 같습니다.
 
-<table class="tb-2" summary="">
-	<thead>
-	</thead>
-	<tbody>
-		<tr>
-			<td style="width: 50%; background-color: aqua;"><span style="color:#000000;">aqua</span></td>
-			<td style="text-align: center; background-color: black;"><span style="color:#FFFFFF;">black</span></td>
-		</tr>
-		<tr>
-			<td style="background-color: blue;"><span style="color:#FFFFFF;">blue</span></td>
-			<td style="text-align: center; background-color: fuchsia;"><span style="color:#FFFFFF;">fuchsia</span></td>
-		</tr>
-		<tr>
-			<td style="background-color: gray;"><span style="color:#FFFFFF;">gray</span></td>
-			<td style="text-align: center; background-color: green;"><span style="color:#FFFFFF;">green</span></td>
-		</tr>
-		<tr>
-			<td style="background-color: lime;"><span style="color:#FFFFFF;">lime</span></td>
-			<td style="text-align: center; background-color: maroon;"><span style="color:#FFFFFF;">maroon</span></td>
-		</tr>
-		<tr>
-			<td style="background-color: navy;"><span style="color:#FFFFFF;">navy</span></td>
-			<td style="text-align: center; background-color: olive;"><span style="color:#FFFFFF;">olive</span></td>
-		</tr>
-		<tr>
-			<td style="background-color: purple;"><span style="color:#FFFFFF;">purple</span></td>
-			<td style="text-align: center; background-color: red;"><span style="color:#FFFFFF;">red</span></td>
-		</tr>
-		<tr>
-			<td style="background-color: silver;"><span style="color:#FFFFFF;">silver</span></td>
-			<td style="text-align: center; background-color: teal;"><span style="color:#FFFFFF;">teal</span></td>
-		</tr>
-		<tr>
-			<td style="background-color: white;">white</td>
-			<td style="text-align: center; background-color: yellow;">yellow</td>
-		</tr>
-	</tbody>
-</table>
-
+![image](https://user-images.githubusercontent.com/43658658/126275486-4871d045-d846-4f8e-afb4-9bfe1d611461.png)
 
 현재는 주요 브라우저가 140개의 색상 이름을 모두 지원하고 있습니다.
 
@@ -377,3 +340,123 @@ HTML 링크의 상태는 다음과 같이 네 가지로 구분할 수 있습니�
   </body>
 </html>
 ```
+
+> <h3>페이지 책갈피</h3>
+
+`<a>`태그의 name 속성을 이용하면 간단한 책갈피를 만들 수 있습니다.
+
+우선 책갈피를 통해 가고 싶은 위치에 `<a>`태그를 만들고 name 속성을 작성합니다.
+
+그다음에 작성한 name 속성값을 이용하여 다른 `<a>`태그에서 링크를 걸면 됩니다.
+
+``` html
+<a href="#bookmark"><p>제목 3으로 갑시다!!!</p></a>
+
+...
+
+<h2><a name="bookmark"></a>제목 3</h2>
+```
+
+## HTML 이미지(Image)
+
+이미지(image)란 2차원 평면 위에 그려진 시각적 요소를 의미합니다.
+
+오늘날 웹 페이지에는 이러한 이미지가 매우 중요한 요소의 하나로 자리 잡고 있습니다.
+
+웹 페이지에서 주로 사용되는 이미지의 종류는 다음과 같습니다.
+
+1. JPEG 이미지
+2. GIF 이미지
+3. PNG 이미지
+
+> <h3>이미지의 삽입</h3>
+
+HTML 문서에 이미지를 삽입할 때는 `<img>`태그를 사용합니다.
+
+`<img>`태그는 종료 태그가 없는 빈 태그(empty tag)이며, 다음과 같은 문법으로 사용됩니다.
+
+`<img src="이미지주소" alt="대체문자열">`
+
+src 속성은 이미지가 저장된 주소의 URL 주소를 명시합니다.
+
+alt 속성으로 이미지가 로딩될 수 없는 상황에서 이미지 대신 나타날 문자열을 설정할 수 있습니다.
+
+> <h3>이미지의 크기(width, height) 설정</h3>
+
+HTML에서는 style 속성을 사용하여 이미지의 크기를 설정할 수 있습니다.
+
+또한, width 속성과 height 속성을 이용하면, 이미지의 너비와 높이를 각각 픽셀(pixel) 단위로 설정할 수도 있습니다.
+
+위의 두 가지 방법 모두 HTML5 표준에는 적합한 방법이지만, 나중에 배우게 될 CSS를 이용한 내부 스타일 시트나 외부 스타일 시트와 상관없이 이미지의 원래 크기를 유지하려면 style 속성을 사용하는 것이 좋습니다.
+
+``` html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      img {
+        width: 100%;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>이미지의 크기 설정</h1>
+    <img src="/examples/images/img_flag.png" alt="html size" width="320" height="214">
+    <img src="/examples/images/img_flag.png" alt="style size" style="width:320px; height:214px">
+  </body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126277306-4eecc29c-8f59-44af-9955-c9d526a8bc1c.png)
+
+> <h3>이미지의 테두리(border) 설정</h3>
+
+border 속성을 사용하여 이미지의 테두리 사용 여부와 굵기를 설정할 수 있습니다.
+
+``` html
+<img src="/examples/images/img_flag.png" alt="이미지 테두리" style="width:320px; height:214px; border: 3px solid black">
+```
+
+> <h3>이미지에 링크(link) 설정</h3>
+
+이미지에 `<a>`태그를 이용하여 링크를 설정할 수 있습니다.
+
+``` html
+<a href="/html/intro" target="_blank">
+    <img src="/examples/images/img_flag.png" alt="flag" style="width:320px; height:214px">
+</a>
+```
+
+> <h3>이미지 맵 만들기</h3>
+
+HTML에서는 `<map>`태그를 이용하여 이미지 맵(image map)을 제작할 수 있습니다.
+
+이미지 맵(image map)이란 이미지의 일부를 클릭할 수 있도록 만들어서 버튼처럼 사용하는 기능을 의미합니다.
+
+`<img>`태그의 usemap 속성을 `<map>`태그의 name 속성과 연결하면 이미지와 맵사이의 관계가 설정됩니다.
+
+`<map>`태그는 하나 이상의 `<area>`태그를 가지며, 이 `<area>`태그가 바로 버튼과 같은 역할을 합니다.
+
+``` html
+<h1>이미지 맵 만들기</h1>
+<img src="/examples/images/img_imagemap.jpg" alt="진실혹은거짓" usemap="#vending" style="width:320px; height:240px" />
+<map name="vending"> 
+	<area  shape="rect" coords="90,60,180,130" alt="거짓" href="https://ko.wikipedia.org/wiki/%EA%B1%B0%EC%A7%93%EB%A7%90">
+	<area  shape="rect" coords="210,200,70,130" alt="진실" href="https://ko.wikipedia.org/wiki/%EC%A7%84%EC%8B%A4">
+</map>
+<p>표지판을 눌러보세요!</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126277931-57239279-4daf-4233-92da-4e6e829d8077.png)
+
+img를 map으로 만들고 map내의 area를 생성합니다.
+
+area의 모양(shape)은 직사각형(rect)입니다.
+
+좌표의 양끝점을 `<area>`태그의 coords 속성에 "x1, y1, x2, y2" 형식의 px단위로 적습니다(이미지의 좌측 상단이 "0, 0"이 됩니다).
+
+하이퍼링크 URL을 입력하여 좌표 범위를 클릭시 해당 URL로 이동하도록 합니다.
+
