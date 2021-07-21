@@ -5,6 +5,7 @@
 + [HTML 배경](#HTML-배경)
 + [HTML 링크(Link)](#HTML-링크Link)
 + [HTML 이미지(Image)](#HTML-이미지Image)
++ [HTML 리스트(List)](#HTML-리스트List)
 + 
 
 ## HTML 스타일(Style)
@@ -460,3 +461,264 @@ area의 모양(shape)은 직사각형(rect)입니다.
 
 하이퍼링크 URL을 입력하여 좌표 범위를 클릭시 해당 URL로 이동하도록 합니다.
 
+## HTML 리스트(List)
+
+리스트(list)란 여러 요소들을 일렬로 나열한 목록이나 명단을 의미합니다.
+
+HTML에서는 이러한 리스트를 표현하기 위해 다음과 같은 리스트를 제공하고 있습니다.
+
+1. 순서가 없는 리스트(unordered list)
+2. 순서가 있는 리스트(ordered list)
+3. 정의 리스트(definition list)
+
+> <h3>순서가 없는 리스트</h3>
+
+순서가 없는 리스트는 `<ul>`태그로 시작하며, 여기에 포함되는 각각의 리스트 요소는 `<li>`태그로 시작합니다.
+
+각각의 리스트 요소 앞에는 기본 마커(marker)로 검정색의 작은 원(bullet)이 위치합니다.
+
+``` html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    <h1 style="font-size: 250%">순서가 없는 리스트</h1>
+    <ul>
+      <li>사과</li>
+      <li>메론</li>
+      <li>바나나</li>
+    </ul>
+  </body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126478389-4051ef6c-193f-497c-b771-4f9be59f448e.png)
+
+CSS의 list-style-type 속성을 사용하면 리스트 요소 앞에 위치하는 마커(marker)를 다른 모양으로 변경할 수 있습니다.
+
+- disc : 검정색 작은 원 모양 (기본설정)
+- circle : 흰색 작은 원 모양
+- square : 사각형 모양
+
+``` html
+<h1>순서가 없는 리스트</h1>
+<p>검정색 작은 원 모양 (기본설정)</p>
+<ul>
+	<li>사과</li>
+	<li>멜론</li>
+	<li>바나나</li>
+</ul>
+
+<p>흰색 작은 원 모양</p>
+<ul style="list-style-type: circle">
+	<li>수박</li>
+	<li>참외</li>
+	<li>옥수수</li>
+</ul>
+
+<p>검정색 사각형 모양</p>
+<ul style="list-style-type: square">
+	<li>감자</li>
+	<li>상추</li>
+	<li>고구마</li>
+</ul>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126478562-fe2e7737-8af8-471f-85f0-6dcd682ebb5f.png)
+
+> <h3>순서가 있는 리스트</h3>
+
+순서가 있는 리스트는 `<ol>`태그로 시작하며, 여기에 포함되는 각각의 리스트 요소는 `<li>`태그로 시작합니다.
+
+각각의 리스트 요소 앞에는 기본 마커로 아라비아 숫자가 위치합니다.
+
+``` html
+<h1>순서가 있는 리스트</h1>
+<ol>
+	<li>사과</li>
+	<li>멜론</li>
+	<li>바나나</li>
+</ol>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126486710-76ec08a8-640a-4e33-a60e-f56ba9679f56.png)
+
+CSS의 list-style-type 속성을 사용하면 리스트 요소 앞에 위치하는 마커(marker)를 다른 모양으로 변경할 수 있습니다.
+
+- decimal : 숫자 (기본설정)
+- upper-alpha : 영문 대문자
+- lower-alpha : 영문 소문자
+- upper-roman : 로마 숫자 대문자
+- lower-roman : 로마 숫자 소문자
+
+``` html
+<ol style="list-style-type: upper-alpha">
+    <li>수박</li>
+    <li>참외</li>
+    <li>옥수수</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+    ...
+</ol>
+<ol style="list-style-type: upper-roman">
+    ...
+</ol>
+<ol style="list-style-type: lower-roman">
+    ...
+</ol>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126493672-3a6c7a81-59bc-4e91-b623-84817939fe9a.png)
+
+> <h3>정의 리스트(description list)</h3>
+
+정의 리스트(description list)는 용어와 그에 대한 정의를 모아놓은 리스트로 `<dl>`태그로 시작합니다.
+
+`<dt>`태그에는 용어의 이름이 들어가고, `<dd>`태그에는 해당 용어에 대한 정의가 들어갑니다.
+
+``` html
+<h1>정의 리스트</h1>
+<dl>
+	<dt>호박</dt>
+	<dd>- 박과의 한해살이 덩굴성 채소</dd>
+	<dt>상추</dt>
+	<dd>- 국화과의 한해살이 또는 두해살이풀</dd>
+</dl>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126493961-c953810c-b4d5-4883-aadc-86621e391d9c.png)
+
+> <h3>HTML 테이블(Table)</h3>
+
+테이블(Table)이란 여러 종류의 데이터(data)를 보기 좋게 정리하여 보여주는 표를 의미합니다.
+
+HTML에서는 `<table>`태그를 사용하여 이러한 테이블을 작성할 수 있습니다.
+
+`<table>`태그는 다음과 같은 태그들로 구성됩니다.
+
+1. `<tr>`태그는 테이블에서 행을 구분해 줍니다. `<tr>`태그 안에 `<th>` 또는 `<td>`태그를 넣습니다.
+2. `<th>`태그는 각 열의 제목을 나타내며, 모든 내용은 자동으로 굵은 글씨에 가운데 정렬이 됩니다.
+3. `<td>`태그는 테이블의 열을 각각의 셀(cell)로 나누어 줍니다.
+
+``` html
+<h1>테이블 만들기</h1>
+<table style="width:100%">
+	<tr style="background-color:lightgrey">
+		<th>참치</th>
+		<th>고래</th>		
+		<th>날치</th>
+	</tr>
+	<tr>
+		<td>상어</td>
+		<td>문어</td>		
+		<td>꽁치</td>
+	</tr>
+	<tr>
+		<td>오징어</td>
+		<td>고등어</td>		
+		<td>돌고래</td>
+	</tr>
+</table>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126495176-6ff27327-a378-4c42-83e8-11a9f1b5f394.png)
+
+CSS의 border 속성을 이용하여 테이블에 테두리를 표현할 수 있습니다.
+
+border 속성값을 따로 명시하지 않으면, 해당 테이블은 언제나 빈 테두리를 가지게 됩니다.
+
+``` html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>HTML Tables</title>
+    <style>
+      table, th, td { border: 1px solid black }
+    </style>
+  </head>
+  <body>
+    <h1>다양한 테이블 테두리</h1>
+    <table style="width:100%; text-align:center">
+      <tr style="background-color:lightgrey">
+        <th>참치</th>
+        <th>고래</th>		
+        <th>날치</th>
+      </tr>
+      <tr>
+        <td>상어</td>
+        <td>문어</td>		
+        <td>꽁치</td>
+      </tr>
+      <tr>
+        <td>오징어</td>
+        <td>고등어</td>		
+        <td>돌고래</td>
+      </tr>
+    </table>
+  </body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126496587-aea7b68d-fc0b-4d28-9a33-58e667d15676.png)
+
+위의 예제에서 테이블의 테두리(border)가 두 줄씩 나타나는 이유는 `<table>`태그와 `<th>`태그, `<td>`태그가 모두 자신만의 테두리를 가지고 있기 때문입니다.
+
+위와 같이 두 줄로 표현되는 테두리를 한 줄로 설정하려면 border-collapse 속성을 사용해야 합니다.
+
+border-collapse 속성값을 collapse로 설정하면, 테이블의 테두리를 한 줄로 표현할 수 있습니다.
+
+``` html
+<style>
+    table, th, td { border: 1px solid black; border-collapse: collapse }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126497068-55e3e027-fce8-41fd-b23b-dcc802f6fe62.png)
+
+> <h3>테이블의 열 합치기</h3>
+
+colspan 속성을 사용하면 테이블의 열(column)을 합칠 수 있습니다.
+
+> <h3>테이블의 행 합치기</h3>
+
+rowspan 속성을 사용하면 테이블의 행(row)을 합칠 수 있습니다.
+
+``` html
+<table style="width:100%">
+	<tr>
+		<td colspan="3">고래</td>		
+	</tr>
+	<tr>
+		<td rowspan="2">상어</td>
+		<td>문어</td>		
+		<td>꽁치</td>
+	</tr>
+	<tr>
+		<td>고등어</td>		
+		<td>돌고래</td>
+	</tr>
+</table>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126497515-4070d7a0-6a61-426c-87d0-449e94fea44d.png)
+
+> <h3>테이블의 캡션(caption) 설정</h3>
+
+`<caption>`태그를 사용하면 테이블 상단에 제목이나 짧은 설명을 붙일 수 있습니다.
+
+``` html
+<table style="width:100%">
+	<caption>해양 생물</caption>
+	<tr>
+		<td>참치</td>
+		<td>고래</td>
+		<td>날치</td>		
+	</tr>
+</table>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126498180-265f6141-9b05-44e6-884e-22595fb69296.png)
