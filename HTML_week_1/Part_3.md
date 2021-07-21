@@ -6,7 +6,7 @@
 + [HTML 링크(Link)](#HTML-링크Link)
 + [HTML 이미지(Image)](#HTML-이미지Image)
 + [HTML 리스트(List)](#HTML-리스트List)
-+ 
++ [HTML 테이블(Table)](#HTML-테이블Table)
 
 ## HTML 스타일(Style)
 
