@@ -1,6 +1,7 @@
 # Part 5. HTML 입력 양식
 
 + [Form 요소](#Form-요소)
++ [Input 요소의 속성](#Input-요소의-속성)
 
 ## Form 요소
 
@@ -173,13 +174,239 @@ HTML에서 사용할 수 있는 대표적인 input 요소의 타입은 다음과
 </form>
 ```
 
-<form>
-  <select name="fruit">
-    <option value="apple"> 사과 </option>
-    <option value="orange" selected> 귤 </option>
-    <option value="strawberry"> 딸기 </option>
-    <option value="peach"> 복숭아 </option>
-  </select>
-</form>
-
 ![image](https://user-images.githubusercontent.com/43658658/126772359-ecc5626a-f84c-4b4c-9a9f-98c134a546f1.png)
+
+select 태그는 꼭 form안에 넣지 않아도 구현이 가능하다. form에 넣게 되면 선택한 정보를 전달할 수 있게 해주는 것이다.
+
+> <h3>문장 입력</h3>
+
+***textarea 요소***는 사용자로부터 여러 줄의 텍스트를 입력받을 수 있습니다.
+
+***rows 속성***과 ***cols 속성***을 이용하여 textarea 요소의 크기를 자유롭게 지정할 수 있습니다.
+
+``` html
+<h1>문장 입력</h1>
+<p>여러분의 부모님께 하고 싶은 말을 적어보세요.</p>
+<form>
+  <textarea name="message" rows="5" cols="30">여기에 적으세요.</textarea>
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126772825-26e137b7-8fcc-4eff-ac8b-e5d2e512686e.png)
+
+textarea 요소의 우측 하단의 크기 조절 버튼을 통해 크기를 조절할 수 있다.
+
+textarea 태그는 꼭 form안에 넣지 않아도 구현이 가능하다. form에 넣게 되면 작성한 정보를 전달할 수 있게 해주는 것이다.
+
+> <h3>버튼</h3>
+
+button 요소는 사용자가 누를 수 있는 버튼을 나타냅니다.
+
+``` html
+<h1>버튼 입력</h1>
+<button type="button" onclick="alert('버튼을 클릭하셨군요!')">버튼을 눌러주세요.</button>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126773236-81f942e5-36da-477e-b997-7fb13c956e10.png)
+
+> <h3>전송 버튼</h3>
+
+`<input>`태그의 type 속성값을 "submit"으로 설정하면, 사용자로부터 입력받은 데이터(data)를 서버의 폼 핸들러로 제출하는 버튼을 만들 수 있습니다.
+
+폼 핸들러(form-handler)란 입력받은 데이터를 처리하기 위한 서버 측의 웹 페이지를 의미합니다.
+
+이러한 폼 핸들러의 주소는 form 요소의 action 속성을 이용하여 명시할 수 있습니다.
+
+``` html
+<h1>전송 버튼</h1>
+<p>어릴 때 자신의 별명을 적어주세요 :</p>
+<form action="/examples/media/request.php">
+  <input type="text" name="nickname" value="별명">
+  <br><br>
+  <input type="submit" value="전송">
+</form>
+<p>별명을 적으신 후에 전송 버튼을 눌러보세요!</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126775059-702ace35-3fc4-489f-8bfd-c36ca3324d2d.png)
+
+전송 버튼을 누르면 "examples/media/request.php" 주소로 들어가서 폼 핸들러 페이지를 띄웁니다.
+
+![image](https://user-images.githubusercontent.com/43658658/126775069-f3429422-3784-4f4e-bdc8-9c8f2ee11492.png)
+
+> <필드셋(fieldset)</h3>
+
+***fieldset 요소***는 form 요소와 관련된 데이터들을 하나로 묶어주는 역할을 합니다.
+
+***legend 요소***는 fieldset 요소 안에서만 사용할 수 있으며, fieldset 요소의 제목을 나타냅니다.
+
+``` html
+<h1>필드셋</h1>
+<form action="/examples/media/request.php">
+  <fieldset>
+    <legend>입력 양식</legend>
+    이름 : <br>
+    <input type="text" name="username"><br>
+    이메일 : <br>
+    <input type="text" name="email"><br><br>
+    <input type="submit" value="전송">
+  </fieldset>
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126775274-22086bc2-b8d5-46c3-a14f-6c1e338c8e81.png)
+
+전송 버튼을 누르면 "examples/media/request.php" 주소로 들어가서 폼 핸들러 페이지를 띄웁니다.
+
+![image](https://user-images.githubusercontent.com/43658658/126775326-e47639ca-1af5-4245-a063-32d4164d03e1.png)
+
+> <h3>HTML5에서 추가된 form 요소의 속성</h3>
+
+autocomplete
+novalidate
+
+> <h3>HTML5에서 추가된 다양한 타입의 input 요소</h3>
+
+form 내에서 input의 역할과 비슷한 아래 요소들이 HTML5에서 추가되었다.
+
+1. `<datalist>` 요소
+2. `<keygen>` 요소
+3. `<output>` 요소
+
+## Input 요소의 속성
+
+> <h3>input 요소의 속성</h3>
+
+input 요소의 여러 속성을 사용하면 사용자가 입력하는 방식을 더욱 다양하게 제어할 수 있습니다.
+
+> <h3>value 속성</h3>
+
+***value 속성***은 input 요소의 입력 필드(input field)에 나타나는 초깃값을 설정합니다.
+
+``` html
+<h1>value 속성을 이용한 초기값 설정</h1>
+<form>
+  이름 : <br>
+  <input type="text" name="name"> <br>
+  학번 : <br>
+  <input type="text" name="number"> <br>
+  학과 : <br>
+  <input type="text" name="major" value="컴퓨터공학과"> <br>
+  <br>
+  <input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126776502-c5d75cf8-144d-4758-9a87-8e31763cc181.png)
+
+> <h3>readonly 속성</h3>
+
+***readonly 속성***은 사용자가 입력 필드를 볼 수는 있으나, 수정할 수는 없도록 설정합니다.
+
+***disabled 속성***과 다른 점은 전송 버튼(submit)을 누르면 초깃값이 서버로 전송된다는 점입니다.
+
+``` html
+<h1>readonly 속성을 이용한 필드값 수정 제한</h1>
+<form action="/examples/media/request.php">
+  이름 : <br>
+  <input type="text" name="name"><br>
+  학번 : <br>
+  <input type="text" name="student_id"><br>
+  학과 : <br>
+  <input type="text" name="department" value="컴퓨터공학과" readonly><br>
+  <br>
+  <input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126777011-d0856bbf-e7ac-467d-b669-415f2b7d31ba.png)
+
+학과의 입력란이 제한되어 있지만 전송 버튼을 누르면 초기값이 그대로 전송되는 것을 알 수 있다.
+
+![image](https://user-images.githubusercontent.com/43658658/126777149-139f8b93-7067-419d-9a59-f83598605bb8.png)
+
+> <h3>disabled 속성</h3>
+
+disabled 속성은 사용자가 입력 필드를 아예 사용할 수 없도록 설정합니다.
+
+disabled 속성이 설정된 입력 필드는 사용할 수도 없고, 클릭할 수도 없습니다.
+
+또한, readonly 속성과는 달리 전송 버튼(submit)을 눌러도 초깃값이 서버로 전송되지 않습니다.
+  
+``` html
+<h1>disabled 속성을 이용한 필드 사용 제한</h1>
+<form action="/examples/media/request.php">
+  이름 : <br>
+  <input type="text" name="name"><br>
+  학번 : <br>
+  <input type="text" name="student_id"><br>
+  학과 : <br>
+  <input type="text" name="department" value="컴퓨터공학과" disabled><br>
+  <br>
+  <input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126778573-1e9b1d80-3c96-4ee2-a0d9-52a706c1c6db.png)
+
+학과의 입력란이 비활성화 되있고, 전송 버튼을 누르면 readonly와 달리 초깃값이 전송되지 않는다.
+
+![image](https://user-images.githubusercontent.com/43658658/126778730-b66ea67d-6e8c-4bc7-beb8-5df3296fa866.png)
+
+> <h3>maxlength 속성</h3>
+
+maxlength 속성은 입력 필드에 입력할 수 있는 문자의 최대 길이(length)를 설정합니다.
+
+``` html
+<h1>maxlength 속성을 이용한 필드의 최대 길이 설정</h1>
+<form action="/examples/media/request.php">
+  이름 : (이름은 10자까지만 가능해요!) <br> <!-- 영문, 한글 모두 포함-->
+  <input type="text" name="name" value="홍길동" maxlength="10"><br>
+  학번 : <br>
+  <input type="text" name="student_id"><br>
+  <br>
+  <input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126779076-4bb8ec7b-dba9-4750-9266-f140dd337682.png)
+
+> <h3>size 속성</h3>
+
+size 속성은 입력 필드에 보여지는 input 요소의 크기(size)를 설정합니다.
+
+maxlength 속성과는 달리 입력 필드가 한 번에 보여줄 수 있는 문자의 최대 개수만을 의미합니다.
+
+따라서 입력될 수 있는 문자의 최대 길이는 maxlength 속성값에 따라 달라지며, size 속성과는 전혀 무관합니다.
+
+``` html
+<h1>size 속성을 이용한 필드의 크기 설정</h1>
+<form action="/examples/media/request.php">
+  이름 : <br>
+  <input type="text" name="student_name" value="홍길동" size="30"><br>
+  학번 : <br>
+  <input type="text" name="student_id"><br><br>
+  <input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/126779300-7051ea06-7fcb-4113-a3e1-290b0b3312cd.png)
+
+> <h3>HTML5에서 추가된 input 요소의 속성</h3>
+
+autocomplete
+autofocus
+form
+formaction
+formenctype
+formmethod
+formnovalidate
+formtarget
+height and width
+list
+min and max
+multiple
+pattern (정규식)
+placeholder
+required
+step
