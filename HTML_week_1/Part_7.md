@@ -289,59 +289,58 @@ HTML5에서 추가된 의미(semantic) 요소
 
 > <h3>HTML5에서 추가된 다양한 타입의 input 요소</h3>
 
-`<datalist>` : input 요소에 대해 미리 정의된 옵션 리스트를 명시함.
-`<keygen>` : form 요소 안에 두 개의 키(key)를 만들어주는 생성기를 명시함.
-`<output>` : 스크립트 등으로 실행된 계산의 결과를 바로 나타냄.
+- `<datalist>`	: input 요소에 대해 미리 정의된 옵션 리스트를 명시함.
+- `<keygen>`	: form 요소 안에 두 개의 키(key)를 만들어주는 생성기를 명시함.
+- `<output>`	: 스크립트 등으로 실행된 계산의 결과를 바로 나타냄.
 
 > <h3>HTML5에서 추가된 input 요소의 타입</h3>
 
-number
-range
-color
-date
-time
-datetime-local
-month
-week
-email
-tel
-url
-search
++ number
++ range
+- color
+- date
+- time
+- datetime-local
+- month
+- week
+- email
+- tel
+- url
+- search
 
 > <h3>HTML5에서 추가된 form 요소의 속성</h3>
 
-autocomplete
-novalidate
+- autocomplete
+- novalidate
 
 > <h3>HTML5에서 추가된 input 요소의 속성</h3>
 
-autocomplete
-autofocus
-form
-formaction
-formenctype
-formmethod
-formnovalidate
-formtarget
-height and width
-list
-min and max
-multiple
-pattern
-placeholder
-required
-step
+- autocomplete
+- autofocus
+- form
+- formaction
+- formenctype
+- formmethod
+- formnovalidate
+- formtarget
+- height and width
+- list
+- min and max
+- multiple
+- pattern
+- placeholder
+- required
+- step
 
 > <h3>HTML5에서 추가된 그래픽 요소</h3>
-그래픽 요소	설명
-`<canvas>` : 자바 스크립트를 이용한 그래픽 작업을 정의함.
-`<svg>`	: SVG를 이용한 그래픽 작업을 정의함.
 
+- `<canvas>` 	: 자바 스크립트를 이용한 그래픽 작업을 정의함.
+- `<svg>`	: SVG를 이용한 그래픽 작업을 정의함.
 
-  > <h3>HTML5에서 추가된 멀티미디어 요소</h3>
+> <h3>HTML5에서 추가된 멀티미디어 요소</h3>
 
-`<audio>`	: 오디오와 음악 등 오디오 파일을 명시함.
-`<video>`	: 비디오와 영화 등 비디오 파일을 명시함.
-`<embed>`	: 플러그인(plug-in)과 같은 HTML 문서에 삽입할 객체(object)를 명시함.
-`<source>` : 멀티미디어 요소의 원본에 대한 파일 형식 및 파일 주소를 여러 개 명시함.
-`<track>`	: 비디오 플레이어에 대한 텍스트 자막을 명시함.
+- `<audio>`	: 오디오와 음악 등 오디오 파일을 명시함.
+- `<video>`	: 비디오와 영화 등 비디오 파일을 명시함.
+- `<embed>`	: 플러그인(plug-in)과 같은 HTML 문서에 삽입할 객체(object)를 명시함.
+- `<source>` 	: 멀티미디어 요소의 원본에 대한 파일 형식 및 파일 주소를 여러 개 명시함.
+- `<track>`	: 비디오 플레이어에 대한 텍스트 자막을 명시함.
