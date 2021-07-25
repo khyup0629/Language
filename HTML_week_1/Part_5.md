@@ -234,7 +234,7 @@ button 요소는 사용자가 누를 수 있는 버튼을 나타냅니다.
 
 ![image](https://user-images.githubusercontent.com/43658658/126775069-f3429422-3784-4f4e-bdc8-9c8f2ee11492.png)
 
-> <필드셋(fieldset)</h3>
+> <h3>필드셋(fieldset)</h3>
 
 ***fieldset 요소***는 form 요소와 관련된 데이터들을 하나로 묶어주는 역할을 합니다.
 
@@ -262,8 +262,8 @@ button 요소는 사용자가 누를 수 있는 버튼을 나타냅니다.
 
 > <h3>HTML5에서 추가된 form 요소의 속성</h3>
 
-autocomplete
-novalidate
+- autocomplete
+- novalidate
 
 > <h3>HTML5에서 추가된 다양한 타입의 input 요소</h3>
 
@@ -394,19 +394,19 @@ maxlength 속성과는 달리 입력 필드가 한 번에 보여줄 수 있는 �
 
 > <h3>HTML5에서 추가된 input 요소의 속성</h3>
 
-autocomplete
-autofocus
-form
-formaction
-formenctype
-formmethod
-formnovalidate
-formtarget
-height and width
-list
-min and max
-multiple
-pattern (정규식)
-placeholder
-required
-step
+- autocomplete
+- autofocus
+- form
+- formaction
+- formenctype
+- formmethod
+- formnovalidate
+- formtarget
+- height and width
+- list
+- min and max
+- multiple
+- pattern (정규식)
+- placeholder
+- required
+- step
