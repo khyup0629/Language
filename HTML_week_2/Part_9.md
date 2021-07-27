@@ -3,7 +3,7 @@
 + [멀티미디어 파일 형식](#멀티미디어-파일-형식)
 + [비디오(video)](#비디오video)
 + [오디오(audio)](#오디오audio)
-+ 
++ [플러그인(Plug-in)](#플러그인-Plugin)
 
 ## 멀티미디어 파일 형식
 
@@ -544,7 +544,7 @@ preload 속성은 페이지가 나타나고 비디오라 로드될 때 비디오
 </audio>
 ```
 
-<h4>HTML5 audio 요소</h4>
+> <h3>HTML5 audio 요소</h3>
 
 오디오 요소에서 활용될 수 있는 태그들은 아래와 같습니다.
 
@@ -570,7 +570,7 @@ preload 속성은 페이지가 나타나고 비디오라 로드될 때 비디오
 	</tbody>
 </table>
 
-<h4>HTML5 audio 속성</h4>
+> <h3>HTML5 audio 속성</h3>
 
 `<audio>`태그에서 사용되는 속성들을 다시 한 번 정리하면 아래와 같습니다.
 
@@ -606,3 +606,56 @@ preload 속성은 페이지가 나타나고 비디오라 로드될 때 비디오
 		</tr>
 	</tbody>
 </table>
+
+## 플러그인(Plugin)
+
+HTML 플러그인이란 웹 브라우저의 표준 기능을 확장해 주는 프로그램을 의미합니다.
+
+가장 널리 알려진 플러그인으로는 Java Applet, Flash Player, Pdf Reader 등이 있습니다.
+
+이러한 플러그인은 object 요소나 embed 요소를 사용하여 HTML 문서에 추가할 수 있습니다.
+
+> <h3>object 요소</h3>
+
+object 요소는 HTML 문서에 삽입할 객체(object)를 명시하는데 사용합니다.
+
+이 요소는 모든 웹 브라우저에서 동작하며, 객체뿐만 아니라 또 다른 HTML 문서를 삽입할 수도 있습니다.
+
+파일의 경로를 data를 이용해 입력합니다.
+
+``` html
+<h1>object 요소를 이용한 pdf 파일 삽입</h1>
+<object data="/examples/media/sample_plugins_pdf.pdf" style="width:100%; height:700px"></object>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127123857-383baf46-04a4-4c52-b22b-b881833466ed.png)
+
+또한, object 요소는 이미지를 삽입할 때에도 사용할 수 있습니다.
+
+``` html
+<object data="/examples/images/img_flower.png"></object>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127124132-a4c63da5-c614-4fda-b14f-1aab16bfa9b8.png)
+
+> <h3>embed 요소</h3>
+
+embed 요소는 HTML 문서에 삽입할 객체(object)를 명시하는데 사용합니다.
+
+embed 요소는 오래전부터 사용되어 왔지만, HTML5 이전까지는 HTML 표준이 아니었습니다.
+
+이 요소는 모든 웹 브라우저에서 동작하며, 객체뿐만 아니라 HTML 문서를 삽입할 수도 있습니다.
+
+```
+<embed src="/examples/media/sample_plugins_pdf.pdf" style="width:100%; height:700px">
+```
+
+또한, embed 요소는 이미지를 삽입할 때에도 사용할 수 있습니다.
+
+```
+<embed src="/examples/images/img_flower.jpg" style="width:350px; height:263px">
+```
+
+embed 요소는 HTML5 이전까지는 HTML 표준이 아니었으므로, HTML5에서는 유효하지만, **HTML4에서는 유효하지 않습니다.**
+
+object와 용도가 같습니다. 다만 파일 경로를 입력할 때 속성이 **data 또는 src**인 것이 다른 부분입니다.
