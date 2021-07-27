@@ -139,4 +139,252 @@ HTML5 표준이 공식적으로 지원하는 오디오 파일 형식은 MP3, WAV
 	</tbody>
 </table>
 
+> <h3>HTML5 비디오 파일 형식</h3>
+
+HTML5 표준이 공식적으로 지원하는 비디오 파일 형식은 MP4, WebM, OGV 뿐입니다.
+
+- MP4 : Moving Picture Experts Group에 의해 개발되었으며, 비디오 코덱으로는 H.268, 오디오 코덱으로는 ACC를 사용합니다. 적은 용량으로도 고품질의 영상 및 음성을 구현할 수 있어 인터넷을 통한 스트리밍에 많이 활용되는 파일 형식입니다.
+- WebM : 구글의 지원으로 개발된 개방형 공개 멀티미디어 파일 형식이며, 비디오 코덱으로는 VP8, 오디오 코덱으로는 Vorbis를 사용합니다.
+- OGV : Theora Ogg라고도 불리며, Xiph 재단에 의해 MP3의 대안으로 개발된 특허권으로 보호되지 않는 개방형 공개 멀티미디어 파일 형식입니다. 비디오 코덱으로는 Theora, 오디오 코덱으로는 Vorbis를 사용합니다.
+
+HTML5 비디오 파일 형식별 주요 웹 브라우저의 지원 여부는 다음 표와 같습니다.
+
+<table class="tb-1" summary="">
+	<tbody>
+		<tr>
+			<th style="width: 150px;">파일 형식</th>
+			<th style="width: 15%;">미디어 타입</th>
+			<th><img alt="ie" class="icon" src="/img/icon-ie.png" /></th>
+			<th><img alt="chrome" class="icon" src="/img/icon-chrome.png" /></th>
+			<th><img alt="firefox" class="icon" src="/img/icon-firefox.png" /></th>
+			<th><img alt="safari" class="icon" src="/img/icon-safari.png" /></th>
+			<th><img alt="opera" class="icon" src="/img/icon-opera.png" /></th>
+		</tr>
+		<tr>
+			<td>MP4</td>
+			<td>video/mp4</td>
+			<td>○</td>
+			<td>○</td>
+			<td>○</td>
+			<td>○</td>
+			<td>○</td>
+		</tr>
+		<tr>
+			<td>WebM</td>
+			<td>video/webm</td>
+			<td>&Chi;</td>
+			<td>○</td>
+			<td>○</td>
+			<td>&Chi;</td>
+			<td>○</td>
+		</tr>
+		<tr>
+			<td>OGV</td>
+			<td>video/ogg</td>
+			<td>&Chi;</td>
+			<td>○</td>
+			<td>○</td>
+			<td>&Chi;</td>
+			<td>○</td>
+		</tr>
+	</tbody>
+</table>
+
 ## 비디오(video)
+
+HTML5 이전에는 웹 페이지에서 비디오(video)를 보여주기 위한 표준안이 없었습니다.
+
+따라서 비디오를 삽입하기 위해서는 플래시(flash)와 같은 외부 플러그인(plug-in)에 의존해야만 했습니다.
+
+하지만 HTML5에서는 `<video>`태그를 이용하여 웹 페이지에 비디오를 삽입하는 표준화된 방식을 제공합니다.
+
+> <h3>control 속성</h3>
+
+재생, 정지 및 소리의 조절 등 비디오의 기본적인 동작을 조절할 수 있는 패널을 생성합니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127112676-95d77ad3-4be6-414d-a5ac-aea05b2e4dae.png)
+
+> <h3>height, width 속성</h3>
+
+height와 width 속성을 통해 비디오의 크기를 조절할 수 있습니다.
+
+style 속성을 통해 CSS로 조절할 수도 있습니다.
+
+> <h3>source 태그와 지원하지 않을 때의 출력 문자</h3>
+
+`<video>`태그 내에 `<source>`태그를 이용하여 원하는 비디오를 가져올 수 있습니다.
+
+src 속성을 이용해 "위치"를 알려주고 type 속성을 이용해 "멀티미디어의 종류/확장자"를 알려줍니다.
+
+웹 브라우저는 여러 개의 `<source>`태그 중 위쪽에서부터 순서대로 가장 먼저 인식되는 파일의 타입과 주소를 사용합니다.
+
+`<video>`태그 사이에 존재하는 ***텍스트***는 해당 웹 브라우저가 `<video>`태그를 지원하지 않을 때만 화면에 표시됩니다.
+
+``` html
+<h1><mark style="background-color:lightgreen; ">video 요소</mark>를 이용한 동영상 삽입</h1>
+<video height="360" width="576" controls>
+	<source src="/examples/media/sample_video_mp4.mp4" type="video/mp4">
+	<source src="/examples/media/sample_video_ogg.ogg" type="video/ogg">
+	이 문장은 사용자의 웹 브라우저가 video 요소를 지원하지 않을 때 나타납니다!
+</video>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127113256-e885a9c9-e257-4764-bce5-8a67f2551c05.png)
+
+> <h3>autoplay 속성</h3>
+
+autoplay 속성은 웹 페이지가 로드(load) 될 때 비디오를 자동으로 재생시켜 줄지 않을지를 설정합니다.
+
+``` html
+<h1><mark style="background-color:lightgreen; ">video 요소</mark>를 이용한 동영상 삽입</h1>
+<video height="360" width="576" controls autoplay>
+	<source src="/examples/media/sample_video_mp4.mp4" type="video/mp4">
+	<source src="/examples/media/sample_video_ogg.ogg" type="video/ogg">
+	이 문장은 사용자의 웹 브라우저가 video 요소를 지원하지 않을 때 나타납니다!
+</video>
+```
+
+> <h3>loop 속성</h3>
+
+loop 속성을 설정하면, 비디오의 재생이 끝나도 계속적으로 반복해서 비디오를 재생합니다.
+
+``` html
+<h1><mark style="background-color:lightgreen; ">video 요소</mark>를 이용한 동영상 삽입</h1>
+<video height="360" width="576" controls loop>
+	<source src="/examples/media/sample_video_mp4.mp4" type="video/mp4">
+	<source src="/examples/media/sample_video_ogg.ogg" type="video/ogg">
+	이 문장은 사용자의 웹 브라우저가 video 요소를 지원하지 않을 때 나타납니다!
+</video>
+```
+
+> <h3>track 태그</h3>
+
+`<track>`태그는 비디오가 재생될 때 보일 자막이나 캡션 파일을 명시할 때 사용합니다.
+
+``` html
+<video style="width:576; height:360" controls>
+    <source src="/examples/media/sample_video_mp4.mp4" type="video/mp4">
+    <source src="/examples/media/sample_video_ogg.ogg" type="video/ogg">
+    <track kind="subtitles" src="sample_subtitle_en.vtt" srclang="en" label="English">
+    <track kind="subtitles" src="sample_subtitle_fr.vtt" srclang="fr" label="Francais">
+    이 문장은 사용자의 웹 브라우저가 video 요소를 지원하지 않을 때 나타납니다!
+</video>
+```
+
+kind 속성은 자막 문자열의 타입을 명시합니다.
+
+srclang 속성은 해당 문자열의 언어 설정을 명시합니다.
+
+label 속성은 사용자가 보게 될 라벨을 명시합니다.
+
+> <h3>poster 속성</h3>
+
+poster 속성은 비디오가 로딩중일 때 나타낼 이미지를 나타냅니다.
+
+``` html
+<video width="320" height="240" poster="/images/w3schools_green.jpg" controls>
+   <source src="movie.mp4" type="video/mp4">
+   <source src="movie.ogg" type="video/ogg">
+   Your browser does not support the video tag.
+</video>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127114401-dab20f14-a39e-43ba-8e12-4453e89dfc22.png)
+
+> <h3>preload 속성</h3>
+
+preload 속성은 페이지가 나타나고 비디오라 로드될 때 비디오의 모든 내용을 사전에 로드할 것인가에 대한 선택을 할 수 있습니다.
+
+속성값은 3가지입니다.
+
+- auto : 페이지가 로드될 때 비디오의 전체 내용을 사전에 로드합니다.
+- metadata : 페이지가 로드될 때 비디오의 메타데이터만 사전에 로드합니다.
+- none : 페이지가 로드될 때 비디오의 전체 내용을 사전에 로드하지 않습니다.
+
+``` html
+<video width="320" height="240" controls preload="none">
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+```
+
+> <h4>HTML5 video 요소</h4>
+
+비디오에 쓰이는 요소들을 정리하면 아래와 같습니다.
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th>요소</th>
+			<th>설명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>video</td>
+			<td>비디오와 영화 등 비디오 파일을 명시함.</td>
+		</tr>
+		<tr>
+			<td>source</td>
+			<td>
+			<p>video 요소의 원본 파일에 대한 파일 형식 및 파일 주소를 여러 개 명시함.</p>
+
+			<p>웹 브라우저는 위쪽에서부터 순서대로 가장 먼저 인식되는 파일&nbsp;형식과 파일&nbsp;주소를 사용함.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>track</td>
+			<td>비디오 플레이어에 대한 텍스트 자막을 명시함.</td>
+		</tr>
+	</tbody>
+</table>
+
+> <h4>HTML5 video 속성</h4>
+
+`<video>`태그에 쓰이는 속성들을 다시 한 번 정리하면 아래와 같습니다.
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th>속성</th>
+			<th>설명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>src</td>
+			<td>비디오 파일의 경로를 명시함.</td>
+		</tr>
+		<tr>
+			<td>height</td>
+			<td>
+			<p>비디오 파일의 높이를 명시함.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>width</td>
+			<td>비디오 파일의 너비를 명시함.</td>
+		</tr>
+		<tr>
+			<td>controls</td>
+			<td>비디오의 기본적인 동작을 조절할 수 있는 패널를 명시함.</td>
+		</tr>
+		<tr>
+			<td>autoplay</td>
+			<td>비디오의 자동 재생 여부를 명시함.</td>
+		</tr>
+		<tr>
+			<td>loop</td>
+			<td>비디오의 반복 재생 여부를 명시함.</td>
+		</tr>
+		<tr>
+			<td>poster</td>
+			<td>비디오가 아직 준비 중일때 불러올 이미지 파일의 경로를 명시함.</td>
+		</tr>
+		<tr>
+			<td>preload</td>
+			<td>비디오를 재생하기 전에 파일의 내용을 모두 불러올지를 명시함.</td>
+		</tr>
+	</tbody>
+</table>
