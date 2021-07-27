@@ -3,7 +3,7 @@
 + [의미 요소(semantic element)](#의미-요소semantic-element)
 + [Input 요소](#Input-요소)
 + [input 요소의 타입](#input-요소의-타입)
-+ 
++ [Input 요소의 속성](#Input-요소의-속성)
 
 ## 의미 요소(semantic element)
 
@@ -649,3 +649,462 @@ search 타입이 일반 text 타입과 다른 점은 입력 필드에 검색어�
 
 ![image](https://user-images.githubusercontent.com/43658658/126900355-18240ee2-d2f7-46ce-8b71-35d479a783fd.png)
 
+## input 요소의 속성
+
+input 요소는 다양한 속성을 가질 수 있습니다.
+
+HTML에서 자주 사용되는 input 요소의 대표적인 속성은 다음과 같습니다.
+
+1. value
+2. readonly
+3. disabled
+4. maxlength
+5. size
+
+HTML5에서 새롭게 추가된 form 요소의 속성은 다음과 같습니다.
+
+1. autocomplete
+2. novalidate
+
+HTML5에서 새롭게 추가된 input 요소의 속성은 다음과 같습니다.
+
+1. autocomplete
+2. autofocus
+3. form
+4. formaction
+5. formenctype
+6. formmethod
+7. formnovalidate
+8. formtarget
+9. height and width
+10. list
+11. min and max
+12. multiple
+13. pattern
+14. placeholder
+15. required
+16. step
+
+> <h3>autocomplete 속성</h3>
+
+autocomplete 속성은 form 요소나 input 요소에 입력된 정보를 저장할지 안 할지를 명시합니다.
+
+이 속성의 속성값이 on으로 설정되면, 브라우저는 사용자가 입력하는 정보를 자동으로 저장합니다.
+
+그리고 나서 이후에 입력되는 입력값을 저장된 정보를 바탕으로 자동 완성해 줍니다.
+
+이 속성은 다음과 같은 input 타입에서만 사용할 수 있습니다.
+
+- text, password, range, color, date, datetime-local, month, week, email, url, tel, search 타입
+
+``` html
+<h1>autocomplete 속성을 이용한 자동 완성</h1>
+
+<form action="/examples/media/request.php" autocomplete="on">
+	이름 : <input type="text" name="username"><br>
+	나이 : <input type="number" name="age" min="1" max="99" autocomplete="off"> (1~99 사이 값을 입력하세요)<br>
+	<br>
+	input 요소에 데이터를 입력하고 전송 버튼을 누른 후에 F5키를 눌러 보세요!<br>
+	그리고 나서 같은 정보를 입력하려고 하면 이전 데이터가 아래에 팝업될 거에요!<br>
+	<br>
+	<input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127072927-eac83eac-f445-4e72-8f39-a2f90a65e057.png)
+
+> <h3>novalidate 속성</h3>
+
+novalidate 속성은 input 요소의 속성이 아닌 form 요소의 속성입니다.
+
+이 속성은 입력한 정보(data)를 전송할 때 **그 정보가 유효한지 아닌지를 검사하지 않았다는 것을 명시**합니다.
+
+***url 타입***이나 ***email 타입***과 같이 **자동으로 유효성 검사를 하는 input 타입**에 이 속성을 사용하면 유효성 검사를 **하지 않습니다.**
+
+즉, 이 속성이 사용된 form 요소로 전달받은 정보(data)는 **반드시 서버 측에서 따로 유효성 검사를 실시해야** 합니다.
+
+(novalidate 속성은 사파리, 익스플로러 9와 그 이전 버전에서 지원하지 않습니다)
+
+``` html
+<h1>novalidate 속성을 이용한 유효성 검사 여부 명시</h1>
+
+<form action="/examples/media/request.php">
+	여러분이 자주 들리는 사이트의 URL 주소를 입력해 주세요 :<br><br>
+	<input type="url" name="url">
+	<input type="submit" value="전송"><br>
+</form>
+
+<p><br>novalidate 속성을 적용하면 클라이언트 측의 유효성 검사를 건너뛸 수 있습니다.</p>
+<form action="/examples/media/request.php" novalidate>
+	여러분이 자주 들리는 사이트의 URL 주소를 입력해 주세요 :<br><br>
+	<input type="url" name="url">
+	<input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127073222-f45c15ac-9700-420e-af62-79083d1077a1.png)
+
+위의 경우 제대로된 URL을 입력하지 않았을 때 유효성 검사를 통해 URL을 입력하라는 알림이 뜨지만
+
+아래의 경우 novalidate 속성을 활용해 유효성 검사를 하지 않고 데이터를 그대로 전송하는 모습을 볼 수 있습니다.
+
+> <h3>autofocus 속성</h3>
+
+autofocus 속성은 웹 페이지가 로드(load)될 때, 속성이 적용된 input 요소에 자동으로 포커스(focus)가 가도록 해줍니다.
+
+(autofocus 속성은 익스플로러 9와 그 이전 버전에서 지원하지 않습니다)
+
+``` html
+<h1>autofocus 속성을 이용한 오토 포커싱</h1>
+
+<form action="/examples/media/request.php">
+	사용자 : <input type="text" name="username"><br>
+	비밀번호 : <input type="password" name="password" autofocus><br><br>
+	<input type="submit" value="전송">
+</form>
+<p>페이지 로드 시 자동으로 포커스가 비밀번호를 입력하는 input 요소에 가도록 합니다.</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127073683-50b49406-0dec-42fa-ab4a-acc83aa76e8c.png)
+
+페이지를 로드하면 입력 커서가 자동으로 비밀번호를 입력하는 란에 있는 것을 볼 수 있습니다.
+
+> <h3>form 속성</h3>
+
+form 속성은 해당 input 요소의 위치에 상관없이 포함될 form 요소를 명시해 줍니다.
+
+즉, input 요소가 코드 상으로 form 요소 내에 바깥에 있어도 form 요소 내에 포함되도록 할 수 있습니다.
+
+먼저 form 요소의 id 속성값을 준 뒤, 해당 input 요소의 속성을 form으로 주고 속성값을 연결하고 싶은 form 요소의 id로 적어줍니다.
+
+포함할 form 요소의 id 속성값을 공백으로 연결하여, 둘 이상의 form 요소에 포함할 수도 있습니다.
+
+``` html
+<h1>form 속성</h1>
+
+<form action="/examples/media/request.php" id="user">
+	사용자 : <input type="text" name="username"><br><br>
+	<input type="submit" value="전송">
+</form>
+<br>
+<form action="/examples/media/request.php" id="email">
+이메일 : <input type="email" name="emailaddress"><br><br>
+<input type="submit" value="전송">
+</form>
+<p>아래의 비밀번호를 입력하는 input 요소는 위치상으로는 form 요소에 포함되지 않습니다.<br>
+하지만 form 속성을 이용하여 하나의 form으로 인식할 수 있습니다.
+</p>
+<!--여러 form 요소에 포함시키기 위해 공백으로 연결시켰습니다.-->
+비밀번호 : <input type="password" name="password" form="user email"><br>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127074698-af644b79-b658-49c2-8329-f6e67a4ec289.png)
+
+> <h3>formaction 속성</h3>
+
+formaction 속성은 입력한 정보(data)를 전송할 때 정보가 전달될 서버 측 파일을 명시합니다.
+
+즉, ***formaction 속성***은 **form 요소의 action 속성을 덮어쓰게 됩니다.**
+
+이 속성을 사용하면 입력된 **정보를 넘겨줄 서버 측 파일을 input 요소에서 바꿀 수 있게** 됩니다.
+
+이 속성은 ***submit 타입***과 ***image 타입***에서만 사용할 수 있습니다.
+
+``` html
+<form action="/examples/media/request.php">
+	사용자 : <input type="text" name="username"><br>
+	비밀번호 : <input type="password" name="password"><br><br>
+	<input type="submit" value="전송">
+	<input type="submit" value="관리자 권한으로 전송" formaction="/examples/media/request_admin.php"><br>
+</form>
+```
+
+"전송" 버튼을 누르게 되면 "/examples/media/request.php" 파일로 보내집니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127075210-2354554e-6cd7-4426-bc8d-c3314209cd6a.png)
+
+"관리자 권한으로 전송" 버튼을 누르면 "/examples/media/request_admin.php" 파일로 보내집니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127075236-1275a4ce-0c37-4d11-a2d8-3b9680efb217.png)
+
+> <h3>formenctype 속성</h3>
+
+formenctype 속성은 입력한 정보(data)를 전송할 때 암호화하는 방법을 명시합니다.
+
+즉, formenctype 속성은 form 요소의 enctype 속성을 덮어쓰게 됩니다.
+
+```
+form 요소에는 enctype 이라는 속성이 쓰일 수 있습니다.
+enctype은 아래의 3가지 속성값을 가질 수 있습니다.
+application/x-www-form-urlencoded : 기본값으로, 모든 문자들은 서버로 보내기 전에 인코딩됨을 명시함.
+multipart/form-data : 모든 문자를 인코딩하지 않음을 명시함. 이 방식은 <form> 요소가 파일이나 이미지를 서버로 전송할 때 주로 사용함.
+text/plain : 공백 문자(space)는 "+" 기호로 변환하지만, 나머지 문자는 모두 인코딩되지 않음을 명시함.
+```
+
+단, formenctype 속성은 form 요소의 method 속성이 **post**일 때만 적용됩니다.
+
+이 속성은 ***submit 타입***과 ***image 타입***에서만 사용할 수 있습니다.
+
+``` html
+<form action="/examples/media/request_enctype.php" method="post">
+	사용자 이름을 입력해주세요 : <input type="text" name="username"><br><br>
+	<input type="submit" value="암호화하여 전송" formenctype="multipart/form-data"><br>
+</form>
+```
+
+"bllu"를 전송하면 아래와 같이 인코딩되어 전송됩니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127078911-bb6bf5be-30ed-4ec0-9c0f-aa019751b87f.png)
+
+`<keygen>`의 경우 암호화되어 전송되지만 데이터를 받고 출력할 때는 디코딩되어 원래 정보를 출력한다는 것에 차이가 있습니다.
+
+> <h3>formmethod 속성</h3>
+
+formmethod 속성은 입력한 정보(data)를 전송할 때 사용하는 http 메소드(method)를 명시합니다.
+
+즉, formmethod 속성은 form 요소의 method 속성을 덮어쓰게 됩니다.
+
+이 속성은 submit 타입과 image 타입에서만 사용할 수 있습니다.
+
+``` html
+<form action="/examples/media/request.php" method="get">
+	사용자 이름 : <input type="text" name="username" autocomplete="on"><br>
+	<br>
+	<input type="submit" value="post방식으로 전송" formmethod="post">
+</form>
+```
+
+> <h3>formnovalidate 속성</h3>
+
+formnovalidate 속성은 입력한 정보(data)를 전송할 때 그 정보가 유효한지 아닌지를 검사하지 않았다는 것을 명시합니다.
+
+즉, formnovalidate 속성은 form 요소의 novalidate 속성을 덮어쓰게 됩니다.
+
+이 속성은 오직 submit 타입에서만 사용할 수 있습니다.
+
+``` html
+<h1>formnovalidate 속성</h1>
+<form action="/examples/media/request.php">
+	여러분이 자주 들리는 사이트의 URL 주소를 입력해 주세요 : <input type="url" name="url"><br>
+	<br>
+	<input type="submit" value="전송">
+	<input type="submit" value="novalidate 방식으로 전송" novalidate>
+</form>
+```
+
+"khyup0629"를 입력했을 떄 "전송" 버튼을 누르면 유효성 검사를 하지만, "novalidate 방식으로 전송" 버튼을 누르면 데이터가 보내지는 것을 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127103726-3196730b-0e07-4ed7-9e1d-4ecab0be669a.png)
+
+> <h3>formtarget 속성</h3>
+
+formtarget 속성은 입력한 정보(data)를 전송한 후, 그 결과로 받은 응답 페이지를 어디에 출력할지를 명시합니다.
+
+즉, formtarget 속성은 form 요소의 target 속성을 덮어쓰게 됩니다.
+
+```
+form 요소의 target 속성은 action 페이지를 어느 창에 띄울 것인지를 나타냅니다.
+_blank : 서버로부터 받은 응답을 새로운 윈도우나 탭(tab)에서 보여줌.
+_self : 기본값으로 생략 가능. 서버로부터 받은 응답을 링크가 위치한 현재 프레임에서 보여줌.
+_parent : 서버로부터 받은 응답을 현재 프레임의 부모 프레임에서 보여줌.
+_top : 서버로부터 받은 응답을 현재 윈도우 전체에서 보여줌.
+iframe 이름 : 서버로부터 받은 응답을 명시된 프레임(iframe)에서 보여줌.
+```
+
+이 속성은 submit 타입과 image 타입에서만 사용할 수 있습니다.
+
+``` html
+<form action="/examples/media/request.php">
+	사용자 이름을 입력해주세요 : <input type="text" name="username"><br><br>
+	<input type="submit" value="전송">
+	<input type="submit" value="응답 화면을 새창에 표시" formtarget="_blank"><br>
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127104915-1567c49b-27d6-4540-a583-033017a429f5.png)
+
+"응답 화면을 새창에 표시" 버튼을 누르면 새로운 탭이 열리면서 action 페이지가 뜨는 것을 확인할 수 있습니다.
+
+> <h3>height와 width 속성</h3>
+
+`<input>`태그의 type 속성이 "image"일 경우에는 height 속성과 width 속성을 사용하여 이미지의 높이와 너비를 명시할 수 있습니다.
+
+따라서 이 속성은 오직 image 타입에서만 사용할 수 있습니다.
+
+또한, 이미지를 클릭하면 클릭한 곳의 x좌표와 y좌표가 x와 y라는 이름으로 같이 전송됩니다.
+
+(image 타입 역시 전송하는 기능을 수행합니다. 차이점은 form 요소 내의 input 정보 뿐만 아니라 그림에서 클릭한 위치의 (x, y) 좌표를 같이 보낸다는 특징이 있습니다)
+
+``` html
+<h1>height와 width 속성을 이용한 이미지의 크기 설정</h1>
+
+<form action="/examples/media/request.php">
+	사용자 : <input type="text" name="username"><br>
+	비밀번호 : <input type="password" name="password" autofocus><br>
+	<br>
+	<input type="image" src="/examples/images/img_penguin.png" alt="전송" height="26" width="26"> 그림을 클릭하시면 전송됩니다!
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127105602-b5ac35ff-744c-43be-8abe-fa4642575fb6.png)
+
+펭귄 그림을 클릭하면 아래와 같이 그림에서 클릭한 위치인 x, y 좌표 정보도 함께 전송됩니다.
+
+좌측 상단이 (0, 0)입니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127105677-cee68978-1cb2-48da-a9de-7ba123b03242.png)
+
+> <h3>list 속성</h3>
+
+***list 속성***은 해당 input 요소에 대한 미리 정의된 옵션 리스트를 설정하는 datalist 요소와 관련이 있습니다.
+
+input 요소의 list 속성값이 datalist 요소의 id 속성값과 일치해야만 연결이 됩니다.
+
+input 요소의 타입 대신 list가 입력됩니다.
+
+``` html
+<h1>list 속성을 이용한 datalist 요소</h1>
+
+<form action="/examples/media/request.php">
+	<input list="lectures" name="lecture">
+		<datalist id="lectures">
+			<option value="HTML"></option>
+			<option value="CSS"></option>
+			<option value="JAVA"></option>
+			<option value="C++"></option>
+		</datalist>
+	<input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127106348-e37509d7-a258-4ccd-bd8f-26929202e48d.png)
+
+> <h3>min과 max 속성</h3>
+
+min속성과 max 속성은 input 요소에 입력할 수 있는 최솟값과 최댓값을 명시합니다.
+
+이 속성은 다음과 같은 input 타입에서만 사용할 수 있습니다.
+
+- number, range, date, time, datetime-local, month, week 타입
+
+> <h3>multiple 속성</h3>
+
+multiple 속성은 사용자가 input 요소에 값을 두 개 이상 입력하는 것을 허용합니다.
+
+이 속성은 email 타입과 file 타입에서만 사용할 수 있습니다.
+
+``` html
+<h1>multiple 속성을 이용한 다중 파일 전송</h1>
+<form action="/examples/media/request.php">
+	서버로 전송할 파일을 선택해주세요 :<br>
+	(여러 개의 파일 선택도 가능해요!)<br><br>
+	<input type="file" name="uploadfile" multiple><br><br>
+	<input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127107362-7a7db54d-8bad-4b60-8267-26d88cde92e7.png)
+
+> <h3>pattern 속성</h3>
+
+pattern 속성은 input 요소에 입력된 값을 검사하기 위한 정규 표현식(regular expression)을 명시합니다.
+
+정규 표현식이란 문자열에서 특정한 규칙을 가지는 문자열의 집합을 찾아내기 위한 검색 패턴을 의미합니다.
+
+정규 표현식은 자바스크립트 정규 표현식을 따릅니다.
+
+이 속성은 다음과 같은 input 타입에서만 사용할 수 있습니다.
+
+- text, password, email, tel, url 타입
+
+``` html
+<h1>pattern 속성을 이용한 입력 형식 제한</h1>
+<form action="/examples/media/request.php">
+	여러분의 이메일 주소를 입력해 주세요 :<br><br>
+<!--이메일의 형식은 구간1@구간2.구간3(.구간4)로 나뉩니다. 
+a-zA-Z0-9는 대소문자, 숫자를 쓸 수 있다는 것을 뜻합니다. 
+*표시는 생략될 수도 있는 구간에 사용합니다.-->
+	<input type="email" name="email"
+		pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]+[.]*[a-zA-Z]*" title="이메일 양식">
+	<input type="submit" value="전송">
+</form>
+```
+
+위의 예제에서 사용된 정규 표현식의 의미는 다음과 같습니다.
+
+1. [a-zA-Z0-9] : 영문 소문자나 영문 대문자, 숫자 중 어느 것이라도 개수에 상관없이 나올 수 있음.
+2. [@] : '@' 문자만이 나와야 함.
+3. [.] : '.' 문자만이 나와야 함.
+4. [.]* : '.' 문자가 나와도 되고 나오지 않아도 됨.
+5. [a-zA-Z0-9]* : 영문 소문자나 영문 대문자, 숫자 중 어느 것이라도 개수에 상관없이 나와도 되고 나오지 않아도 됨.
+
+따라서 위와 같은 정규 표현식을 사용하면, 해당 문자열이 이메일 양식에 맞는 문자열인지를 확인할 수 있습니다.
+
+> <h3>placeholder 속성</h3>
+
+placeholder 속성은 input 요소에 입력되어야 할 값에 대한 힌트를 제공합니다.
+
+이러한 힌트는 예시가 될 수도 있고, 입력 형식에 대한 설명이 될 수도 있습니다.
+
+placeholder 속성값은 해당 입력 필드에 포커스가 오게 되면 더 이상 표시되지 않습니다.
+
+이 속성은 다음과 같은 input 타입에서만 사용할 수 있습니다.
+
+- text, password, email, tel, url, search 타입
+
+``` html
+<h1>placeholder 속성을 이용한 힌트 제공</h1>
+
+<form action="/examples/media/request.php">
+	사용자 : <input type="text" name="username" placeholder="홍길동"><br>
+	비밀번호 : <input type="password" name="password" placeholder="1234"><br><br>
+	<input type="submit" value="전송">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127109028-8cffcb38-ed70-4800-bd07-2fc33c8fa577.png)
+
+> <h3>required 속성</h3>
+
+required 속성은 반드시 입력되어야 할 필수 input 요소를 명시합니다.
+
+이 속성이 설정된 모든 input 요소에 입력값이 존재해야만 서버로 전송(submit)할 수 있습니다.
+
+``` html
+<h1>required 속성을 이용한 필수 입력 설정</h1>
+
+<form action="/examples/media/request.php">
+	이름 : <input type="text" name="name" required> (이름은 반드시 입력해야 해요!)<br>
+	나이 : <input type="number" name="age" min="1" max="99"><br><br>
+	<input type="submit" value="전송">
+</form>
+```
+
+이름을 입력하지 않고 "전송" 버튼을 누르면 아래와 같은 알림이 발생합니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127109302-5c2472c7-2553-451b-9325-1d46f961b174.png)
+
+> <h3>step 속성</h3>
+
+step 속성은 input 요소에 입력할 수 있도록 허용된 숫자 간격을 명시합니다.
+
+예를 들어, step 속성값이 2이면, 입력이 허용되는 숫자는 ..., -4, -2, 0, 2, 4,... 가 됩니다.
+
+이 속성은 다음과 같은 input 타입에서만 사용할 수 있습니다.
+
+- number, range, date, time, datetime-local, month, week 타입
+
+``` html
+<h1>step 속성을 이용한 입력 간격 설정</h1>
+
+<form action="/examples/media/request.php">
+	여러분이 가장 좋아하는 숫자는 몇인가요?<br>
+	(단, -30부터 30사이에서 5단위로 골라주세요!)<br><br>
+	<input type="number" name="favnum" value="0" min="-30" max="30" step="5"><br><br>
+	<input type="submit" value="전송">
+</form>
+```
+
+입력란 오른쪽에 화살표 버튼을 누르면 "5" 단위로 증감되는 것을 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127109623-df240c6a-02e2-4e75-a44a-0c477bf10b2d.png)
