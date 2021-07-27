@@ -154,11 +154,11 @@ HTML5 비디오 파일 형식별 주요 웹 브라우저의 지원 여부는 다
 		<tr>
 			<th style="width: 150px;">파일 형식</th>
 			<th style="width: 15%;">미디어 타입</th>
-			<th><img alt="ie" class="icon" src="/img/icon-ie.png" /></th>
-			<th><img alt="chrome" class="icon" src="/img/icon-chrome.png" /></th>
-			<th><img alt="firefox" class="icon" src="/img/icon-firefox.png" /></th>
-			<th><img alt="safari" class="icon" src="/img/icon-safari.png" /></th>
-			<th><img alt="opera" class="icon" src="/img/icon-opera.png" /></th>
+			<th>ie</th>
+			<th>chrome</th>
+			<th>firefox</th>
+			<th>safari</th>
+			<th>opera</th>
 		</tr>
 		<tr>
 			<td>MP4</td>
