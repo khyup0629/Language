@@ -2,6 +2,7 @@
 
 + [멀티미디어 파일 형식](#멀티미디어-파일-형식)
 + [비디오(video)](#비디오video)
++ [오디오(audio)](#오디오audio)
 + 
 
 ## 멀티미디어 파일 형식
@@ -139,6 +140,14 @@ HTML5 표준이 공식적으로 지원하는 오디오 파일 형식은 MP3, WAV
 	</tbody>
 </table>
 
+## 비디오(video)
+
+HTML5 이전에는 웹 페이지에서 비디오(video)를 보여주기 위한 표준안이 없었습니다.
+
+따라서 비디오를 삽입하기 위해서는 플래시(flash)와 같은 외부 플러그인(plug-in)에 의존해야만 했습니다.
+
+하지만 HTML5에서는 `<video>`태그를 이용하여 웹 페이지에 비디오를 삽입하는 표준화된 방식을 제공합니다.
+
 > <h3>HTML5 비디오 파일 형식</h3>
 
 HTML5 표준이 공식적으로 지원하는 비디오 파일 형식은 MP4, WebM, OGV 뿐입니다.
@@ -190,15 +199,7 @@ HTML5 비디오 파일 형식별 주요 웹 브라우저의 지원 여부는 다
 	</tbody>
 </table>
 
-## 비디오(video)
-
-HTML5 이전에는 웹 페이지에서 비디오(video)를 보여주기 위한 표준안이 없었습니다.
-
-따라서 비디오를 삽입하기 위해서는 플래시(flash)와 같은 외부 플러그인(plug-in)에 의존해야만 했습니다.
-
-하지만 HTML5에서는 `<video>`태그를 이용하여 웹 페이지에 비디오를 삽입하는 표준화된 방식을 제공합니다.
-
-> <h3>control 속성</h3>
+> <h3>controls 속성</h3>
 
 재생, 정지 및 소리의 조절 등 비디오의 기본적인 동작을 조절할 수 있는 패널을 생성합니다.
 
@@ -384,6 +385,224 @@ preload 속성은 페이지가 나타나고 비디오라 로드될 때 비디오
 		<tr>
 			<td>preload</td>
 			<td>비디오를 재생하기 전에 파일의 내용을 모두 불러올지를 명시함.</td>
+		</tr>
+	</tbody>
+</table>
+
+## 오디오(audio)
+
+> <h3>오디오(audio) 요소</h3>
+
+HTML5 이전에는 웹 페이지에서 오디오(audio)를 들려주기 위한 표준안이 없었습니다.
+
+따라서 비디오를 삽입하기 위해서는 플래시(flash)와 같은 외부 플러그인(plug-in)에 의존해야만 했습니다.
+
+하지만 HTML5에서는 `<audio>`태그를 이용하여 웹 페이지에 오디오를 삽입하는 표준화된 방식을 제공합니다.
+
+`<audio>`태그를 지원하는 주요 웹 브라우저의 버전은 다음과 같습니다.
+
+<table class="tb-1" summary="">
+	<tbody>
+		<tr>
+			<th style="width: 150px;">요소</th>
+			<th>ie</th>
+			<th>chrome</th>
+			<th>firefox</th>
+			<th>safari</th>
+			<th>opera</th>
+		</tr>
+		<tr>
+			<td>&lt;audio&gt;태그</td>
+			<td>9.0</td>
+			<td>4.0</td>
+			<td>3.5</td>
+			<td>4.0</td>
+			<td>10.5</td>
+		</tr>
+	</tbody>
+</table>
+
+> <h3>HTML5 오디오 파일 형식</h3>
+
+HTML5 표준이 공식적으로 지원하는 오디오 파일 형식은 MP3, WAV, Ogg 뿐입니다.
+
+- MP3 : Moving Picture Experts Group에 의해 개발되었으며, MPEG-1의 오디오 규격으로 개발된 손실 압축형 파일 형식입니다.
+- WAV : IBM과 Microsoft에 의해 개발되었으며, 개인용 PC에서 오디오를 재생하기 위한 IBM과 Microsoft의 표준 오디오 파일 형식입니다.
+- Ogg : Xiph 재단에 의해 개발되었으며, MP3의 대안으로 개발된 특허권으로 보호되지 않는 개방형 공개 멀티미디어 파일 형식입니다.
+
+HTML5 오디오 파일 형식별 주요 웹 브라우저의 지원 여부는 다음 표와 같습니다.
+
+<table class="tb-1" summary="">
+	<tbody>
+		<tr>
+			<th style="width: 150px;">파일 형식</th>
+			<th style="width: 15%;">
+			<p>미디어 타입</p>
+			</th>
+			<th>ie</th>
+			<th>chrome</th>
+			<th>firefox</th>
+			<th>safari</th>
+			<th>opera</th>
+		</tr>
+		<tr>
+			<td>MP3</td>
+			<td>audio/mp3</td>
+			<td>○</td>
+			<td>○</td>
+			<td>○</td>
+			<td>○</td>
+			<td>○</td>
+		</tr>
+		<tr>
+			<td>WAV</td>
+			<td>audio/wav</td>
+			<td>&Chi;</td>
+			<td>○</td>
+			<td>○</td>
+			<td>○</td>
+			<td>○</td>
+		</tr>
+		<tr>
+			<td>Ogg</td>
+			<td>audio/ogg</td>
+			<td>&Chi;</td>
+			<td>○</td>
+			<td>○</td>
+			<td>&Chi;</td>
+			<td>○</td>
+		</tr>
+	</tbody>
+</table>
+
+> <h3>source 태그</h3>
+
+`<video>`와 마찬가지로 `<source>`태그를 이용해 오디오 파일을 불러올 수 있습니다.
+
+src 속성을 이용해 "위치"를 알려주고, type 속성을 통해 "멀티미디어 종류/확장자"를 알려줍니다.
+
+웹 브라우저는 여러 개의 `<source>`태그 중 위쪽에서부터 순서대로 가장 먼저 인식되는 파일의 타입과 주소를 사용합니다.
+
+`<audio>`태그 사이에 존재하는 텍스트는 해당 웹 브라우저가 `<audio>`태그를 지원하지 않을 때만 화면에 표시됩니다.
+
+> <h3>controls 속성</h3>
+
+control 속성은 재생, 정지 및 소리의 조절 등 오디오의 기본적인 동작을 조절할 수 있는 패널을 생성합니다.
+
+``` html
+<h1>audio 요소를 이용한 소리 삽입</h1>
+<audio controls>
+	<source src="/examples/media/sample_audio_ogg.ogg" type="audio/ogg">
+	<source src="/examples/media/sample_audio_mp3.mp3" type="audio/mp3">
+	이 문장은 사용자의 웹 브라우저가 audio 요소를 지원하지 않을 때 나타납니다!
+</audio>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127120193-0e072f1e-8309-4f5d-a03c-df3f36aa11dc.png)
+
+> <h3>autoplay 속성</h3>
+
+autoplay 속성은 웹 페이지가 로드(load) 될 때 음악을 자동으로 재생시켜 줄지 않을지를 설정합니다.
+
+``` html
+<h1>audio 요소를 이용한 소리 삽입</h1>
+<audio controls autoplay>
+	<source src="/examples/media/sample_audio_ogg.ogg" type="audio/ogg">
+	<source src="/examples/media/sample_audio_mp3.mp3" type="audio/mp3">
+	이 문장은 사용자의 웹 브라우저가 audio 요소를 지원하지 않을 때 나타납니다!
+</audio>
+```
+
+> <h3>loop 속성</h3>
+
+loop 속성을 설정하면 오디오의 재생이 끝나도 계속적으로 반복해서 오디오를 재생합니다.
+
+``` html
+<h1>audio 요소를 이용한 소리 삽입</h1>
+<audio controls loop>
+	<source src="/examples/media/sample_audio_ogg.ogg" type="audio/ogg">
+	<source src="/examples/media/sample_audio_mp3.mp3" type="audio/mp3">
+	이 문장은 사용자의 웹 브라우저가 audio 요소를 지원하지 않을 때 나타납니다!
+</audio>
+```
+
+> <h3>preload 속성</h3>
+
+preload 속성은 페이지가 나타나고 비디오라 로드될 때 비디오의 모든 내용을 사전에 로드할 것인가에 대한 선택을 할 수 있습니다.
+
+속성값은 3가지입니다.
+
+- auto : 페이지가 로드될 때 비디오의 전체 내용을 사전에 로드합니다.
+- metadata : 페이지가 로드될 때 비디오의 메타데이터만 사전에 로드합니다.
+- none : 페이지가 로드될 때 비디오의 전체 내용을 사전에 로드하지 않습니다.
+
+``` html
+<audio controls preload="none">
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+```
+
+<h4>HTML5 audio 요소</h4>
+
+오디오 요소에서 활용될 수 있는 태그들은 아래와 같습니다.
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th>요소</th>
+			<th>설명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>audio</td>
+			<td>오디오와 음악 등 오디오 파일을 명시함.</td>
+		</tr>
+		<tr>
+			<td>source</td>
+			<td>
+			<p>audio 요소의 원본 파일에 대한 파일 형식 및 파일&nbsp;주소를 여러 개 명시함.<br>
+			웹 브라우저는 위쪽에서부터 순서대로 가장 먼저 인식되는 파일&nbsp;형식과 파일&nbsp;주소를 사용함.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>HTML5 audio 속성</h4>
+
+`<audio>`태그에서 사용되는 속성들을 다시 한 번 정리하면 아래와 같습니다.
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th>속성</th>
+			<th>설명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>src</td>
+			<td>오디오 파일의 경로를 명시함.</td>
+		</tr>
+		<tr>
+			<td>controls</td>
+			<td>
+			<p>오디오의 기본적인 동작을 조절할 수 있는 패널를 명시함.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>autoplay</td>
+			<td>오디오의 자동 재생 여부를 명시함.</td>
+		</tr>
+		<tr>
+			<td>loop</td>
+			<td>오디오의 반복 재생 여부를 명시함.</td>
+		</tr>
+		<tr>
+			<td>preload</td>
+			<td>오디오를 재생하기 전에 파일의 내용을 모두 불러올지를 명시함.</td>
 		</tr>
 	</tbody>
 </table>
