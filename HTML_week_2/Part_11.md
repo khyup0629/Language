@@ -4,7 +4,8 @@
 + [drag and drop API](#drag-and-drop-API)
 + [web storage API](#web-storage-API)
 + [application cache API](#application-cache-API)
-+ 
++ [web worker API](#web-worker-API)
++ [Server Sent Events API](#Server-Sent-Events-API)
 
 ## geolocation API
 
@@ -485,3 +486,192 @@ FALLBACK:
 이때 가장 많이 사용되는 방법이 cache manifest 파일 내의 **주석 부분을 수정**하는 것입니다.
 
 일반적으로 **갱신 날짜 및 버전 정보**를 주석으로 표시하고, 이 부분을 수정하여 웹 브라우저가 캐시를 갱신하도록 유도합니다.
+
+## web worker API
+
+웹 페이지에서 스크립트가 실행되면, 해당 웹 페이지는 실행 중인 스크립트가 종료될 때까지 응답 불가 상태가 됩니다.
+
+web worker는 스크립트가 웹 페이지의 성능에 영향을 미치지 않도록 백그라운드에서 동작하게 해주는 자바스크립트입니다.
+
+즉, web worker는 스크립트의 다중 스레드(multi-thread)를 지원합니다.
+
+따라서 사용자가 웹 페이지를 이용하면서도, 동시에 시간이 오래 걸리는 자바스크립트 작업도 병행할 수 있도록 해줍니다.
+
+> <h3>web worker 지원 여부 확인</h3>
+
+web worker를 사용하기 전에, 우선 사용자의 웹 브라우저가 이를 지원하는지 안 하는지 확인해야 합니다.
+
+```
+if (typeof(Worker) !== "undefined") {
+    // web worker를 위한 코드 부분 
+}
+else {
+    // web worker를 지원하지 않는 브라우저를 위한 안내 부분
+}
+```
+
+> <h3>web worker 파일 생성</h3>
+
+web worker의 동작을 확인하기 위해 소수를 찾는 외부 자바스크립트 파일을 만듭니다.
+
+> <h3>web worker 파일 생성</h3>
+
+web worker의 동작을 확인하기 위해 소수를 찾는 외부 자바스크립트 파일을 만듭니다.
+
+```
+var n = 1;
+search: while (true) {
+    n += 1;
+    for (var i = 2; i <= Math.sqrt(n); i += 1)
+        if (n % i == 0)
+            continue search;
+        postMessage(n);
+}
+``` 
+
+위의 예제에서 postMessage() 메소드는 HTML 문서에 결과를 전달하기 위해 사용합니다.
+
+> <h3>web worker 객체 생성</h3>
+
+위에서 만든 web worker 파일을 불러올 HTML 파일을 만듭니다.
+
+``` html
+if(typeof(webworker) == "undefined") {
+    webworker = new Worker("/examples/web_worker.js");
+}
+``` 
+
+위의 예제는 web worker 파일이 존재하지 않으면, 새로운 web worker 객체를 만들어 줍니다.
+
+> <h3>worker 객체와의 연결</h3>
+
+onmessage 이벤트 리스너(event listener)를 통해 web worker 파일과 메시지를 주고받을 수 있습니다.
+
+```
+webworker.onmessage = function(event) {
+    document.getElementById("result").innerHTML = event.data;
+};
+```
+
+위의 예제에서 web worker 파일이 메시지를 보내면 해당 이벤트 리스너(event listener)가 실행됩니다.
+
+이 때 web worker 파일이 보낸 정보는 event.data에 저장됩니다.
+
+> <h3>web worker 객체의 실행 종료</h3>
+
+web worker 객체는 생성되고 나서 종료될 때까지 계속해서 메시지를 받을 준비를 합니다.
+
+따라서 웹 브라우저나 컴퓨터의 자원을 돌려주기 위해서는 terminate() 메소드를 사용하여 web worker를 반드시 종료해줘야 합니다.
+
+```
+webworker.terminate();
+```
+
+> <h3>web worker 객체의 재사용</h3>
+
+web worker 객체가 종료된 후에는 web worker의 값을 undefined로 설정해야만 web worker 객체를 재사용할 수 있습니다.
+
+```
+webworker = undefined;
+```
+
+> <h3>web worker 예제</h3>
+
+다음 예제는 앞에서 살펴본 web worker의 동작을 하나의 예제로 보여주는 예제입니다.
+
+``` html
+<h1>web worker를 이용한 동시 작업</h1>
+
+<p>현재까지 발견한 소수의 개수는 <output id="result"></output>입니다.</p>
+<button onclick="startWorker()">Web Worker 시작</button> 
+<button onclick="stopWorker()">Web Worker 종료</button>
+<p>위의 스크립트가 실행되는 동안에도 텍스트 필드에 글을 쓰는 작업을 동시에 할 수 있습니다!</p>
+<textarea rows="10" cols="50"></textarea>
+
+<script>
+	var webworker;
+
+	function startWorker() {
+		if(typeof(Worker) !== "undefined") {		// web worker 지원 여부 확인
+			if(typeof(webworker) == "undefined") {	// web worker 객체 생성
+				webworker = new Worker("/examples/media/web_worker.js");
+			}
+			webworker.onmessage = function(event) {	// web worker 객체와의 연결
+				document.getElementById("result").innerHTML = event.data;
+			};
+		} else {
+			document.getElementById("result").innerHTML = "이 문장은 사용자의 웹 브라우저가 Web Worker API를 지원하지 않을 때 나타납니다!";
+		}
+	}
+
+	function stopWorker() { 
+		webworker.terminate();	// web worker 객체의 실행 종료
+		webworker = undefined;	// web worker 객체의 재사용
+	}
+</script>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127317610-508b6a34-8aee-41ab-94f0-ae2895a3d057.png)
+
+## Server Sent Events API
+
+server sent events API는 웹 페이지가 서버로부터 갱신된 정보를 자동으로 받을 수 있도록 설정합니다.
+
+> <h3>server sent events 지원 여부 확인</h3>
+
+server sent events를 사용하기 전에, 우선 사용자의 웹 브라우저가 이를 지원하는지 안 하는지 확인해야 합니다.
+
+```
+if (typeof(EventSource) !== "undefined") {
+    // server sent events를 위한 코드 부분
+} else {
+    // server sent events를 지원하지 않는 브라우저를 위한 안내 부분
+}
+```
+
+> <h3>server sent events 예제</h3>
+
+다음 예제는 server sent events를 이용해 3초마다 웹 페이지를 갱신하는 예제입니다.
+
+``` html
+<h1>server sent events를 이용한 자동 갱신</h1>
+  
+  <p id="time"></p>
+  
+  <script>
+    var loc = document.getElementById("time");
+    var source;
+    
+    
+    if ( typeof(EventSource) !== "undefined" ){
+      source = new EventSource("/examples/media/sse.php");
+      source.onmessage = function(event){
+        loc.innerHTML += event.data + "<br>";
+      }
+    }
+    else{
+      loc.innerHTML = "이 문장은 사용자의 웹 브라우저가 Server Sent Events를 지원하지 않을 때 나타납니다!";
+    }
+    
+  </script>
+```
+
+`EventSource`를 따로 계속 호출하지 않아도 반복적으로 계속 갱신됩니다.
+
+자동으로 갱신이 되고 갱신이 된 날짜와 시간이 3초마다 출력되는 것을 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127318004-95375abe-be2e-4372-80ae-80abb27036a9.png)
+
+위의 예제에서 사용한 서버 측 PHP 파일인 sse.php 파일은 다음과 같습니다.
+
+```
+<!--sse.php-->
+<?php
+header('Content-Type: text/event-stream');
+header('Cache-Control: no-cache');
+
+$time = date('r');
+echo "data: The server time is: {$time}\n\n";
+flush();
+?>
+```
