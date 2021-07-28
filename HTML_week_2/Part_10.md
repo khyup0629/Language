@@ -756,6 +756,7 @@ points 속성은 다각형을 이루는 각 꼭짓점의 x좌표와 y좌표를 �
 따라서 렌더링 시간이란 코드를 실행하여 그 결과가 화면에 표시되는 시간을 의미합니다.
 
 ![image](https://user-images.githubusercontent.com/43658658/127271600-6950dfcb-e5c6-4548-8333-2cd26d14c6ab.png)
+![image](https://user-images.githubusercontent.com/43658658/127272036-3a293d30-e76c-4654-a4a5-f81ef9c8531d.png)
 
 - canvas 요소의 성능은 화면이 작거나, 픽셀 수가 많을 경우(>10k)에 좋습니다.
 
