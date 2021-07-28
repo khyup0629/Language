@@ -131,6 +131,7 @@ function showYourLocation(position) {
     var map = new google.maps.Map(loc, mapOptions);
     var marker = new google.maps.Marker({position:userLocation,map:map,title:"여기가 현재 위치입니다!"});
 }
+```
 
 > <h4>Geolocation API 메소드</h4>
 
@@ -231,4 +232,93 @@ HTML5 이전에 이와 같은 기능을 구현하기 위해서는 엄청나게 �
 드래그 앤 드롭 이벤트를 위한 모든 이벤트 리스너 메소드(event listener method)는 **DataTransfer 객체**를 반환합니다.
 
 이렇게 반환된 **DataTransfer 객체**는 **드래그 앤 드롭 동작에 관한 정보**를 가지고 있게 됩니다.
+
+> <h3>draggable 속성</h3>
+
+웹 페이지 내의 모든 요소는 draggable 속성을 사용하여 드래그될 수 있는 객체(draggable object)로 변환될 수 있습니다.
+
+드래그를 원하는 요소의 속성으로 `draggable="true"`를 작성합니다.
+
+> <h3>ondragstart 속성</h3>
+
+드래그될 수 있는 객체로 만든 후에는 ondragstart 속성을 통해 DataTransfer 객체의 setData() 메소드를 호출합니다.
+
+setData() 메소드는 드래그되는 대상 객체의 **데이터(data)와 타입(data type)** 을 설정합니다.
+
+`dragstart` 이벤트가 발생할 때 `drag` 함수를 호출하고 `event.dataTransfer.setData()` 메소드를 호출합니다.
+
+드래그를 원하는 요소의 속성으로 `ondragstart="drag(event)"`를 적어주고
+
+`drag(event)`라는 함수를 `<script>` 내에 작성해줍니다.
+
+``` html
+<script>
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+</script>
+```
+
+> <h3>ondragover 속성</h3>
+
+ondragover 속성은 드래그되는 대상 객체가 어느 요소 위에 놓일 수 있는지를 설정합니다.
+
+기본적으로 HTML 요소는 다른 요소의 위에 위치할 수 없습니다.
+
+따라서 다른 요소 위에 위치할 수 있도록 만들기 위해서는 놓일 장소에 있는 요소의 기본 동작을 막아야만 합니다.
+
+이 작업을 event.preventDefault() 메소드를 호출하는 것만으로 간단히 설정할 수 있습니다.
+
+`dragover` 이벤트가 발생할 때 `dragEvent` 함수를 호출해서 `event.preventDefault()` 메소드를 호출합니다.
+
+Drop이 가능한 요소의 속성으로 `ondragover="dragEvent(event)"`를 적어주고,
+
+`dragEvent(event)`라는 함수를 `<script>` 내에 작성해줍니다.
+
+``` html
+<script>
+	function dragEvent(ev){
+		ev.preventDefault();
+	}
+</script>
+```
+
+> <h3>ondrop 속성</h3>
+
+드래그하던 객체를 놓으면 drop 이벤트가 발생합니다.
+
+ondrop 속성을 이용하여 drop 이벤트에 대한 동작을 설정할 수 있습니다.
+
+``` html
+<h1>드래그 앤 드롭을 이용한 객체의 이동</h1>
+
+<p>모나리자 그림을 드래그해서 옆의 사각형으로 옮겨보세요!</p>
+
+<div ondrop="drop(event)" ondragover="dragEnter(event)">
+	<img id="monalisa" width="180" height="280" src="/examples/images/img_monalisa.png" draggable="true" ondragstart="drag(event)">
+</div>
+<div ondrop="drop(event)" ondragover="dragEnter(event)"></div>
+
+<script>
+	function dragEnter(ev) {
+		ev.preventDefault();
+	}
+
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+
+	function drop(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text");
+		ev.target.appendChild(document.getElementById(data));
+	}
+</script>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127294660-cf0de5b8-ed99-41fd-83fe-e7294eb6b19c.png)
+
+모나리자 그림을 드래그해서 오른쪽으로 드롭하면 그림이 오른쪽으로 옮겨진다.
+
+![image](https://user-images.githubusercontent.com/43658658/127294748-4e727fa4-dbac-41ea-b9a8-f60551b3eb02.png)
 
