@@ -2,6 +2,8 @@
 
 + [geolocation API](#geolocation-API)
 + [drag and drop API](#drag-and-drop-API)
++ [web storage API](#web-storage-API)
++ [application cache API](#application-cache-API)
 + 
 
 ## geolocation API
@@ -322,3 +324,164 @@ ondrop 속성을 이용하여 drop 이벤트에 대한 동작을 설정할 수 �
 
 ![image](https://user-images.githubusercontent.com/43658658/127294748-4e727fa4-dbac-41ea-b9a8-f60551b3eb02.png)
 
+## web storage API
+
+웹 스토리지 API는 기존 쿠키(cookie)의 문제점을 극복하기 위해 웹 브라우저가 직접 데이터(data)를 저장할 수 있게 해줍니다.
+
+
+HTML5 이전에는 응용 프로그램이 데이터를 서버에게 요청할 때마다 매번 쿠키(cookie)라는 곳에 그 정보를 저장합니다.
+
+하지만 웹 스토리지는 사용자 측에서 좀 더 많은 양의 정보를 안전하게 저장할 수 있도록 해줍니다.
+
+웹 스토리지는 최소 5MB 이상의 많은 공간을 가지고 있으며, 이 정보는 절대 서버로 전송되지 않습니다.
+ 
+
+이러한 웹 스토리지는 오리진(origin)마다 단 하나씩만 존재합니다.
+
+오리진(origin)이란 도메인(domain)과 프로토콜(protocol)의 한 쌍으로 이루어진 식별자입니다.
+
+따라서 하나의 오리진에 속하는 모든 웹 페이지는 같은 데이터(data)를 저장하며 또한 같은 데이터에 접근할 수 있습니다.
+ 
+> <h3>웹 스토리지 지원 여부 확인</h3>
+
+웹 스토리지를 사용하기 전에, 우선 사용자의 웹 브라우저가 이를 지원하는지 안 하는지 확인해야 합니다.
+
+```
+if (typeof(Storage) !== "undefined") {
+    // web storage를 위한 코드 부분
+} else {
+    // web storage를 지원하지 않는 브라우저를 위한 안내 부분
+}
+```
+
+> <h3>웹 스토리지 객체</h3>
+
+웹 스토리지 API는 사용자가 데이터를 저장할 수 있도록 두 가지 객체를 제공합니다.
+
+- sessionStorage 객체 : 하나의 세션(session)만을 위한 데이터를 저장하는 객체
+- localStorage 객체 : 보관 기한이 없는 데이터를 저장할 수 있는 객체
+
+> <h3>sessionStorage 객체</h3>
+
+sessionStorage 객체는 하나의 세션(session)만을 위한 데이터를 저장합니다.
+
+따라서 사용자가 브라우저 탭이나 창을 닫으면 이 객체에 저장된 데이터는 사라집니다.
+
+``` html
+<h1>sessionStorage 객체를 이용한 데이터의 저장</h1>
+<p id="counter"></p>
+<button onclick="clickCounter()">카운터 증가!!</button>
+<p>브라우저 탭이나 창을 <mark>닫으면</mark> 카운터의 횟수는 초기화될 것입니다.</p>
+<p>하지만 <mark>결과보기</mark>를 누르거나 <mark>F5</mark>를 누르면 초기화되지 않을 것입니다.</p>
+
+<script>
+var loc = document.getElementById("counter"); // 카운트 출력 메세지
+
+function clickCounter(){
+if (typeof(Storage) !== "undefined"){
+if (sessionStorage.click){  // sessionStorage.변수
+  sessionStorage.click = Number(sessionStorage.click) + 1;
+}
+else{
+  sessionStorage.click = 1;
+}
+loc.innerHTML = "카운터의 현재 횟수는 " + sessionStorage.click + "입니다!";
+}
+else{
+loc.innerHTML = "이 문장은 사용자의 웹 브라우저가 Web Storage API를 지원하지 않을 때 나타납니다!";
+}
+}
+</script>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127301779-ba39952f-8737-4298-b021-546f29675d92.png)
+
+> <h3>localStorage 객체</h3>
+	
+localStorage 객체는 보관 기한이 없는 데이터를 저장합니다.
+	
+따라서 브라우저 탭이나 창이 닫히거나, 컴퓨터를 재부팅 해도 저장된 데이터는 없어지지 않습니다.
+	
+``` html
+<h1>localStorage 객체를 이용한 데이터의 저장</h1>
+  
+<p id="counter"></p>
+<button onclick="clickCounter()">카운터 증가!!</button>
+<p>브라우저 탭이나 창을 닫아도 카운터의 횟수는 초기화되지 않을 것입니다.<p>
+
+<script>
+	loc = document.getElementById("counter");
+
+	function clickCounter(){
+		if ( typeof(Storage) !== "undefined" ) {
+			if ( localStorage.click ) {
+			  localStorage.click = Number(localStorage.click) + 1;
+			}
+			else{
+			  localStorage.click = 1;
+			}
+			loc.innerHTML = "카운터의 현재 횟수는 " + localStorage.click + "입니다!";
+		}
+		else{
+		loc.innerHTML = "이 문장은 사용자의 웹 브라우저가 Web Storage API를 지원하지 않을 때 나타납니다!";
+		}
+	}
+</script>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127303529-871bcccb-5bab-41ff-95aa-a448730847eb.png)
+
+## application cache API
+
+application cache API는 웹 응용 프로그램을 캐시(cache) 하여, 인터넷 접속 없이 사용자가 접근할 수 있게 해줍니다.
+
+따라서 application cache를 사용하면 웹 응용 프로그램의 오프라인 버전을 쉽게 만들 수 있습니다.
+
+application cache를 사용해서 생기는 장점은 다음과 같습니다.
+
+- 오프라인 접속 : 사용자가 웹 응용 프로그램을 오프라인(off-line)으로도 사용할 수 있습니다.
+- 속도 : 캐시(cache)된 자원은 빠르게 로드(load)할 수 있습니다.
+- 서버의 부하 감소 : 웹 브라우저는 서버의 자원에 변동이 있을 때만 자원을 갱신하면 됩니다.
+
+> <h3>cache manifest 파일</h3>
+
+application cache를 사용하기 위해서는 먼저 cache manifest 파일을 작성해야 합니다.
+
+cache manifest 파일은 웹 브라우저에 캐시(cache) 해야 할 파일과 캐시하지 말아야 할 파일을 알려줍니다.
+
+이러한 mainfest 파일은 다음과 같이 세 개의 세션(session)으로 이루어집니다.
+
+- CACHE MANIFEST : 처음 다운로드한 이후에 계속 캐시할 파일들을 기록합니다.
+- NETWORK : 서버와의 접속이 필요한 파일들을 기록하며, 이 파일들은 절대로 캐시되지 않습니다.
+- FALLBACK : 파일에 접속할 수 없을 때에 대체할 파일들을 기록합니다.
+
+> <h3>캐시(cache)의 갱신</h3>
+
+웹 브라우저는 다음과 같은 경우가 발생하면 캐시(cache)의 정보를 갱신하게 됩니다.
+
+- 사용자가 웹 브라우저의 캐시를 강제로 지웠을 경우
+- application cache가 프로그램 때문에 갱신됐을 경우
+- cache manifest 파일이 수정됐을 경우
+
+```
+<!--cache manifest 파일-->
+CACHE MANIFEST
+# 2021-07-28 v1.0.1
+test.html
+test.css
+test.js
+
+NETWORK:
+test.jpg
+
+FALLBACK:
+/ offline.html
+```
+
+한 번 캐시 되면 서버상의 파일을 수정해도, 웹 브라우저는 사용자 측에 캐시 되어 있는 버전의 파일만을 보여줍니다.
+
+따라서 서버상의 파일을 수정한 후에는 반드시 웹 브라우저가 캐시를 갱신하도록 만들어야 합니다.
+
+이때 가장 많이 사용되는 방법이 cache manifest 파일 내의 **주석 부분을 수정**하는 것입니다.
+
+일반적으로 **갱신 날짜 및 버전 정보**를 주석으로 표시하고, 이 부분을 수정하여 웹 브라우저가 캐시를 갱신하도록 유도합니다.
