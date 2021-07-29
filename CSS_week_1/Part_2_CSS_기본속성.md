@@ -3,7 +3,9 @@
 + [배경](#배경)
 + [텍스트](#텍스트)
 + [글꼴](#글꼴)
-+ 
++ [링크](#링크)
++ [테이블](#테이블)
++ [이미지 스프라이트(Image Sprite)](#이미지-스프라이트Image-Sprite)
 
 ## 배경
 
@@ -812,4 +814,670 @@ CSS에 font 속성을 다시 정리하면 아래와 같습니다.
 	</tbody>
 </table>
 
-## 
+## 링크
+
+링크(link)에는 color, font-family, background 속성 등 CSS의 다양한 속성들을 적용할 수 있습니다.
+
+또한, text-decoration 속성값을 none으로 설정하여, 링크가 연결된 텍스트의 밑줄을 제거할 수도 있습니다.
+
+``` html
+<style>
+	a {
+	background-color:#FFFFE0;
+	color:darkslategray;
+	text-decoration:none;
+	fone-size:1.3em;
+	}
+</style>
+...
+<a href="/index.php" target="_blank">홈으로 가기!</a>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127457058-58eeab92-b6e0-4d1a-ba87-01e0c3004762.png)
+
+> <h3>링크(link)의 상태</h3>
+
+링크는 총 5가지의 상태를 가지며, 각 상태마다 다른 스타일을 적용할 수 있습니다.
+
+1. link : 링크의 기본 상태이며, 사용자가 아직 한 번도 해당 링크를 통해 연결된 페이지를 방문하지 않은 상태입니다.
+2. visited : 사용자가 한 번이라도 해당 링크를 통해 연결된 페이지를 방문한 상태입니다.
+3. hover : 사용자의 마우스 커서가 링크 위에 올라가 있는 상태입니다.
+4. active : 사용자가 마우스로 링크를 클릭하고 있는 상태입니다.
+5. focus : 키보드나 마우스의 이벤트(event) 또는 다른 형태로 해당 요소가 포커스(focus)를 가지고 있는 상태입니다.
+
+``` html
+<style>
+	a { text-decoration: none; }
+	a:link { color: olive; }
+	a:visited { color: brown; }
+	a:hover { color: coral; }
+	a:active { color: khaki; }
+</style>
+```
+
+> <h3>링크를 활용한 버튼(Button)</h3>
+
+CSS를 이용하면 간단하게 링크를 버튼처럼 만들 수 있습니다.
+
+``` html
+<style>
+	a:link, a:visited {
+		background-color: #FFA500;
+		color: maroon;
+		padding: 15px 25px;
+		text-align: center;	
+		text-decoration: none;
+		display: inline-block;
+	}
+	a:hover, a:active { background-color: #FF4500; }
+</style>
+...
+<p><a href="/index.php" target="_blank">홈으로 가기!</a></p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127464150-83698231-dddf-480c-820c-be7eb96dff9f.png)
+
+## 리스트
+
+CSS에서 사용할 수 있는 list-style 속성은 다음과 같습니다.
+
+1. list-style-type
+2. list-style-image
+3. list-style-position
+
+> <h3>list-style-type 속성</h3>
+
+리스트 요소의 앞에 위치하는 숫자나 기호를 마커(marker)라고 합니다.
+
+list-style-type 속성을 이용하면 리스트에 다양한 마커(marker)를 적용할 수 있습니다.
+
+``` html
+<style>
+      .circle { list-style-type: circle; }
+      .square { list-style-type: square; }
+      .upperAlpha { list-style-type: upper-alpha; }
+      .lowerRoman { list-style-type: lower-roman; }
+  </style>
+...
+<ul class="circle">
+    <li>사과</li>
+    <li>멜론</li>
+    <li>바나나</li>
+  </ul>
+  
+  <ul class="square">
+    <li>수박</li>
+    <li>참외</li>
+    <li>옥수수</li>
+  </ul>
+  
+  <ul class="upperAlpha">
+    <li>감자</li>
+    <li>상추</li>
+    <li>고구마</li>
+  </ul>
+  
+  <ul class="lowerRoman">
+    <li>오이</li>
+    <li>배추</li>
+    <li>시금치</li>
+  </ul>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127501256-1c5c1a8d-7917-4515-93ab-87f035a02199.png)
+
+> <h3>list-style-image 속성</h3>
+
+list-style-image 속성을 이용하면 마커(marker)로 자신만의 이미지를 사용할 수 있습니다.
+
+``` html
+<style>
+	.imageMarker { list-style-image: url("/examples/images/img_list_marker.png"); }
+</style>
+...
+<h1>list-style-image 속성을 이용한 마커의 변경</h1>
+<ul class="imageMarker">
+	<li>사과</li>
+	<li>멜론</li>
+	<li>바나나</li>
+</ul>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127501596-2650f143-1888-461f-8be2-b4bc25525844.png)
+
+> <h3>list-style-position 속성</h3>
+
+list-style-position 속성을 이용하면 리스트 요소의 위치를 설정할 수 있습니다.
+
+list-style-position 속성의 기본 속성값은 outside로 설정되어 있습니다.
+
+``` html
+<style>
+	.outside { list-style-position: outside; }
+	.inside { list-style-position: inside; }
+</style>
+...
+<p>이 리스트는 위치를 outside로 지정했습니다.(기본설정)</p>
+<ul class="outside">
+	<li>사과</li>
+	<li>멜론</li>
+	<li>바나나</li>
+</ul>
+<br>
+
+<p>이 리스트는 위치를 inside로 지정했습니다.</p>
+<ul class="inside">
+	<li>수박</li>
+	<li>참외</li>
+	<li>옥수수</li>
+</ul>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127502217-5346095d-ed73-4aee-ab37-bc4087c418f5.png)
+
+> <h3>list-style 속성 한 번에 적용하기</h3>
+
+위에서 언급한 모든 list-style 속성을 이용한 스타일을 한 줄에 설정할 수 있습니다.
+
+속성에 `list-style-image`에 대한 내용이 있을 경우 반드시 image를 마커에 우선 적용합니다.
+
+`list-style` 속성의 작성에 순서는 없습니다.
+
+``` html
+<style>
+	.shorthand { list-style: inside url("/examples/images/img_list_marker.png") square; }
+</style>
+...
+<ul class="shorthand">
+	<li>사과</li>
+	<li>멜론</li>
+	<li>바나나</li>
+</ul>
+```
+
+> <h3>리스트에 배경색 적용</h3>
+
+CSS를 사용하면 리스트 전체뿐만 아니라 리스트 요소별로도 각각의 배경색을 설정할 수 있습니다.
+
+``` html
+<style>
+	ul {
+	  background-color:#ff9999;
+	  padding: 20px;
+	}
+
+	ul li {
+		background-color:#ffe5e5;
+		margin: 5px;  /* 아래 위 빈 칸을 둔다. */
+	}
+
+	ol {
+		background-color:#3399ff;
+		padding: 15px;
+	}
+
+	ol li{
+		background-color:#cce5ff;
+		margin-left:30px;
+	}
+</style>
+...
+<ul>
+    <li>사과</li>
+    <li>멜론</li>
+    <li>바나나</li>
+  </ul>
+  
+  <ol>
+    <li>감자</li>
+    <li>상추</li>
+    <li>고구마</li>
+  </ol>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127504597-2e059330-340a-4367-bd12-30dd4a7abbb9.png)
+
+> <h4>CSS list-style 속성</h4>
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th style="width: 25%;">속성</th>
+			<th>설명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>list-style</td>
+			<td>모든 list-style 속성을 이용한 스타일을 한 줄에 설정할 수 있음.</td>
+		</tr>
+		<tr>
+			<td>list-style-type</td>
+			<td>리스트 요소의 마커(marker)를 설정함.</td>
+		</tr>
+		<tr>
+			<td>list-style-image</td>
+			<td>리스트 요소의 마커로 사용할 이미지를 설정함.</td>
+		</tr>
+		<tr>
+			<td>list-style-position</td>
+			<td>리스트 요소의 위치를 설정함.</td>
+		</tr>
+	</tbody>
+</table>
+
+## 테이블
+
+테이블에 다음 속성을 사용하여 CSS 스타일을 적용할 수 있습니다.
+
+1. border
+2. border-collapse
+3. border-spacing
+4. caption-side
+5. empty-cells
+6. table-layout
+
+> <h3>border 속성</h3>
+
+border 속성으로 테이블의 테두리(border)를 설정할 수 있습니다.
+
+이 속성을 명시하지 않으면 해당 테이블은 기본 설정으로 빈 테두리를 가지게 됩니다.
+
+`<table>, <th>, <td>` 모두 자신만의 테두리를 가집니다.
+
+따라서, `<table>`까지 테두리를 가지게 된다면 바깥 테두리는 2줄로 보입니다.
+
+``` html
+<style>
+	table, th, td { border: 2px solid orange; }
+</style>
+...
+<table>
+	<tr>
+		<th>참치</th>
+		<th>고래</th>		
+		<th>날치</th>
+	</tr>
+	<tr>
+		<td>상어</td>
+		<td>문어</td>		
+		<td>꽁치</td>
+	</tr>
+	<tr>
+		<td>오징어</td>
+		<td>고등어</td>		
+		<td>돌고래</td>
+	</tr>
+</table>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127505867-81321585-3425-49d2-aff3-9918be943313.png)
+
+> <h3>border-collapse 속성</h3>
+
+border-collapse 속성값을 collapse로 설정하면 해당 테이블의 테두리는 한 줄로 표현됩니다.
+
+이 속성을 명시하지 않으면 해당 테이블은 기본 설정으로 테이블 요소별 테두리를 모두 표현하게 됩니다.
+
+``` html
+<style>
+	table, th, td { border: 2px solid orange; }
+	table { border-collapse: collapse; }
+</style>
+...
+<table>
+	<tr>
+		<th>참치</th>
+		<th>고래</th>		
+		<th>날치</th>
+	</tr>
+	<tr>
+		<td>상어</td>
+		<td>문어</td>		
+		<td>꽁치</td>
+	</tr>
+	<tr>
+		<td>오징어</td>
+		<td>고등어</td>		
+		<td>돌고래</td>
+	</tr>
+</table>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127507043-7c7b553d-7d27-4fe1-a5f0-9c7d7ff30e48.png)
+
+> <h3>border-spacing 속성</h3>
+
+border-spacing 속성은 테이블 요소(th, td)간의 여백을 설정해 줍니다.
+
+`border-spacing: 1 2`
+
+- 1 : 좌우 여백
+- 2 : 상하 여백
+
+`border-collapse: collapse`으로 준다면 아무 의미가 없는 속성입니다.
+
+``` html
+<style>
+	table, th, td { border: 1px solid black; }
+	table {
+		width: 100%;
+		border-spacing: 15px 20px;
+	}
+</style>
+...
+<table>
+	<tr>
+		<th>참치</th>
+		<th>고래</th>		
+		<th>날치</th>
+	</tr>
+	<tr>
+		<td>상어</td>
+		<td>문어</td>		
+		<td>꽁치</td>
+	</tr>
+	<tr>
+		<td>오징어</td>
+		<td>고등어</td>		
+		<td>돌고래</td>
+	</tr>
+</table>
+```
+
+> <h3>text-align 속성</h3>
+
+text-align 속성은 테이블 요소(th, td) 내부에서 텍스트의 수평 방향 정렬을 설정합니다.
+
+`<th>`태그 내부는 가운데 정렬이, `<td>`태그 내부는 왼쪽 정렬이 기본 설정입니다.
+	
+``` html
+<style>
+	table, th, td { border: 1px solid black; }
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	th { text-align: left; }
+	td { text-align: center; }
+</style>
+...
+<table>
+	<tr>
+		<th>참치</th>
+		<th>고래</th>		
+		<th>날치</th>
+	</tr>
+	<tr>
+		<td>상어</td>
+		<td>문어</td>		
+		<td>꽁치</td>
+	</tr>
+	<tr>
+		<td>오징어</td>
+		<td>고등어</td>		
+		<td>돌고래</td>
+	</tr>
+</table>
+<p>th 태그 내부는 가운데 정렬이, td 태그 내부는 왼쪽 정렬이 기본 설정입니다.</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127508356-f6b982b6-f9da-4c83-8fea-1f462438560c.png)
+
+> <h3>vertical-align 속성</h3>
+
+vertical-align 속성은 테이블 요소(th, td) 내부에서 텍스트의 수직 방향 정렬을 설정합니다.
+
+`<th>`태그와 `<td>`태그 모두 가운데 정렬이 기본 설정입니다.
+
+``` html
+<style>
+	table, th, td { border: 1px solid black; }
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	th {
+		vertical-align: top;
+		height: 50px;
+	}
+	td {
+		vertical-align: bottom;
+		height: 50px;
+	}
+</style>
+...
+<table>
+	<tr>
+		<th>참치</th>
+		<th>고래</th>		
+		<th>날치</th>
+	</tr>
+	<tr>
+		<td>상어</td>
+		<td>문어</td>		
+		<td>꽁치</td>
+	</tr>
+	<tr>
+		<td>오징어</td>
+		<td>고등어</td>		
+		<td>돌고래</td>
+	</tr>
+</table>
+<p>th 태그와 td 태그 모두 가운데 정렬이 기본 설정입니다.</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127510349-f2a3d0db-41d8-4181-ae7a-3b91633fb305.png)
+
+> <h3>다양한 형태의 테이블 예제</h3>
+
+CSS를 이용하면 HTML 기본 테이블을 훨씬 더 다양한 모습으로 설정할 수 있습니다.
+
+다음 예제는 `<th>`태그와 `<td>`태그에 border-bottom 속성을 사용하여 수평 나눔선만으로 만든 테이블입니다.
+
+``` html
+<style>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	th, td {
+		padding: 10px;
+		border-bottom: 1px solid #CD5C5C;
+	}
+</style>
+...
+<h1>horizontal dividers</h1>
+
+<table>
+	<tr>
+		<th>참치</th>
+		<th>고래</th>		
+		<th>날치</th>
+	</tr>
+	<tr>
+		<td>상어</td>
+		<td>문어</td>		
+		<td>꽁치</td>
+	</tr>
+	<tr>
+		<td>오징어</td>
+		<td>고등어</td>		
+		<td>돌고래</td>
+	</tr>
+</table>
+<p>th 태그와 td 태그에만 border-bottom 속성을 적용합니다.</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127511959-0a34284d-fdfe-4bd4-b979-27342481aac9.png)
+
+다음 예제는 `:hover` 선택자를 이용하여 `<tr>`태그에 마우스를 올리면 행 전체가 하이라이트(옅은회색) 되도록 만든 테이블입니다.
+	
+``` html
+<style>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	th, td {
+		padding: 10px;
+		border-bottom: 1px solid #CD5C5C;
+	}
+	tr:hover { background-color: #F5F5F5; }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127512579-2766a1ff-1336-4bf3-8d31-1008b6af5f48.png)
+
+다음 예제는 background-color 속성과 :nth-child 선택자를 사용하여 얼룩무늬 효과를 설정한 테이블입니다.
+
+- :nth-child(odd) : 홀수 행에 적용
+- :nth-child(even) : 짝수 행에 적용
+
+``` html
+<style>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	th, td {
+		padding:10px;
+	}
+	tr:nth-child(odd) {
+		background-color: #F5F5F5;
+	}
+</style>
+```
+
+Responsible Table이란 윈도우 창이 테이블을 나타내기에 작을 경우에 가로 스크롤바를 생성하는 테이블을 말합니다.
+
+Responsible Table을 생성하는 방법은 `<table>` 바깥에 `<div style="overflow-x:auto">`를 씌워주면 됩니다.
+
+``` html
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Points</th>
+      <th>Points</th>
+      <th>Points</th>
+      <th>Points</th>
+      <th>Points</th>
+      <th>Points</th>
+      <th>Points</th>
+      <th>Points</th>
+      <th>Points</th>
+      <th>Points</th>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>Adam</td>
+      <td>Johnson</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+      <td>67</td>
+    </tr>
+  </table>
+</div>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127518191-4baa241e-432c-47dc-98fd-e1afedfa7622.png)
+
+## 이미지 스프라이트(Image Sprite)
+
+이미지 스프라이트(image sprite)란 여러 개의 이미지를 하나의 이미지로 합쳐서 관리하는 이미지를 의미합니다.
+
+웹 페이지에 이미지가 사용될 경우 해당 이미지를 다운받기 위해 웹 브라우저는 서버에 이미지를 요청하게 됩니다.
+
+하지만 사용된 이미지가 많을 경우 웹 브라우저는 서버에 해당 이미지의 수만큼 요청해야만 하므로 웹 페이지의 로딩 시간이 오래 걸리게 됩니다.
+
+ 
+
+이미지 스프라이트(image sprite)를 사용하면 이미지를 다운받기 위한 서버 요청을 단 몇 번으로 줄일 수 있습니다.
+
+모바일 환경과 같이 한정된 자원을 사용하는 플랫폼(platform)에서는 웹 페이지의 로딩 시간을 단축해주는 효과가 있습니다.
+
+또한, 많은 이미지 파일을 관리하는 대신 몇 개의 스프라이트 이미지(sprite image) 파일만을 관리하면 되므로 매우 간편합니다.
+
+ 
+
+다음 예제는 하나의 이미지를 가지고 네 개의 아이콘을 만드는 예제입니다.
+
+네 개의 아이콘을 만들기 위해 네 개의 이미지를 사용하는 것이 아닌 다음 이미지 하나만을 가지고 작업하게 됩니다.
+
+이미지의 전체 크기를 파악하고 `width, height, background-position` 속성으로 이미지를 쪼개서 나타냅니다.
+
+사용자가 적절한 속성값을 통해 이미지를 잘라내야합니다.
+
+``` html
+<style>
+	.up, .down, .left, .right {
+		background: url("/examples/images/img_image_sprites.png") no-repeat;
+	}
+	.up {
+		width:21px;
+		height:20px;
+		background-position: 0 0;
+	}
+	.down {
+		width:21px;
+		height:20px;
+		background-position: -21px 0;
+	}
+	.left {
+		width:22px;
+		height:20px;
+		background-position: -42px 0;
+	}
+	.right {
+		width:22px;
+		height:20px;
+		background-position: -63px 0;
+	}
+</style>
+...
+<p>- 원본 이미지 -</p>
+<img src="/examples/images/img_image_sprites.png"><br><br>
+<p>- 추출한 이미지 -</p>
+<div class="up"></div><br>
+<div class="down"></div><br>
+<div class="right"></div><br>
+<div class="left"></div><br>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127519832-a3176457-409f-426f-b2ef-b4425e8e5bb3.png)
