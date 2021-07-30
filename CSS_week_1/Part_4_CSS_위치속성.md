@@ -2,7 +2,8 @@
 
 + [디스플레이](#디스플레이)
 + [포지션](#포지션)
-+ 
++ [Float](#Float)
++ [정렬](#정렬)
 
 ## 디스플레이
 
@@ -465,3 +466,260 @@ z-index 속성은 이렇게 겹쳐지는 요소들이 쌓이는 스택(stack)의
 
 ![image](https://user-images.githubusercontent.com/43658658/127614862-17c7ea23-071a-4f6a-ae55-2332f152c914.png)
 
+## float
+
+> <h3>float 속성</h3>
+
+float 속성은 해당 HTML 요소가 주변의 다른 요소들과 자연스럽게 어울리도록 만들어 줍니다.
+
+이 속성은 본래 위와 같은 목적으로 만들어졌지만, 현재는 웹 페이지의 레이아웃(layout)을 작성할 때 자주 사용됩니다.
+
+
+다음 예제는 이미지와 글자를 함께 출력하는 예제입니다.
+
+``` html
+<style>
+ img {
+  float: left;
+  margin-right: 20px;
+ }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127625769-70a489a9-1b40-41c8-9afa-e27e425de898.png)
+
+> <h3>clear 속성</h3>
+
+clear 속성은 float 속성이 적용된 이후 나타나는 요소들의 동작을 조절해 줍니다.
+
+컨테이너 요소에 float 속성이 적용되면 그 이후에 등장하는 모든 요소들은 정확한 위치를 설정하기가 매우 힘들어집니다.
+
+``` html
+<style>
+ .left {
+  background-color: #FF8C00;
+  width: 150px;
+  height: 50px; 
+  float: left;
+ }
+ .right {
+  background-color: #9932CC;
+  width: 150px;
+  height: 50px; 
+  float: right;
+ }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127625880-39120d0e-45af-4382-9d88-af747ce50320.png)
+
+따라서 float 속성을 적용하고자 하는 요소가 모두 등장한 이후에는 clear 속성을 사용하여, 이후에 등장하는 요소들이 더는 flaot 속성에 영향을 받지 않도록 설정해줘야 합니다.
+
+``` html
+<style>
+ .left {
+  background-color: #FF8C00;
+  width: 150px;
+  height: 50px; 
+  float: left;
+ }
+ .right {
+  background-color: #9932CC;
+  width: 150px;
+  height: 50px; 
+  float: right;
+ }
+ p { clear: both; }
+</style>
+...
+<h1>clear 속성을 이용한 위치 조정</h1>
+<div>
+ <div class="left">왼쪽 끝에 위치하고 싶은 요소</div>
+ <div class="right">오른쪽 끝에 위치하고 싶은 요소</div>
+</div>
+<p>이 글자를 아래쪽에 제대로 출력하고 싶어요!</p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127625991-446ac576-d541-4676-a950-c0b18292726e.png)
+
+> <h3>overflow 속성</h3>
+
+float 속성이 적용된 HTML 요소가 자신을 감싸고 있는 컨테이너 요소보다 크면, 해당 요소의 일부가 밖으로 흘러넘치게 됩니다.
+
+이때 overflow 속성값을 auto로 설정하면, 컨테이너 요소의 크기가 자동으로 내부의 요소를 감쌀 수 있을 만큼 커지게 됩니다.
+
+``` html
+<style>
+     div {
+       border:3px solid green;
+       padding: 5px;
+     }
+     p { clear: both; }
+     img { float:left; margin-right: 5px; }
+     .good { overflow:auto; }
+ </style>
+...
+<h1>overflow 속성을 이용한 크기 조정</h1>
+<div>이미지와 함께 하고 싶은 내용
+ <img src="/examples/images/img_flower.png" alt="flower" width="245" height="185">
+</div>
+<p id="second"><br>overflow 속성값을 auto로 주면 자동으로 컨테이너 요소의 크기도 함께 늘어납니다!</p>
+<div class="good">이미지와 함께 하고 싶은 내용
+ <img src="/examples/images/img_flower.png" alt="flower" width="245" height="185">
+</div>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127626683-ba3340a1-4878-4557-934b-9cbdc020dee5.png)
+
+> <h3>float 속성을 이용한 레이아웃</h3>
+
+현재 웹 페이지의 레이아웃은 대부분 float 속성을 이용하여 작성되고 있습니다.
+
+다음 예제는 float 속성을 이용해 작성된 레이아웃을 보여줍니다.
+
+``` html
+<style>
+ div.page {
+  border: 3px solid #CD5C5C;
+  overflow: auto;
+ }
+ h2 { text-align: center; }
+ header{ border: 3px solid #FFD700; }
+ nav {
+  border: 3px solid #FF1493;
+  width: 150px;
+  float: left;
+ }
+ section {
+  border: 3px solid #00BFFF;
+  margin-left: 156px;
+ }
+ footer{ border: 3px solid #00FA9A; }
+</style>
+...
+<div class="page">
+
+ <header>
+  <h2>header 영역</h2>
+ </header>
+ <nav>
+  <h2>nav 영역</h2>
+  <p>여기에는 보통 메뉴가 들어갑니다.</p>
+ </nav>
+ <section>
+  <h2>section 영역</h2>
+  <p>여기에는 페이지에 해당하는 내용이 들어갑니다.<br>
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ornare sapien suscipit tincidunt ullamcorper. Cras ac sem sed mauris maximus rhoncus vel in metus. Nam pharetra arcu sit amet dolor interdum, eget scelerisque libero finibus. Phasellus quis vulputate ante. Fusce sit amet viverra justo. Donec id elementum mauris. Nam id porttitor nisl, et suscipit nunc. Vestibulum sit amet volutpat quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis placerat sem eu facilisis ultricies.
+  </p>
+ </section>
+ <footer>
+  <h2>footer 영역</h2>
+ </footer>
+</div>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127627176-343bd4dc-edbe-4a95-bbaa-389d5485553f.png)
+
+## 정렬
+
+> <h3>정렬(align)</h3>
+
+블록(block) 타입의 요소를 정렬하기 위해서는 다음과 같은 방법을 사용할 수 있습니다.
+
+ 
+
+1. margin 속성을 이용한 가운데 정렬
+
+2. position 속성을 이용한 좌우 정렬
+
+3. float 속성을 이용한 좌우 정렬
+
+> <h3>margin 속성을 이용한 가운데 정렬</h3>
+
+margin 속성값을 auto로 설정하면, 해당 요소를 감싸고 있는 컨테이너 요소를 기준으로 수평 방향 가운데 정렬이 됩니다.
+
+ 
+
+이때 해당 요소는 특정한 너비를 가져야 하며, 너비를 제외한 나머지 공간은 좌우로 균등하게 나뉘어 여백으로 만들어집니다.
+
+따라서 이 방법을 사용하기 위해서는 반드시 해당 요소의 width 속성값을 먼저 설정해야만 합니다.
+
+익스플로러 8과 그 이전 버전에서는 HTML 문서에 `<!DOCTYPE html>`태그가 삽입되어 있어야 margin 속성이 제대로 표현됩니다.
+
+``` html
+<style>
+    div { width: 300px; margin: auto; }
+</style>
+```
+
+> <h3>position 속성을 이용한 좌우 정렬</h3>
+
+절대 위치 지정 방식으로 위치한 요소는 정상적인 레이아웃에서 벗어나 다른 요소와 겹칠 수 있게 됩니다.
+
+따라서 이 특성을 이용하면 HTML 요소를 수평 방향으로 좌우 정렬할 수 있습니다.
+
+ 
+
+position 속성을 이용하여 정렬할 경우에는 `<body>`요소에 margin과 padding 속성값을 설정하는 것이 좋습니다.
+
+이렇게 함으로써 웹 브라우저마다 레이아웃이 다르게 보이는 것을 미리 방지할 수 있습니다.
+
+익스플로러 8과 그 이전 버전에서는 HTML 문서에 `<!DOCTYPE html>`태그가 삽입되어 있어야 position 속성이 제대로 표현됩니다.
+
+``` html
+<style>
+ body {  /* 웹 브라우저마다 레이아웃이 다르게 보이는 것을 방지 */
+  padding: 0;
+  margin: 0;
+ }
+ div {
+  border: 3px solid #4B0082;
+  width: 300px;
+  padding: 10px;
+  margin: 0;
+  position: absolute;
+  right: 0;
+ }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127627826-53cd65c0-7abb-4e3f-953e-7e6f8191da2b.png)
+
+> <h3>float 속성을 이용한 좌우 정렬</h3>
+
+float 속성을 이용하면 수평 방향으로 좌우 정렬할 수 있습니다.
+
+ 
+
+float 속성을 이용하여 정렬할 경우에는 `<body>`요소에 margin과 padding 속성값을 설정하는 것이 좋습니다.
+
+이렇게 함으로써 웹 브라우저마다 레이아웃이 다르게 보이는 것을 미리 방지할 수 있습니다.
+
+익스플로러 8과 그 이전 버전에서는 HTML 문서에 <!DOCTYPE html>태그가 삽입되어 있어야 float 속성이 제대로 표현됩니다.
+
+``` html
+<style>
+ body { /* 웹 브라우저마다 레이아웃이 다르게 보이는 것을 방지 */
+  padding: 0;
+  margin: 0;
+ }
+ div {
+  border: 3px solid #4B0082;
+  width: 350px;
+  padding: 10px;
+  margin: 0;
+ }
+ div.left { float: left }
+ div.right { float: right }
+</style>
+...
+<h1>float 속성을 이용한 좌우 정렬</h1>
+<div class="left">float 속성값으로 left 또는 right를 사용하면,<br>
+수평으로 좌우 정렬을 할 수 있어요!
+</div>
+<div class="right">float 속성값으로 left 또는 right를 사용하면,<br>
+수평으로 좌우 정렬을 할 수 있어요!
+</div>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127628068-491ab19e-4325-4543-ad18-52d5bc5e815e.png)
