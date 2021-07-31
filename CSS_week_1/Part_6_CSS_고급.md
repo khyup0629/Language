@@ -312,3 +312,91 @@ border 속성을 이용하면 내비게이션 바에 경계선을 표현할 수 
 
 ![image](https://user-images.githubusercontent.com/43658658/127740869-1b504a95-6328-4f71-945d-44d903b3a930.png)
 
+## 드롭다운
+
+> <h3>드롭다운(dropdown) 효과</h3>
+
+해당 요소에 마우스를 올려서 다른 요소나 텍스트가 나타나게 하는 효과를 드롭다운(dropdown) 효과라고 합니다.
+
+CSS를 이용하면 이러한 드롭다운 효과를 간단히 설정할 수 있습니다.
+
+다음 예제는 display 속성을 이용하여 드롭다운 효과를 구현하는 예제입니다.
+
+``` html
+<style>
+ .dropdown {
+  position: relative;
+  display: inline-block; /* inline-block으로 설정하면 자식요소로 나타나는 숨겨진 박스의 너비가 dropdown에 맞춰진다. */
+ }
+ .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #F9F9F9;
+  min-width: 160px;
+  padding: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ }
+ .dropdown:hover .dropdown-content { display: block; }
+</style>
+...
+<div class="dropdown">
+ <span>여기에 마우스를 올려보세요!</span>
+ <div class="dropdown-content">
+  <p>마우스를 올려야 나타나는 div 요소입니다!</p>
+ </div>
+</div>
+ <p> 나는 무엇을 하는가 </p>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127741428-2805e683-20c3-4fe2-81e1-fc9f78126ad7.png)
+
+마우스를 올리면 "나는 무엇을 하는가"라는 문구가 가려지면서 숨겨진 요소가 나타납니다.
+
+![image](https://user-images.githubusercontent.com/43658658/127741439-0f3d60e2-6468-41d9-b676-d5011b44e092.png)
+
+위의 예제에서 사용자가 마우스를 올리면 나타날 `<div>`요소의 display 속성값을 none으로 설정합니다.
+
+이렇게 설정하면 처음에는 눈에 보이지 않게 됩니다.
+
+ 
+
+하지만 특정 요소에 마우스를 올리면 해당 `<div>`요소의 display 속성값이 블록(block)으로 변경됩니다.
+
+따라서 이때에는 이 `<div>`요소가 눈에 보이게 됩니다.
+
+> <h3>드롭다운(Dropdown) 메뉴</h3>
+
+메뉴에 마우스를 올리면 하위 메뉴가 나타나게 하는 메뉴를 드롭다운(dropdown) 메뉴라고 합니다.
+
+드롭다운 효과를 이용하면 이러한 드롭다운 메뉴도 간단히 구현할 수 있습니다.
+
+``` html
+<style>
+      ul { list-style-type: none; margin:0; padding:0; }
+     .dropdown-menu { background-color:#FFDAB9; text-align:center; font-weight:bold; padding:8px; min-width:100px; }
+     .dropdown { position:relative; display:inline-block; } /* relative와 absolute가 없다면 드롭다운의 메뉴의 width가 상위 메뉴와 똑같이 맞춰진다. */
+     .dropdown-content { box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); position: absolute; min-width: 200px; }
+     .dropdown-content a{ background-color:#FFDAB9; display:none; text-decoration:none; color:black; padding: 8px;}
+
+     .dropdown:hover .dropdown-content a { display: block; }
+     .dropdown:hover .dropdown-menu { background-color: #CD853F; }
+     .dropdown .dropdown-content a:hover { background-color: #CD853F; }
+     .dropdown-content:hover { background-color: #CD853F; }
+</style>
+...
+<div class="dropdown">
+ <ul>
+   <li class="dropdown-menu">Dropdown</li>
+ </ul>
+ <div class="dropdown-content">
+  <a href="#">HTML</a>
+  <a href="#">CSS</a>
+  <a href="#">JAVA</a>
+  <a href="#">C++</a>
+ </div>
+</div>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127742225-7e82c117-e33b-40f2-a7f5-e3684be95613.png)
+
+위의 예제에서도 앞선 예제와 마찬가지로 해당 요소의 display 속성을 이용하여 드롭다운 메뉴를 구현하고 있습니다.
