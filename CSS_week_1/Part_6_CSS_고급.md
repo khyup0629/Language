@@ -1,6 +1,8 @@
 # Part 6. CSS 고급
 
 + [내비게이션 바(navigation bar)](#내비게이션-바navigation-bar)
++ [드롭다운](#드롭다운)
++ [툴팁](#툴팁)
 + 
 
 ## 내비게이션 바(navigation bar)
@@ -400,3 +402,377 @@ CSS를 이용하면 이러한 드롭다운 효과를 간단히 설정할 수 있
 ![image](https://user-images.githubusercontent.com/43658658/127742225-7e82c117-e33b-40f2-a7f5-e3684be95613.png)
 
 위의 예제에서도 앞선 예제와 마찬가지로 해당 요소의 display 속성을 이용하여 드롭다운 메뉴를 구현하고 있습니다.
+
+## 툴팁
+
+> <h3>툴팁(tooltip) 효과</h3>
+
+해당 요소에 마우스를 올리면 추가적인 정보가 나타나게 하는 효과를 툴팁(tooltip) 효과라고 합니다.
+
+CSS를 이용하면 이러한 툴팁 효과를 간단히 설정할 수 있습니다.
+
+다음 예제는 visiblility 속성을 이용하여 툴팁 효과를 구현하는 예제입니다.
+
+``` html
+<style>
+     .tooltip { position: relative; }
+     .tooltip .tooltip-content { visibility: hidden; margin-top: 10px; padding:0; width:300px; background-color: orange; text-align:center; color:white; position:absolute; z-index:1; }
+     .tooltip:hover .tooltip-content { visibility: visible; }
+</style>
+...
+<div class="tooltip">
+ <span>여기에 마우스를 올려보세요!</span>
+ <div class="tooltip-content">
+  <p>마우스를 올려야 나타나는 툴팁입니다!</p>
+ </div>
+     <p>으히히히히히히힣</p>
+</div>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127758513-e00faaa7-4561-4c13-97b9-3399f176663c.png)
+
+CSS를 이용하면 툴팁(tooltip)이 나타나는 위치도 간단히 설정할 수 있습니다.
+
+CSS의 상대적 위치를 나타내는 `top, right, bottom, left` 속성을 이용하여 툴팁의 상대 위치를 설정할 수 있습니다.
+
+- top : relative 요소가 absolute 요소보다 border-top을 기준으로 얼마만큼 위에 있는지.
+- bottom : relative 요소가 absolute 요소보다 border-bottom을 기준으로 얼마만큼 아래에 있는지.
+- right : relative 요소가 absolute 요소보다 border-right를 기준으로 얼마만큼 오른쪽에 있는지.
+- left : relative 요소가 absolute 요소보다 border-left를 기준으로 얼마만큼 왼쪽에 있는지.
+
+다음 예제는 툴팁이 해당 요소의 아래 쪽이 아닌 왼쪽에 나타나도록 구현한 예제입니다.
+
+``` html
+<style>
+     body { text-align:center; }
+     .tooltip { display:inline-block; position:relative; margin:auto; }
+     .tooltip .tooltip-content {
+       visibility:hidden; background-color: orange; color:white; text-align:center;
+       top:-15px; right:105%; position:absolute; width:220px; padding:0;
+     }
+     .tooltip:hover .tooltip-content { visibility: visible; }
+</style>
+...
+<div class="tooltip">
+ <span>여기에 마우스를 올려보세요!</span>
+ <div class="tooltip-content">
+  <p>왼쪽에 나타나는 툴팁입니다!</p>
+ </div>
+</div>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127759513-614b25ca-dc62-4b17-ab7e-acefcfa52220.png)
+
+다음 예제는 해당 요소에 마우스를 올리면 툴팁이 위쪽에 나타나도록 구현한 예제입니다.
+
+``` html
+<style>
+     body { text-align:center; }
+     .tooltip { position:relative; display:inline-block; margin:auto; }
+     .tooltip .tooltip-content { position:absolute; padding:0; background-color:orange; color: white;
+       bottom:180%; left:-3%; visibility:hidden; text-align: center; min-width:220px; }
+     .tooltip:hover .tooltip-content { visibility:visible; }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127759837-f62da73f-1bfc-4976-b203-019f93e0ef17.png)
+
+`.tooltip`에 `display:inline-block`을 설정해주어야 `.tooltip`크기 만큼의 인라인 블록으로 바뀌고,
+
+`position:absolute`의 `top, right, bottom, left`를 통해 위치 조정이 가능해집니다.
+
+또한, 다음 예제처럼 툴팁(tooltip)의 모양을 말풍선 모양처럼 설정할 수도 있습니다.
+
+``` html
+<style>
+ body { text-align:center; }
+    .tooltip { position:relative; display:inline-block; margin:auto; }
+    .tooltip .tooltip-content { position:absolute; padding:0; background-color:orange; color: white;
+      bottom:180%; left:-3%; visibility:hidden; text-align: center; min-width:220px; border-radius: 5px; }
+    .tooltip:hover .tooltip-content { visibility:visible; }
+ .tooltip .tooltip-content::after {content:" "; position:absolute; top:100%; left:50%; margin-left:-10px;
+         border-width:10px; border-style:solid; border-color:orange transparent transparent transparent;
+     }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127759903-a145184d-21b6-4236-a392-3889defc9832.png)
+
+`.tooltip .tooltip-content::after` 의사 요소가 바로 아래쪽 역삼각형을 구현하는 부분입니다.
+
+툴팁의 말풍선 모양은 border-color 속성값을 transparent로 설정하여 구현할 수 있습니다.
+
+border과 관련된 속성은 반드시 widht, style, color 따로 지정해주어야 transparent 효과가 나타납니다.
+
+transparent 속성값은 투명함을 의미합니다.
+
+## Form 요소
+
+CSS를 이용하면 사용자의 입력을 받는 input 요소에도 다양한 스타일을 설정할 수 있습니다.
+
+> <h3>input 요소의 크기 설정</h3>
+
+width 속성을 이용하여 input 요소의 크기를 설정할 수 있습니다.
+
+``` html
+<style>
+		input {
+			width: 100%;
+			padding: 10px 20px;
+			margin: 5px 0;
+			box-sizing: border-box; /* 요소의 총 너비와 높이에 패딩과 테두리 두께까지 고려합니다. */
+		}
+	</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127761089-3dec425b-974b-47e5-b550-0825a23620ec.png)
+
+> <h3>input 요소의 테두리 설정</h3>
+
+border 속성을 이용하여 input 요소의 테두리(border) 색상과 두께를 바꿀 수 있습니다.
+
+또한, border-radius 속성을 이용하여 input 요소의 모서리를 둥글게 만들 수도 있습니다.
+
+``` html
+<style>
+     input { width:100%; padding: 10px 20px; margin: 5px 0; box-sizing:border-box;}
+     input[type="text"] { border: 2px solid #D2691E; border-radius: 10px; }
+     input[type="password"] { border: none; border-bottom:2px solid #D2691E; }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127761184-06ec9f15-de3d-442a-ab20-ed77d672fc92.png)
+
+> <h3>input 요소에 배경색 적용</h3>
+
+background-color 속성을 이용하여 input 요소의 배경색을 설정할 수 있습니다.
+
+또한, color 속성을 이용하여 input 요소의 텍스트 색상를 변경할 수도 있습니다.
+
+``` html
+<style>
+ input { width:100%; box-sizing:border-box; padding:10px 20px; margin: 5px 0; border:none;
+         background-color:#FFF8DC; color:olive; }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127761364-3e39611a-5a15-4cb0-b541-a777ee7ddd31.png)
+
+> <h3>포커스를 가지고 있는 input 요소의 스타일 적용</h3>
+
+`:focus` 선택자를 이용하여 해당 input 요소가 포커스(focus)를 가지고 있을 때의 스타일을 별도로 설정할 수 있습니다.
+
+``` html
+<style>
+ input { width:100%; box-sizing:border-box; border:2px solid #FFE4B5; border-radius: 5px; outline:none;
+         margin:5px 0; padding:10px 20px; -webkit-transition:0.5s; }
+     input[type="text"]:focus, input[type="password"]:focus { border:2px solid #D2691E; }
+</style>
+...
+<form>
+ 사용자 : <br>
+ <input type="text" name="username" placeholder="아이디를 입력하세요."><br>
+ 비밀번호 : <br>
+ <input type="password" name="password" placeholder="비밀번호를 입력하세요.">
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127761601-65981eb8-e494-4a8e-a1b7-cd9f4c5ddde9.png)
+
+> <h3>input 요소에 아이콘(icon)이나 이미지 삽입</h3>
+
+background-image 속성을 이용하여 input 요소에 아이콘(icon)이나 이미지를 삽입할 수 있습니다.
+
+또한, background-position 속성을 이용하여 삽입한 아이콘이나 이미지가 나타날 위치를 설정할 수도 있습니다.
+
+``` html
+<style>
+ input { width:100%; box-sizing:border-box; border:2px solid gray; border-radius: 5px;
+         background-image: url("/examples/images/img_search_icon.png"); background-position:5px 4px; background-repeat:no-repeat;
+         padding:10px 40px; margin:5px 0; -webkit-transition:0.3s; outline:none; font-size:14px; }
+     input[type="text"]:focus { border:2px solid black; }
+</style>
+...
+<form>
+ <input type="text" name="search" placeholder="검색할 키워드를 입력하세요."><br>
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127761952-a2da5d84-432c-47f9-b429-319a747eb598.png)
+
+> <h3>textarea 요소의 크기 조절</h3>
+
+resize 속성을 이용하여 textarea 요소의 크기를 조절할 수 있습니다.
+
+resize 속성을 설정하면 해당 textarea 요소의 오른쪽 아래 부분에 마우스로 잡을 수 있는 핸들이 생깁니다.
+
+사용자가 그 핸들을 마우스로 클릭하여 조절하면 textarea 요소의 크기를 마음대로 조절할 수 있게 됩니다.
+
+CSS에서 사용할 수 있는 resize 속성값은 다음과 같습니다.
+
+- none :	해당 요소의 크기를 조절할 수 없음. (기본 설정)
+- both : 사용자가 해당 요소의 높이와 너비를 모두 조절할 수 있음.
+- horizontal :	사용자가 해당 요소의 너비만을 조절할 수 있음.
+- vertical :	사용자가 해당 요소의 높이만을 조절할 수 있음.
+
+resize 속성은 익스플로러에서 지원하지 않습니다.
+
+``` html
+<style>
+     textarea { border:2px solid #1E90FF; width:100%; height:200px; box-sizing:border-box; 
+       border-radius:5px; resize:both; padding: 10px 20px; font-size:16px; }
+</style>
+...
+<form>
+ <textarea placeholder="여기에 텍스트를 입력합니다!"></textarea>
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127762071-12a8b766-6b19-4e53-abc8-a574195d48db.png)
+
+> <h3>select 요소에 스타일 적용</h3>
+
+CSS를 이용하면 select 요소에도 여러 가지 스타일을 적용할 수 있습니다.
+
+``` html
+<style>
+ select {
+  width: 100%;
+  padding: 10px;
+  border: solid 1px #EEEEEE;
+  border-radius: 5px;
+  background-color: #FFFFE0;
+         box-sizing:border-box;
+         font-size:14px;
+         outline:none;
+         -webkit-transition: 0.5s;
+ }
+     select:hover { border: 1px solid black; }
+     select:focus { box-shadow: 0 0 3px 2px #777; border: 1px solid black; }
+     select option {font-size:14px;}
+</style>
+...
+<form>
+ <select name="fruit">
+  <option value="apple" selected> 사과
+  <option value="orange"> 귤
+  <option value="strawberry"> 딸기
+  <option value="peach"> 복숭아
+ </select>
+</form>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127765445-d44f6d77-16c6-4b8b-918e-d0dcf69ba29c.png)
+
+## @규칙
+
+CSS에서는 W3C에서 규정하고 있는 몇몇 규칙들을 사용할 수 있습니다.
+
+그 중에서도 많이 사용되는 대표적인 규칙은 다음과 같습니다.
+
+1. @import
+
+2. @font-face
+
+3. @media
+
+> <h3>@import 규칙</h3>
+
+`@import` 규칙은 다른 스타일 시트에서 스타일 규칙을 가져올 수 있는 규칙입니다.
+
+이 규칙은 스타일 시트에 사용되는 문자 인코딩을 지정하는 @charset 규칙을 제외하고 모든 다른 규칙보다 앞서 명시되어야 합니다.
+
+ 
+
+보통 HTML 문서에는 다음과 같이 여러 개의 `<link>`태그를 사용하여 스타일 시트를 추가합니다.
+
+``` html
+<head>
+    <title>@import 규칙</title>
+    <link rel="stylesheet" href="firstStyleSheet.css">
+    <link rel="stylesheet" href="secondStyleSheet.css">
+    ...
+    <link rel="stylesheet" href="hundredStyleSheet.css">
+</head>
+```
+ 
+하지만 이렇게 추가하는 CSS 파일의 개수가 늘어날수록 웹 서버의 부하도 같이 커지게 됩니다.
+
+따라서 HTML 문서에는 일정 개수의 CSS 파일만을 추가하고, 추가된 CSS 파일에서 `@import` 규칙을 이용해 또 다른 CSS 파일을 추가하는 방법을 사용합니다.
+
+HTML 문서
+
+``` html
+<head>
+    <title>@import 규칙</title>
+    <link rel="stylesheet" href="firstStyleSheet.css">
+    <link rel="stylesheet" href="secondStyleSheet.css">
+</head>
+```
+
+firstStyleSheet.css
+
+``` html
+@import url("thirdStyleSheet.css");
+@import "fourthStyleSheet.css";
+...
+```
+
+@import 규칙을 사용해도 추가하는 CSS 파일의 개수가 늘어나면 여전히 웹 서버의 부하는 커질 수밖에 없습니다.
+
+따라서 웹 서버의 부하를 줄이기 위해 작성한 CSS 파일들을 적절히 분산해서 추가하는 방법이 필요해집니다.
+
+ 
+
+@import 규칙을 이용하면 `미디어 쿼리(media query)`의 조건에 따라 필요한 CSS 파일만을 선별적으로 불러올 수 있습니다.
+
+ 
+
+다음 예제는 `프린트`할 때에는 firstStyleSheet.css 파일을 불러오고, `스크린이 가로 방향`으로 설정되어 있을 때는 secondStyleSheet.css 파일을 불러오는 예제입니다.
+
+``` html
+<head>
+    <title>@import 규칙</title>
+    @import url("firstStyleSheet.css") print;
+    @import "secondStyleSheet.css" screen and (orientation:landscape);
+</head>
+```
+
+> <h3>@font-face 규칙</h3>
+
+@font-face 규칙은 웹 폰트(web font)를 정의할 때 사용하는 규칙입니다.
+
+웹 폰트(web font)는 사용자의 컴퓨터에 설치되어 있지 않은 글꼴(font)을 웹 브라우저가 사용할 수 있게 해줍니다.
+
+우선 웹 폰트를 서버에 올려놓고, CSS 파일에 @font-face 규칙을 사용하여 웹 폰트를 정의하고 추가합니다.
+
+그러면 해당 웹 페이지에 접속하는 모든 웹 브라우저는 자동으로 서버에서 웹 폰트를 내려받아 해당 글꼴을 표시하게 됩니다.
+
+``` html
+<style>
+    @font-face {
+        font-family: "myWebFont";
+        src: local("NanumGothic"), url("NanumGothic.eot"), url("NanumGothic.ttf"), url("NanumGothic.woff");
+    }
+    * { font-family: "myWebFont"; }
+</style>
+```
+
+> <h3>@media 규칙</h3>
+
+CSS2에서는 @media 규칙을 통해 서로 다른 미디어 타입(media type)을 위한 맞춤식 스타일 시트를 지원합니다.
+
+다음 예제는 HTML 문서가 스크린에 표현될 때와 프린트할 때 서로 다른 스타일을 적용해 주는 예제입니다.
+
+``` html
+<style>
+    body { background-color: darkorange; }
+    @media screen {
+        body { background-color: black; color: white; }
+    }
+    @media print {
+        body { background-color: white; color: black; }
+    }
+</style>
+```
+
