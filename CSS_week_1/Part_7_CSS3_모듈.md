@@ -1,7 +1,7 @@
 # Part 7. CSS3 모듈
 
-+ [CSS3 개요](#CSS3 개요)
-+ [CSS3 선택자](#CSS3 선택자)
++ [CSS3 개요](#CSS3-개요)
++ [CSS3 선택자](#CSS3-선택자)
 + [벤더 프리픽스(Vendor Prefix)](#벤더-프리픽스Vendor-Prefix)
 + [CSS3 원형 그래디언트](#CSS3-원형-그래디언트)
 + 
@@ -484,3 +484,160 @@ CSS를 이용하면 원형 그래디언트의 모양을 타원이 아닌 원으�
 </style>
 ```
 
+> <h3>원형 그래디언트의 크기 설정</h3>
+
+CSS를 이용하면 원형 그래디언트의 크기를 설정할 수 있습니다.
+
+이때 크기를 나타내기 위해 사용할 수 있는 매개변수는 다음과 같습니다.
+
+ 
+
+- closest-side : 원형 그래디언트의 크기가 가장 가까운 면에 닿을 만큼의 크기로 설정됩니다.
+
+- farthest-side : 원형 그래디언트의 크기가 가장 먼 면에 닿을 만큼의 크기로 설정됩니다. 
+
+따라서 가까운 면에서는 그래디언트의 일부분이 화면을 넘을 것입니다.
+
+- closest-corner : 원형 그래디언트의 크기가 가장 가까운 모서리에 닿을 만큼의 크기로 설정됩니다.
+
+- farthest-corner : 원형 그래디언트의 크기가 가장 먼 모서리에 닿을 만큼의 크기로 설정됩니다.
+
+이 크기가 기본 설정이며, 가까운 모서리에서는 그래디언트의 일부분이 화면을 넘을 것입니다.
+
+ 
+
+다음 예제는 다양하게 크기를 조절한 원형 그래디언트 예제입니다.
+
+``` html
+<style>
+	div {
+		height: 300px;
+		width: 300px;
+	}
+	#grad_01 {
+		background: red;
+		background: -webkit-radial-gradient(35% 35%, closet-side, red, yellow, orange);
+		background: -moz-radial-gradient(35% 35%, closet-side, red, yellow, orange);
+		background: -o-radial-gradient(35% 35%, closet-side, red, yellow, orange);
+		background: radial-gradient(closest-side at 35% 35%, red, yellow, orange);
+	}
+	#grad_02 {
+		background: red;
+		background: -webkit-radial-gradient(35% 35%, farthest-side, red, yellow, orange);
+		background: -moz-radial-gradient(35% 35%, farthest-side, red, yellow, orange);
+		background: -o-radial-gradient(35% 35%, farthest-side, red, yellow, orange);
+		background: radial-gradient(farthest-side at 35% 35%, red, yellow, orange);
+	}
+	#grad_03 {
+		background: red;
+		background: -webkit-radial-gradient(35% 35%, closet-corner, red, yellow, orange);
+		background: -moz-radial-gradient(35% 35%, closet-corner, red, yellow, orange);
+		background: -o-radial-gradient(35% 35%, closet-corner, red, yellow, orange);
+		background: radial-gradient(closest-corner at 35% 35%, red, yellow, orange);
+	}
+	#grad_04 {
+		background: red;
+		background: -webkit-radial-gradient(35% 35%, farthest-corner, red, yellow, orange);
+		background: -moz-radial-gradient(35% 35%, farthest-corner, red, yellow, orange);
+		background: -o-radial-gradient(35% 35%, farthest-corner, red, yellow, orange);
+		background: radial-gradient(farthest-corner at 35% 35%, red, yellow, orange);
+	}
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127969841-1aa5f7f3-7968-4d3e-ad01-abca1ce5d272.png)
+
+![image](https://user-images.githubusercontent.com/43658658/127969866-9b48cea7-ea9f-47d6-962c-3637ad0e69f9.png)
+
+> <h3>repeating-radial-gradient() 메소드</h3>
+
+repeating-radial-gradient() 메소드는 원형 그래디언트 효과가 계속 반복되도록 설정합니다.
+
+다음 예제는 반복되는 원형 그래디언트 예제입니다.
+
+``` html
+<style>
+	#grad {
+		height: 300px;
+		width: 300px;
+		background: red;
+		background: -webkit-repeating-radial-gradient(red, white 10%, blue 20%);
+		background: -moz-repeating-radial-gradient(red, white 10%, blue 20%);
+		background: -o-repeating-radial-gradient(red, white 10%, blue 20%);
+		background: repeating-radial-gradient(red, white 10%, blue 20%);
+	}
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127970297-c55f61f6-5784-4278-9958-26b5738d4762.png)
+
+## CSS3 그림자 효과
+ 
+CSS3에서는 텍스트나 HTML 요소에 간단히 그림자 효과를 적용할 수 있습니다.
+ 
+CSS3에서 사용할 수 있는 shadow 속성은 다음과 같습니다.
+
+1. text-shadow
+
+2. box-shadow
+
+> <h3>text-shadow 속성</h3>
+
+text-shadow 속성은 해당 텍스트에 간단히 그림자 효과를 적용해 줍니다.
+
+text-shadow 속성의 문법은 다음과 같습니다.
+
+``` html
+text-shadow: 그림자의x축값 그림자의y축값 blur값 색상값;
+```
+ 
+그림자가 시작할 `x축`과 `y축`의 상대 위치를 명시하고, 그림자의 흐린 정도를 나타내는 `blur` 값을 명시합니다.
+
+쉼표(,)를 통해 여러 그림자 효과를 중첩시킬 수도 있습니다.
+
+다음 예제는 CSS3에서 텍스트에 적용할 수 있는 다양한 그림자 효과를 보여주는 예제입니다.
+
+``` html
+<style>
+	#shadow_01 { text-shadow: 2px 2px; }
+	#shadow_02 { text-shadow: 2px 2px orange; }
+	#shadow_03 { text-shadow: 2px 2px 5px; }
+	#shadow_04 { text-shadow: 0 0 3px red; }
+	#shadow_05 { color: white; text-shadow: 1px 1px 2px black, 0 0 20px purple, 0 0 5px maroon; }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127973479-704e66a7-1e87-4e75-8dde-008a9fa864a6.png)
+
+> <h3>box-shadow 속성</h3>
+
+box-shadow 속성은 해당 HTML 요소에 간단히 그림자 효과를 적용해 줍니다.
+
+box-shadow 속성의 문법은 text-shadow 속성을 사용하는 문법과 같습니다.
+
+``` html
+box-shadow: 그림자의x축값 그림자의y축값 blur값 색상값;
+```
+
+그림자가 시작할 `x축`과 `y축`의 상대 위치를 명시하고, 그림자의 흐린 정도를 나타내는 `blur` 값을 명시합니다.
+ 
+
+다음 예제는 CSS3에서 HTML 요소에 적용할 수 있는 다양한 그림자 효과를 보여주는 예제입니다.
+
+``` html
+<style>
+	div {
+		background-color: lightgray;
+		height: 50px;
+		width: 200px;
+		margin: 30px;
+	}
+	#shadow_01 { box-shadow: 5px 5px; }
+	#shadow_02 { box-shadow: 5px 5px orange; }
+	#shadow_03 { box-shadow: 5px 5px 10px; }
+	#shadow_04 { box-shadow: 0 0 15px red; }
+	#shadow_05 { box-shadow: 5px 5px 10px black, 0 0 15px purple, 0 0 30px maroon; }
+</style>
+```
+
+![image](https://user-images.githubusercontent.com/43658658/127973577-69dc2184-e709-4df0-8535-1dc23557cb4b.png)
