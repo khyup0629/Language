@@ -1,6 +1,6 @@
 # Part 9. CSS3 확장
 
-+ [CSS3 버튼(#CSS3-버튼)
++ [CSS3 버튼](#CSS3-버튼)
 + 
 
 ## CSS3 버튼
@@ -169,3 +169,45 @@ CSS의 애니메이션(animation) 효과를 이용하면, 버튼에 더욱 다�
 다음 예제는 버튼을 누르면 버튼 위로 다른 색상이 물결처럼 퍼지는 예제입니다.
 
 ``` html
+<style>
+      .btn {
+        width:150px;
+        height:70px;
+        background-color:orange;
+        border:none;
+        font-size:22px;
+        color:black;
+        position:relative;
+        padding:15px 30px;
+        margin:10px;
+        cursor:pointer;
+        overflow:hidden; /* 이 항목을 없애고 .btn::after에 opacity:1로 해서 
+	.btn::after와 .btn:active::after사이의 변화양상을 확인할 수 있다.*/
+      }
+      /* .btn:active::after와 .btn::after 사이를 왔다갔다 함 */
+      /* 평상시에 .btn::after 서식이 있지만, opacity로 인해 보이지 않음. */
+      .btn::after { 
+        content:"";
+        background-color: #FFD700;
+        position:absolute;
+        top:70px;
+        left:0;
+        padding-top:200%;
+        padding-left:300%;
+        margin-top:-120%;
+        margin-left:0;
+        opacity:0;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+      .btn:active::after {
+        padding:0;
+        margin:0;
+        opacity:1;
+        /* 이 항목이 없으면 클릭을 하는 순간
+        .btn::after -> .btn:active::after 과정이 눈에 보인다. */
+        -webkit-transition:0s; 
+        transition:0s;
+      }
+</style>
+```
