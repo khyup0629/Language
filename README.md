@@ -1,4 +1,4 @@
-# html_css_javascript_study
+# html, css, javascript study
 
 HTML, CSS, Javascript를 공부해서 현이의 쇼핑몰 홈페이지를 만드는 것을 도와주자!
 
