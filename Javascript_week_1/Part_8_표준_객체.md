@@ -2,6 +2,7 @@
 
 + [전역 객체와 래퍼 객체](#전역-객체와-래퍼-객체)
 + [Number 객체](#Number-객체)
++ [Math 객체](#Math-객체)
 + 
 
 ## 전역 객체와 래퍼 객체
@@ -505,3 +506,302 @@ num;                          // 123
 typeof num;                   // number
 ```
 
+## Math 객체
+
+Math 객체는 수학에서 자주 사용하는 상수와 함수들을 미리 구현해 놓은 자바스크립트 표준 내장 객체입니다.
+
+ 
+
+Math 객체는 다른 전역 객체와는 달리 생성자(constructor)가 존재하지 않습니다.
+
+따라서 따로 인스턴스를 생성하지 않아도 Math 객체의 모든 메소드나 프로퍼티를 바로 사용할 수 있습니다.
+
+> <h3>Math 메소드</h3>
+
+자바스크립트는 웹 페이지에서 수학적 작업을 손쉽게 할 수 있도록 다양한 Math 메소드를 제공하고 있습니다.
+
+가장 많이 사용되는 대표적인 Math 메소드는 다음과 같습니다.
+
+ 
+
+1. Math.min()
+
+2. Math.max()
+
+3. Math.random()
+
+4. Math.round()
+
+5. Math.floor()
+
+6. Math.ceil()
+
+7. Math.sin()
+
+ 
+
+대부분의 Math 메소드는 웹 브라우저마다 다른 결괏값을 얻을 가능성이 높습니다.
+
+심지어 같은 자바스크립트 인터프리터라도 운영체제가 다르면 다른 결괏값을 반환할 수 있습니다.
+
+따라서 아주 정확한 결괏값이 필요한 작업에는 Math 메소드는 사용하지 않는 것이 좋습니다.
+
+> <h3>Math.min() 메소드</h3>
+
+Math.min() 메소드는 인수로 전달받은 값 중에서 가장 작은 수를 반환합니다.
+
+인수가 전달되지 않으면 Infinity를 반환하며, 인수 중에 비교할 수 없는 값이 포함되어 있으면 NaN을 반환합니다.
+
+숫자가 문자열 타입일 경우 자동으로 숫자 타입으로 변환해서 비교합니다.
+
+``` html
+document.write(Math.min() + "<br>");					// Infinity
+document.write(Math.min(1, 10, -100, -10, 1000, 0) + "<br>");		// -100
+document.write(Math.min(1, 10, -100, -10, "-1000", 0) + "<br>");	// -1000
+document.write(Math.min(1, 10, -100, -10, "문자열", 0));			// NaN
+```
+
+> <h3>Math.max() 메소드</h3>
+
+Math.max() 메소드는 인수로 전달받은 값 중에서 가장 큰 수를 반환합니다.
+
+인수가 전달되지 않으면 -Infinity를 반환하며, 인수 중에 비교할 수 없는 값이 포함되어 있으면 NaN을 반환합니다.
+
+``` html
+Math.max();                              // -Infinity
+Math.max(1, 10, -100, -10, 100, 0);      // 100
+Math.max(1, 10, -100, -10, "1000", 0);   // 1000
+Math.max(1, 10, -100, -10, "문자열", 0); // NaN
+```
+
+> <h3>Math.random() 메소드</h3>
+
+Math.random() 메소드는 0보다 크거나 같고 1보다 작은 무작위 숫자(random number)를 반환합니다.
+
+``` html
+var min = 10, max = 20;
+document.write(Math.random() + "<br>");				// [0, 1)
+document.write(Math.random() * (max - min) + min + "<br>");	// [min, max)
+```
+
+위의 예제에서 사용된 '['기호는 '크거나 같은'을 나타내며, ']'기호는 '작거나 같은'을 나타내는 기호입니다.
+
+또한, '('기호는 '보다 큰'을 나타내며, ')'기호는 '보다 작은'을 나타내는 기호입니다.
+
+> <h3>Math.round() 메소드</h3>
+
+Math.round() 메소드는 인수로 전달받은 값을 소수점 첫 번째 자리에서 반올림하여 그 결괏값을 반환합니다.
+
+``` html
+document.write(Math.round(10.49) + "<br>");		// 10
+document.write(Math.round(10.5) + "<br>");		// 11
+document.write(Math.round(-10.5) + "<br>");		// -10
+document.write(Math.round(-10.51));				// -11
+```
+
+> <h3>Math.floor() 메소드</h3>
+
+Math.floor() 메소드는 인수로 전달받은 값과 같거나 작은 수 중에서 가장 큰 정수를 반환합니다.
+
+``` html
+Math.floor(10.95);  // 10
+Math.floor(11.01);  // 11
+Math.floor(-10.95); // -11
+Math.floor(-11.01); // -12
+```
+
+> <h3>Math.ceil() 메소드</h3>
+
+Math.ceil() 메소드는 인수로 전달받은 값과 같거나 큰 수 중에서 가장 작은 정수를 반환합니다.
+
+즉, 전달받은 인수를 올림합니다.
+
+``` html
+Math.ceil(10.95);  // 11
+Math.ceil(11.01);  // 12
+Math.ceil(11);     // 11
+Math.ceil(-10.95); // -10
+Math.ceil(-11.01); // -11
+```
+
+> <h3>Math.sin() 메소드</h3>
+
+Math.sin() 메소드는 인수로 전달받은 값의 사인(sine) 함숫값을 반환합니다.
+
+``` html
+Math.sin(0);           // 0
+Math.sin(Math.PI / 2); // 1
+```
+
+자바스크립트에서 제공하는 삼각 함수에 관한 모든 메소드는 각도의 단위로 라디안(radian)을 사용합니다.
+
+이때 라디안 단위와 60분법 단위를 서로 변환하기 위해서는 다음과 같은 공식을 사용합니다.
+
+``` html
+라디안값 = 60분법값 * (Math.PI / 180)
+```
+
+> <h3>자바스크립트 Math 메소드</h3>
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th>메소드</th>
+			<th>설명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Math.min(x, y, ...)</td>
+			<td>인수로 전달받은 값 중에서 가장 작은 수를 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.max(x, y, ...)</td>
+			<td>인수로 전달받은 값 중에서 가장 큰 수를 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.random()</td>
+			<td>0보다 크거나 같고 1보다 작은 랜덤 숫자(random number)를 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.round(x)</td>
+			<td>x를 소수점 첫 번째 자리에서 반올림하여 그 결과를 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.floor(x)</td>
+			<td>x와 같거나 작은 수 중에서 가장 큰 정수를 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.ceil(x)</td>
+			<td>x와&nbsp;같거나 큰&nbsp;수 중에서 가장 작은&nbsp;정수를 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.abs(x)</td>
+			<td>x의 절댓값을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.cbrt(x)</td>
+			<td>x의 세제곱근을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.sqrt(x)</td>
+			<td>x의 제곱근을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.clz32(x)</td>
+			<td>
+			<p>x을 32비트 이진수로 변환한 후, 0이 아닌 비트의 개수를 반환함.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>Math.exp(x)</td>
+			<td>e<sup>x&nbsp;</sup>의 값을 반환함.&nbsp;(e : 오일러의 수)</td>
+		</tr>
+		<tr>
+			<td>Math.expm1(x)</td>
+			<td>1 - e<sup>x&nbsp;</sup>의 값을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.fround(x)</td>
+			<td>x와 가장 근접한 32비트 부동 소수점 수(single precision float)를 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.hypot(x, y, ...)</td>
+			<td>인수로 전달받은 값들을 각각 제곱한 후 더한 총합의 제곱근을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.imul(x, y)</td>
+			<td>인수로 전달받은 두 값의 32비트 곱셈의 결과를 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.log(x)</td>
+			<td>x의 자연로그 값을 반환함. (ln x)</td>
+		</tr>
+		<tr>
+			<td>Math.log1p(x)</td>
+			<td>ln(1 + x)의 값을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.log10(x)</td>
+			<td>x의 10을 밑으로 가지는 로그 값을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.log2(x)</td>
+			<td>x의 2를 밑으로 가지는 로그 값을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.pow(x, y)</td>
+			<td>x의 y승을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.sign(x)</td>
+			<td>x의 부호 값을 반환함.</td>
+		</tr>
+		<tr>
+			<td>Math.trunc(x)</td>
+			<td>x의 모든 소수 부분을 삭제하고 정수 부분만을 반환함.</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Math.sin(x),&nbsp;Math.cos(x),&nbsp;Math.tan(x),Math.asin(x),&nbsp;Math.acos(x),&nbsp;Math.atan(x),&nbsp;Math.asinh(x),&nbsp;Math.acosh(x),&nbsp;Math.atanh(x),&nbsp;Math.atan2(x)</p>
+			</td>
+			<td>x의 해당 삼각 함숫값을 반환함.</td>
+		</tr>
+	</tbody>
+</table>
+
+> <h3>자바스크립트 Math 프로퍼티</h3>
+
+자바스크립트는 수학에서 사용하는 다양한 상수들을 Math 프로퍼티를 이용해 제공하고 있습니다.
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th style="width: 20%;">프로퍼티</th>
+			<th style="width: 65%;">설명</th>
+			<th style="width: 15%;">대략값</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Math.E</td>
+			<td>오일러의 수(Euler&#39;s constant)라고 불리며, 자연로그(natural logarithms)의 밑(base) 값</td>
+			<td>2.718</td>
+		</tr>
+		<tr>
+			<td>Math.LN2</td>
+			<td>2의 자연로그 값</td>
+			<td>0.693</td>
+		</tr>
+		<tr>
+			<td>Math.LN10</td>
+			<td>10의 자연로그 값</td>
+			<td>2.303</td>
+		</tr>
+		<tr>
+			<td>Math.LOG2E</td>
+			<td>오일러 수(e)의 밑 값이 2인 로그 값</td>
+			<td>1.443</td>
+		</tr>
+		<tr>
+			<td>Math.LOG10E</td>
+			<td>오일러 수(e)의 밑 값이 10인 로그 값</td>
+			<td>0.434</td>
+		</tr>
+		<tr>
+			<td>Math.PI</td>
+			<td>원의 원주를 지름으로 나눈 비율(원주율) 값</td>
+			<td>3.14159</td>
+		</tr>
+		<tr>
+			<td>Math.SQRT1_2</td>
+			<td>2의 제곱근의 역수 값</td>
+			<td>0.707</td>
+		</tr>
+		<tr>
+			<td>Math.SQRT2</td>
+			<td>2의 제곱근 값</td>
+			<td>1.414</td>
+		</tr>
+	</tbody>
+</table>
