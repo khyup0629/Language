@@ -37,7 +37,7 @@ var len = str.length; // 문자열 프로퍼티인 length 사용
 
 이렇게 숫자, 문자열, 불리언 등 원시 타입의 프로퍼티에 접근하려고 할 때 생성되는 임시 객체를 래퍼 객체(wrapper object)라고 합니다.
 
-``` html
+``` javascript
 var str = "문자열";							// 문자열 리터럴 생성
 var strObj = new String(str);				// 문자열 객체 생성
 
