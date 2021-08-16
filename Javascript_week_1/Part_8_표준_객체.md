@@ -743,7 +743,10 @@ Math.sin(Math.PI / 2); // 1
 		</tr>
 		<tr>
 			<td>
-			<p>Math.sin(x),&nbsp;Math.cos(x),&nbsp;Math.tan(x),Math.asin(x),&nbsp;Math.acos(x),&nbsp;Math.atan(x),&nbsp;Math.asinh(x),&nbsp;Math.acosh(x),&nbsp;Math.atanh(x),&nbsp;Math.atan2(x)</p>
+				<p>Math.sin(x),&nbsp;Math.cos(x),&nbsp;Math.tan(x),</p>
+				<p>Math.asin(x),&nbsp;Math.acos(x),&nbsp;Math.atan(x),</p>
+				<p>&nbsp;Math.asinh(x),&nbsp;Math.acosh(x),&nbsp;</p>
+				<p>Math.atanh(x),&nbsp;Math.atan2(x)</p>
 			</td>
 			<td>x의 해당 삼각 함숫값을 반환함.</td>
 		</tr>
