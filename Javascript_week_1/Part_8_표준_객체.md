@@ -456,7 +456,7 @@ num.toFixed(4);        // 3.1416
 numObj.toPrecision([전체자릿수])
 ``` 
 
-``` html
+``` script
 var num = 3.14159265;      // Number 인스턴스를 생성함.
 num.toPrecision();         // 3.14159265
 num.toPrecision(2);        // 3.1
