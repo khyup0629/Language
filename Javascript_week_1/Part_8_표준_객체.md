@@ -1722,7 +1722,7 @@ lessTen; // [-10,5,-20]
 
 > <h3>every() 메소드</h3>
 
-every() 메소드는 해당 배열의 모든 요소에 대하여 반복적으로 명시된 콜백 함수를 실행한 후, 그 결괏값이 모두 true일 때에만 true를 반환합니다.
+every() 메소드는 해당 배열의 모든 요소에 대하여 반복적으로 명시된 `콜백 함수`를 실행한 후, `그 결괏값이 모두 true일 때에만 true를 반환`합니다.
 
 ``` javascript
 var arr = [-10, 5, -20, 4];
@@ -1734,7 +1734,7 @@ arr.every(compareValue); // true
 
 > <h3>some() 메소드</h3>
 
-some() 메소드는 해당 배열의 모든 요소에 대하여 반복적으로 명시된 콜백 함수를 실행한 후, 그 결괏값이 하나라도 true이면 true를 반환합니다.
+some() 메소드는 해당 배열의 모든 요소에 대하여 반복적으로 명시된 `콜백 함수`를 실행한 후, `그 결괏값이 하나라도 true이면 true를 반환`합니다.
 
 ``` javascript
 var arr = [10, 25, -20, 14];
@@ -1746,7 +1746,7 @@ arr.some(compareValue); // true
 
 > <h3>reduce() 메소드</h3>
 
-reduce() 메소드는 해당 배열의 모든 요소를 하나의 값으로 줄이기 위해, 두 개의 인수를 전달받는 콜백 함수를 실행합니다.
+reduce() 메소드는 해당 배열의 모든 요소를 하나의 값으로 줄이기 위해, 두 개의 인수를 전달받는 `콜백 함수`를 실행합니다.
 
  
 
@@ -1792,6 +1792,19 @@ for (var entry of arrEntries) {
 ```
 
 ![image](https://user-images.githubusercontent.com/43658658/129687311-929aa158-30e2-443c-a4dd-19c5a0ea504a.png)
+
+> <h3>find() 메소드</h3>
+
+find() 메소드는 인수로 전달받은 `콜백 함수`를 실행하여 결과가 참인 첫 번째 요소를 반환합니다.
+
+``` javascript
+var arr = [1, 10, 5, -10, -65];
+function printArr(value){
+	return value < 1;
+}
+var arrFind = arr.find(printArr);
+document.write(arrFind + '<br>');	// -10
+```
 
 > <h3>자바스크립트 Array.prototype 메소드</h3>
 
