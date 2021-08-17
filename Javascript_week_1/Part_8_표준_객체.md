@@ -2,7 +2,12 @@
 
 + [전역 객체와 래퍼 객체](#전역-객체와-래퍼-객체)
 + [Number 객체](#Number-객체)
++ [Number 메소드](#Number-메소드)
 + [Math 객체](#Math-객체)
++ [Date 객체](#Date-객체)
++ [Date 메소드](#Date-메소드)
++ [String 객체](#String-객체)
++ [String 메소드](#String-메소드)
 + 
 
 ## 전역 객체와 래퍼 객체
@@ -805,6 +810,649 @@ Math.sin(Math.PI / 2); // 1
 			<td>Math.SQRT2</td>
 			<td>2의 제곱근 값</td>
 			<td>1.414</td>
+		</tr>
+	</tbody>
+</table>
+
+## Date 객체
+
+> <h3>자바스크립트에서의 날짜 표현</h3>
+
+자바스크립트에서는 Date 객체를 사용하여 매 순간 변화하는 시간과 날짜에 관한 정보를 손쉽게 얻을 수 있습니다.
+
+Date 객체는 연월일, 시분초의 정보와 함께 밀리초(millisecond)의 정보도 함께 제공합니다.
+
+ 
+
+자바스크립트에서 날짜와 시간을 나타내기 위한 값의 범위는 다음과 같습니다.
+
+ 
+
+1. 연도(year) : 1900년(00) ~ 1999년(99)
+
+2. 월(month) : 1월(0) ~ 12월(11) 
+
+3. 일(day) : 1일(1) ~ 31일(31)
+
+4. 시(hours) : 0시(0) ~ 23시(23)
+
+5. 분(minutes) : 0분(0) ~ 59분(59)
+
+6. 초(seconds) : 0초(0) ~ 59초(59)
+
+> <h3>Date 객체</h3>
+
+자바스크립트에서 Date 객체를 초기화하는 방법은 다음과 같습니다.
+
+ 
+
+1. new Date()
+
+2. new Date("날짜를 나타내는 문자열")
+
+3. new Date(밀리초)
+
+4. new Date(년, 월, 일, 시, 분, 초, 밀리초)
+
+ 
+
+Date 객체를 생성할 때 어떠한 인수도 전달하지 않으면, 현재 날짜와 시간을 가지고 Date 객체를 생성합니다.
+
+``` javascript
+var date = new Date(); // Date 객체 생성
+document.write(date);
+```
+ 
+
+Date 객체를 생성할 때 인수가 전달되면, 그 형태에 따라 특정 날짜와 시간을 가리키는 Date 객체를 생성합니다.
+
+``` javascript
+new Date("December 14, 1977 13:30:00"); // 날짜를 나타내는 문자열
+new Date(80000000);               // 1970년 1월 1일 0시부터 해당 밀리초만큼 지난 날짜
+new Date(16, 5, 25);              // 3개의 숫자로 나타내는 날짜이며, 시간은 자동으로 0시 0분 0초로 설정됨.
+new Date(16, 5, 25, 15, 40, 0);   // 7개의 숫자로 나타내는 날짜
+new Date(2016, 5, 25, 15, 40, 0); // 2000년대를 표기하고자 할 때에는 연도를 전부 표기해야 함.
+```
+
+자바스크립트에서 날짜 계산의 모든 기준은 1970년 1월 1일 00:00:00(UTC, 협정세계시)부터입니다.
+
+또한, 하루는 86,400,000 밀리초(millisecond)로 계산됩니다.
+
+> <h3>ISO 날짜 양식</h3>
+
+ISO 8601은 날짜와 시간을 나타내는 국제 표준 양식입니다.
+
+``` javascript
+YYYY-MM-DDTHH:MM:SS // T는 UTC(협정세계시)를 나타내는 문자로 시간까지 표현할 때에는 반드시 사용해야 함.
+YYYY-MM-DD
+YYYY-MM
+YYYY
+```
+
+``` javascript
+new Date("1977-12-14T13:30:00"); // 날짜와 시간까지 표현함.
+new Date("1977-12-14");          // 시간이 생략되면 자동으로 09:00:00으로 설정됨.
+new Date("1977-12");             // 일이 생략되면 자동으로 1일로 설정됨.
+new Date("1977");                // 월이 생략되면 자동으로 1월로 설정됨.
+```
+
+> <h3>Long 날짜 양식</h3>
+
+``` javascript
+MMM DD YYYY
+DD MMM YYYY
+```
+
+``` javascript
+new Date("Feb 19 1982");        // MMM DD YYYY
+new Date("19 Feb 1982");        // DD MMM YYYY
+new Date("February 19 1982");   // 월의 축약형 뿐만 아니라 전체 단어도 인식함.
+new Date("FEBRUARY, 19, 1982"); // 쉼표는 무시되며, 대소문자의 구분은 없음.
+```
+
+> <h3>Short 날짜 양식</h3>
+
+``` javascript
+MM/DD/YYYY
+YYYY/MM/DD
+```
+ 
+``` javascript
+new Date("02/19/1982"); // MM/DD/YYYY
+new Date("1982/02/19"); // YYYY/MM/DD
+```
+
+> <h3>Full 날짜 양식</h3>
+
+자바스크립트에서 사용하는 날짜 양식으로 표현된 문자열도 날짜로 인식합니다.
+
+``` javascript
+Wed May 25 2016 17:00:31 GMT+0900
+```
+
+``` javascript
+new Date("Wed May 25 2016 17:00:00 GMT+0900 (Seoul Time)");
+// GMT가 현재 국가와 다른 시간은 현재 국가의 GMT로 변환되어 표현됨.
+new Date("Wed May 25 2016 17:00:00 GMT-0500 (New York Time)");
+```
+
+## Date 메소드
+
+> <h3>Date.now() 메소드</h3>
+
+Date.now() 메소드는 1970년 1월 1일 0시 0분 0초부터 현재까지의 시간을 밀리초(millisecond) 단위의 정수로 반환합니다.
+
+``` javascript
+var nowMiliSec = Date.now();
+nowMiliSec;           // 1970년 1월 1일 00:00:00부터 현재까지의 밀리초
+new Date(nowMiliSec); // new Date()와 같은 결과를 반환함.
+new Date();
+```
+
+> <h3>getFullYear() 메소드</h3>
+
+getFullYear() 메소드는 현재 연도를 4비트의 숫자(YYYY)로 반환합니다.
+
+``` javascript
+var date = new Date();
+document.write("올해는 " + date.getFullYear() + "년입니다."); // 현재 연도를 반환함.
+```
+
+> <h3>getMonth(), getDate() 메소드</h3>
+
+getMonth(), getDate() 메소드는 현재 날짜에 해당하는 숫자를 반환합니다.
+
+``` javascript
+var date = new Date();
+document.write("오늘은 " + date.getMonth() + "월 " + date.getDate() + "일입니다."); // 현재 날짜를 반환함.
+```
+
+> <h3>getDay() 메소드</h3>
+
+getDay() 메소드는 현재 요일에 해당하는 숫자를 반환합니다.
+
+자바스크립트에서 일주일은 일요일(0)부터 시작하여 토요일(6)로 끝납니다.
+
+``` javascript
+var date = new Date();
+var day;
+switch (date.getDay()) { // 현재 요일을 반환함.
+    case 0:
+        day = "일";
+        break;
+    case 1:
+        day = "월";
+        break;
+
+   ...
+    case 6:
+        day = "토";
+        break;
+}
+document.write("오늘은 " + day + "요일입니다.");
+```
+ 
+배열을 사용하면 더욱 간단하게 요일을 출력할 수 있습니다.
+
+``` javascript
+var date = new Date();
+var days = ["일", "월", "화", "수", "목", "금", "토"];
+document.write("오늘은 " + days[date.getDay()] + "요일입니다.");
+```
+
+> <h3>getTime() 메소드</h3>
+
+getTime() 메소드는 1970년 1월 1일 0시 0분 0초부터 현재까지의 시간을 밀리초 단위로 환산한 값을 숫자로 반환합니다.
+
+``` javascript
+var date = new Date();
+var period = date.getTime() / 86400000 // 하루는 86,400,000 밀리초로 계산됨.
+document.write("1970년 1월 1일부터 오늘까지 " + period.toFixed() + "일이 지났습니다."); // 소수 부분은 생략함.
+```
+
+> <h3>setFullYear() 메소드</h3>
+
+setFullYear() 메소드는 Date 객체의 값을 특정 날짜로 설정합니다.
+
+``` javascript
+var date = new Date();
+date.setFullYear(1982, 1, 19); // 자바스크립트에서 2월은 1임.
+date.getFullYear();            // 1982
+date.getMonth();               // 1
+date.getDate();                // 19
+```
+> <h3>setDate() 메소드</h3>
+
+setDate() 메소드는 Date 객체의 일자 값을 특정 일자로 설정합니다.
+
+``` javascript
+var date = new Date();			// Tue Aug 17 2021 15:00:15 GMT+0900 (Seoul Time) (현재 날짜)
+date.setDate(10);				// Tue Aug 10 2021 15:00:15 GMT+0900 (Seoul Time) Date 객체의 일자 값을 10일로 설정함.
+document.write(date + "<br>");
+date.setDate(40);				// Thu Sep 09 2021 15:00:15 GMT+0900 (Seoul Time) 40일을 설정하면, 초과되는 일수만큼 다음달로 넘어감.
+document.write(date);
+```
+
+> <h4>자바스크립트 Date.prototype setter 메소드</h4>
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th>메소드</th>
+			<th>설명</th>
+			<th>값의 범위</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p>setDate()</p>
+			</td>
+			<td>
+			<p>현지 시각으로 특정 일자를 설정함.</p>
+			</td>
+			<td>1 ~ 31</td>
+		</tr>
+		<tr>
+			<td>setMonth()</td>
+			<td>현지 시각으로 특정 월을 설정함.</td>
+			<td>0 ~ 11</td>
+		</tr>
+		<tr>
+			<td>
+			<p>setFullYear()</p>
+			</td>
+			<td>현지 시각으로 특정 연도를 설정함. (연도뿐만 아니라 월과 일자도 설정할 수 있음)</td>
+			<td>YYYY, MM, DD</td>
+		</tr>
+		<tr>
+			<td>
+			<p>setHours()</p>
+			</td>
+			<td>현지 시각으로 특정 시간을 설정함.</td>
+			<td>0 ~ 23</td>
+		</tr>
+		<tr>
+			<td>
+			<p>setMilliseconds()</p>
+			</td>
+			<td>현지 시각으로 특정 밀리초를 설정함.</td>
+			<td>0 ~ 999</td>
+		</tr>
+		<tr>
+			<td>
+			<p>setMinutes()</p>
+			</td>
+			<td>현지 시각으로 특정 분을 설정함.</td>
+			<td>0 ~ 59</td>
+		</tr>
+		<tr>
+			<td>
+			<p>setSeconds()</p>
+			</td>
+			<td>현지 시각으로 특정 초를 설정함.</td>
+			<td>0 ~ 59</td>
+		</tr>
+		<tr>
+			<td>
+			<p>setTime()</p>
+			</td>
+			<td>1970년 1월 1일 0시 0분 0초부터 밀리초 단위로 표현되는 특정 시간을 설정함.</td>
+			<td>-</td>
+		</tr>
+	</tbody>
+</table>
+
+## String 객체
+
+> <h3>자바스크립트에서의 문자열 표현</h3>
+
+자바스크립트에서 문자열 리터럴은 `큰따옴표("")`나 `작은따옴표('')`를 사용하여 손쉽게 만들 수 있습니다.
+
+> <h3>문자열의 길이</h3>
+
+자바스크립트에서 문자열의 길이는 length 프로퍼티에 저장됩니다.
+
+``` javascript
+var strKor = "한글";
+var strEng = "abcABC";
+strKor.length; // 2
+strEng.length; // 6
+```
+ 
+
+오랫동안 사용되어 온 아스키(ASCII) 인코딩 환경에서 영문자는 한 글자당 1바이트, 한글은 한 글자당 2바이트로 표현됩니다.
+
+하지만 UTF-8 인코딩 환경에서는 영문자는 한 글자당 1바이트, 한글은 한 문자당 3바이트로 표현됩니다.
+
+ 
+
+자바스크립트의 length 프로퍼티는 해당 문자열의 총 바이트 수를 저장하는 것이 아닌 글자의 개수만을 저장합니다.
+
+> <h3>이스케이프 시퀀스(escape sequence)</h3>
+
+자바스크립트는 더욱 다양한 문자 표현을 위해 여러 가지 이스케이프 시퀀스(escape sequence) 방식을 제공합니다.
+
+자바스크립트에서 제공하는 이스케이프 시퀀스 방식은 다음과 같습니다.
+
+1. 16진수 이스케이프 시퀀스(hexadecimal escape sequence)
+
+2. 유니코드 이스케이프 시퀀스(unicode escape sequence)
+
+3. 유니코드 코드 포인트 이스케이프(unicode code point escape)
+
+``` javascript
+// 16진수 이스케이프 시퀀스로 \x 다음은 16진수 수로 인식됨.
+'\xA2';   
+// 유니코드 이스케이프 시퀀스로 \u 다음은 유니코드로 인식됨.
+'\u00A2';
+// ECMAScript 6부터 새롭게 추가된 유니코드 코드 포인트 이스케이프 방식임.
+String.fromCodePoint(0x00A2);
+```
+
+> <h3>긴 문자열 리터럴을 나누어 표현하기</h3>
+
+자바스크립트에서는 길이가 긴 문자열 리터럴을 보기 좋게 표현하기 위해서 역 슬래시(\)나 결합(+) 연산자를 사용할 수 있습니다.
+
+``` javascript
+document.write("이 문자열은 아주 긴 문자열입니다." + 
+" 따라서 몇 번에 걸친 줄 나누기가 필요합니다." + 
+" 자바스크립트에서는 역슬래시와 문자 결합 연산자를 사용하여 줄을 나눌 수 있습니다.");
+```
+
+![image](https://user-images.githubusercontent.com/43658658/129672782-06e760a0-d68b-4941-bfa6-ca8397a519c2.png)
+
+> <h3>String 객체</h3>
+
+자바스크립트에서 문자열은 보통 문자열 리터럴을 사용하여 표현합니다.
+
+하지만 문자열을 나타낼 때 new 연산자를 사용하여 명시적으로 String 객체를 생성할 수도 있습니다.
+
+이러한 String 객체는 문자열 값을 감싸고 있는 래퍼(wrapper) 객체입니다.
+
+``` javascript
+var str = "JavaScript";
+var strObj = new String("JavaScript");
+str;              // "JavaScript"
+strObj;           // "JavaScript"
+typeof str;       // string
+typeof strObj;    // object
+(str == strObj);  // 문자열 값이 같으므로, true를 반환함.
+(str === strObj); // 문자열 값은 같지만 타입이 다르므로, false를 반환함.
+```
+
+## String 메소드
+
+> <h3>String.fromCharCode() 메소드</h3>
+
+이 메소드는 쉼표로 구분되는 일련의 유니코드에 해당하는 문자들로 구성된 문자열을 반환합니다.
+
+``` javascript
+String.fromCharCode(65, 66, 67); // "ABC"
+```
+
+> <h3>String.fromCodePoint() 메소드</h3>
+
+이 메소드는 쉼표로 구분되는 일련의 코드 포인트(code point)에 해당하는 문자들로 구성된 문자열을 반환합니다.
+
+``` javascript
+String.fromCodePoint(65, 66, 67); // "ABC"
+String.fromCodePoint(0x2F804);    // "\uD87E\uDC04"
+String.fromCodePoint(194564);     // "\uD87E\uDC04"
+```
+
+> <h3>문자열에서의 위치 찾기</h3>
+
+다음 메소드는 String 인스턴스에서 특정 문자나 문자열이 처음으로 등장하는 위치나 마지막으로 등장하는 위치를 반환합니다.
+
+- indexOf()
+
+- lastIndexOf()
+
+ 
+
+이 메소드들은 문자열을 찾기 시작할 String 인스턴스의 위치를 두 번째 인수로 전달할 수 있습니다.
+
+만약 전달받은 특정 문자나 문자열을 찾을 수 없을 때는 -1을 반환합니다.
+
+ 
+
+``` javascript
+var str = "abcDEFabc";
+str.indexOf('abc');     // 0  -> 자바스크립트에서 인덱스는 0부터 시작함.
+str.indexOf('abcd');    // -1 -> 문자열을 비교할 때 문자의 대소문자를 구분함.
+str.indexOf('abc', 3);  // 6  -> 인덱스 3부터 'abc'를 찾기 시작함.
+str.lastIndexOf('abc'); // 6
+str.lastIndexOf('d');   // -1
+str.lastIndexOf('c');   // 8
+```
+
+> <h3>문자열에서 지정된 위치에 있는 문자 반환</h3>
+
+다음 메소드는 String 인스턴스에서 전달받은 인덱스에 위치한 문자나 문자 코드를 반환합니다.
+
+- charAt()
+- charCodeAt()
+- codePointAt()
+
+ 
+
+``` javascript
+var str = "abcDEFabc";
+str.charAt(0);      // a
+str.charAt(10);     // 빈 문자열 -> 전달받은 인덱스가 문자열의 길이보다 클 경우에는 빈 문자열을 반환함.
+str.charCodeAt(0);  // 97        -> 'a'에 해당하는 UTF-16 코드를 반환함.
+str.codePointAt(0); // 97        -> 'a'에 해당하는 유니코드 코드 포인트를 반환함.
+```
+
+> <h3>문자열 추출</h3>
+
+다음 메소드는 String 인스턴스에서 전달받은 시작 인덱스부터 종료 인덱스 바로 앞까지의 문자열만을 추출하여 만든 새로운 문자열을 반환합니다.
+
+- slice() : 
+- substring()
+- substr()
+
+``` javascript
+var str = "abcDEFabc";
+str.slice(2, 6);     // cDEF     -> 인덱스 2부터 인덱스 5까지의 문자열을 추출함.
+str.slice(-4, -2);   // Fa       -> 음수로 전달된 인덱스는 문자열의 뒤에서부터 시작함.
+str.slice(2);        // cDEFabc -> 인수로 종료 인덱스가 전달되지 않으면 문자열의 마지막까지 추출함.
+str.substring(2, 6); // cDEF
+str.substr(2, 4);    // cDEF
+```
+
+> <h3>문자열 분리</h3>
+
+다음 메소드는 String 인스턴스를 구분자(separator)를 기준으로 나눈 후, 나뉜 문자열을 하나의 배열로 반환합니다.
+
+- split()
+
+split() 메소드는 인수로 구분자를 전달하지 않으면, 전체 문자열을 하나의 배열 요소로 가지는 길이가 1인 배열을 반환합니다.
+
+``` javascript
+var str = "자바스크립트는 너무 멋져요! 그리고 유용해요.";
+
+document.write(str.split() + "<br>");		// 구분자를 명시하지 않으면 아무런 동작도 하지 않음.
+document.write(str.split("") + "<br>");		// 한 문자("")씩 나눔.
+document.write(str.split(" ") + "<br>");	// 띄어쓰기(" ")를 기준으로 나눔.
+document.write(str.split(" ")[0] + "<br>");
+document.write(str.split("!"));			// 느낌표("!"")를 기준으로 나눔.
+```
+
+![image](https://user-images.githubusercontent.com/43658658/129675638-826c8e2e-50b2-4a67-ab0a-e6571137b5f4.png)
+
+> <h3>문자열 결합</h3>
+
+다음 메소드는 String 인스턴스에 전달받은 문자열을 결합한 새로운 문자열을 반환합니다.
+
+- concat()
+
+``` javascript
+var str = "자바스크립트";
+str;                                                // 자바스크립트
+str.concat("는 너무 멋져요!");                      // 자바스크립트는 너무 멋져요!
+str.concat("는 너무 멋져요!", " 그리고 유용해요."); // 자바스크립트는 너무 멋져요! 그리고 유용해요!
+str;                                                // 자바스크립트
+```
+
+위의 예제에서 여러 번 concat() 메소드를 실행한 후의 변수 str의 문자열은 여전히 처음과 같습니다.
+
+이처럼 자바스크립트에서 String 인스턴스의 값은 변경될 수(immutable) 없습니다.
+
+따라서 모든 String 메소드는 결괏값으로 새로운 문자열을 생성하여 반환합니다.
+
+![image](https://user-images.githubusercontent.com/43658658/129676124-5b652435-4ecb-4e94-8c01-ae0be0b2a852.png)
+
+> <h3>문자열의 대소문자 변환</h3>
+
+다음 메소드는 String 인스턴스의 모든 문자를 대문자나 소문자로 변환한 새로운 문자열을 반환합니다.
+
+- toUpperCase()
+- toLowerCase()
+
+``` javascript
+var str = "JavaScript";
+str.toUpperCase(); // JAVASCRIPT
+str.toLowerCase(); // javascript
+```
+
+> <h3>문자열 주위의 공백 제거</h3>
+
+다음 메소드는 String 인스턴스의 양 끝에 존재하는 모든 공백과 줄 바꿈 문자(LF, CR 등)를 제거한 새로운 문자열을 반환합니다.
+
+- trim()
+
+trim() 메소드는 String 인스턴스의 문자열 값 그 자체에는 영향을 주지 않습니다.
+
+``` javascript
+var str = "      JavaScript    ";
+str.trim();
+```
+
+> <h3>자바스크립트 String.prototype 메소드</h3>
+
+<table class="tb-2" summary="">
+	<thead>
+		<tr class="bg">
+			<th>메소드</th>
+			<th>설명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p>indexOf()</p>
+			</td>
+			<td>String 인스턴스에서 특정 문자나 문자열이 처음으로 등장하는 위치의 인덱스를 반환함.</td>
+		</tr>
+		<tr>
+			<td>
+			<p>lastIndexOf()</p>
+			</td>
+			<td>String 인스턴스에서 특정 문자나 문자열이 마지막으로 등장하는 위치의 인덱스를 반환함.</td>
+		</tr>
+		<tr>
+			<td>
+			<p>charAt()</p>
+			</td>
+			<td>String 인스턴스에서&nbsp;전달받은 인덱스에 위치한 문자를 반환함.</td>
+		</tr>
+		<tr>
+			<td>
+			<p>charCodeAt()</p>
+			</td>
+			<td>String 인스턴스에서&nbsp;전달받은 인덱스에 위치한 문자의 UTF-16 코드를 반환함. (0 ~ 65535)</td>
+		</tr>
+		<tr>
+			<td>
+			<p>charPointAt()</p>
+			</td>
+			<td>String 인스턴스에서&nbsp;전달받은 인덱스에 위치한 문자의 유니코드 코드 포인트(unicode code point)를 반환함.</td>
+		</tr>
+		<tr>
+			<td>slice()</td>
+			<td>String 인스턴스에서&nbsp;전달받은 시작 인덱스부터 종료 인덱스 바로 앞까지의 문자열을 추출한 새 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>substring()</td>
+			<td>String 인스턴스에서&nbsp;전달받은 시작 인덱스부터 종료 인덱스 바로 앞까지의 문자열을 추출한 새 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>substr()</td>
+			<td>String 인스턴스에서&nbsp;전달받은 시작 인덱스부터 길이만큼의 문자열을 추출한 새로운 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>split()</td>
+			<td>String 인스턴스에서&nbsp;구분자(separator)를 기준으로&nbsp;나눈 후, 나뉜&nbsp;문자열을 하나의&nbsp;배열로&nbsp;반환함.</td>
+		</tr>
+		<tr>
+			<td>concat()</td>
+			<td>String 인스턴스에 전달받은 문자열을 결합한 새로운 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>toUpperCase()</td>
+			<td>String 인스턴스의&nbsp;모든 문자를 대문자로 변환한 새로운 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>toLowerCase()</td>
+			<td>String 인스턴스의&nbsp;모든 문자를 소문자로 변환한 새로운 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>trim()</td>
+			<td>String 인스턴스의 양 끝에 존재하는 공백과 모든 줄 바꿈 문자(LF, CR 등)를&nbsp;제거한 새로운 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>search()</td>
+			<td>인수로 전달받은 정규 표현식에 맞는 문자나 문자열이&nbsp;처음으로 등장하는 위치의 인덱스를 반환함.</td>
+		</tr>
+		<tr>
+			<td>replace()</td>
+			<td>인수로 전달받은 패턴에 맞는 문자열을 대체 문자열로 변환한 새 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>match()</td>
+			<td>인수로 전달받은 정규 표현식에 맞는 문자열을 찾아서 하나의 배열로 반환함.</td>
+		</tr>
+		<tr>
+			<td>includes()</td>
+			<td>인수로 전달받은 문자나 문자열이 포함되어 있는지를 검사한 후 그 결과를 불리언 값으로 반환함.</td>
+		</tr>
+		<tr>
+			<td>startsWith()</td>
+			<td>인수로 전달받은 문자나 문자열로 시작되는지를 검사한 후 그 결과를 불리언 값으로 반환함.</td>
+		</tr>
+		<tr>
+			<td>endsWith()</td>
+			<td>인수로 전달받은 문자나 문자열로 끝나는지를 검사한 후 그 결과를 불리언 값으로 반환함.</td>
+		</tr>
+		<tr>
+			<td>toLocaleUpperCase()</td>
+			<td>영문자뿐만 아니라 모든 언어의 문자를 대문자로 변환한 새로운 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>toLocaleLowerCase()</td>
+			<td>영문자뿐만 아니라 모든 언어의 문자를 소문자로 변환한 새로운 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>localeCompare()</td>
+			<td>인수로 전달받은 문자열과 정렬 순서로 비교하여 그 결과를 정수 값으로 반환함.</td>
+		</tr>
+		<tr>
+			<td>normalize()</td>
+			<td>해당 문자열의 유니코드 표준화 양식(Unicode Normalization Form)을 반환함.</td>
+		</tr>
+		<tr>
+			<td>repeat()</td>
+			<td>해당 문자열을 인수로 전달받은 횟수만큼 반복하여 결합한 새로운 문자열을 반환함.</td>
+		</tr>
+		<tr>
+			<td>toString()</td>
+			<td>String 인스턴스의 값을 문자열로 반환함.</td>
+		</tr>
+		<tr>
+			<td>valueOf()</td>
+			<td>String 인스턴스의 값을 문자열로 반환함.</td>
 		</tr>
 	</tbody>
 </table>
