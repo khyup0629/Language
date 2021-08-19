@@ -1,4 +1,4 @@
-# Part 9. 
+# Part 9. 문서 객체 모델
 
 + [DOM의 개념](#DOM의-개념)
 + [Document 객체](#Document-객체)
