@@ -188,9 +188,8 @@ strict 모드는 스크립트나 함수의 맨 처음에 "use strict" 지시어�
 		<tr>
 			<td>예약어</td>
 			<td>
-			<p>다음 예약어들은 사용할 수 없음.</p>
-
-			<p>(implements, interface, let, package, private, protected, public, static, yield)</p>
+				<p>다음 예약어들은 사용할 수 없음.</p>
+				<p>(implements, interface, let, package, private, protected, public, static, yield)</p>
 			</td>
 		</tr>
 	</tbody>
