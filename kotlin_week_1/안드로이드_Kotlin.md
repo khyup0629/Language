@@ -59,7 +59,7 @@
 ![image](https://user-images.githubusercontent.com/43658658/143036834-7d46cb65-e706-40ad-a555-c1fbea778b3b.png)
 
 안드로이드 스튜디오 설정까지 모두 완료되었습니다.   
-
+![image](https://user-images.githubusercontent.com/43658658/143037398-9fdb2704-310e-4753-a5a9-95e2d20a31d4.png)
 
 ## 안드로이드 스튜디오 프로젝트 만들기
 
