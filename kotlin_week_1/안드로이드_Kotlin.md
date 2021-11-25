@@ -63,5 +63,66 @@
 
 ## 안드로이드 스튜디오 프로젝트 만들기
 
+> <h3>프로젝트 생성</h3>
+
+안드로이드 스튜디오를 실행하고 프로젝트를 만듭니다.   
+![image](https://user-images.githubusercontent.com/43658658/143385003-38b3fe45-decd-40e9-a01c-eff6fa1fe01f.png)
+
+안드로이드가 어디에 쓰일지를 고르고, 액티비티(페이지)를 고릅니다.   
+![image](https://user-images.githubusercontent.com/43658658/143385854-58ef74a2-1125-4657-89f2-bf24b07ae804.png)
+
+프로젝트와 관련된 설정입니다. 모든 설정을 마치면 `Finish`를 누릅니다.   
+![image](https://user-images.githubusercontent.com/43658658/143386595-a6b211b9-53f8-4745-90fd-bfb4fd7e04fe.png)   
+* name : 프로젝트 이름을 설정합니다.
+* Package name : 전세계에서 앱과 앱을 구별하는 고유 이름. 고유의 값이어야 합니다.
+* Language : 언어는 `Kotlin`을 선택합니다. 코틀린을 선택해도 자바 언어 역시 사용이 가능합니다. 다만 디폴트 언어가 코틀린이 되는 것입니다.
+* Minimum API Level : 최소한으로 지원하는 안드로이드 OS 버전을 설정합니다. `Help me choose`를 클릭하면 아래의 화면이 나옵니다.   
+![image](https://user-images.githubusercontent.com/43658658/143386620-39c8a694-19fc-43f8-9e22-10a2407cc652.png)   
+숫자가 낮을 수록 버전이 낮다는 의미이며, 적혀 있는 숫자 버전부터 최신 버전까지 모두 지원을 하겠다는 의미입니다.   
+`Distribution`의 퍼센트는 전세계 안드로이드 OS의 몇 퍼센트를 지원하는지를 나타냅니다.   
+(갤럭시5가 `Marshmellow` 버전입니다)   
+
+[Ctrl]+[Alt]+[S]를 눌러 Settings로 진입합니다.   
+`Deploy`를 검색해서 `Deployment` 항목으로 들어갑니다.   
+![image](https://user-images.githubusercontent.com/43658658/143388760-63992b54-f68a-4a0a-b74f-5e0413fdd80b.png)   
+두 항목을 체크합니다.   
+![image](https://user-images.githubusercontent.com/43658658/143389056-77de01ae-5972-46d0-a192-7969345fc943.png)
+
+> <h3>프로젝트 테스트</h3>
+
+프로젝트를 만들었다는 자체가 앱을 만들었다는 의미입니다.   
+프로젝트가 잘 만들어졌는지 확인해봅시다.   
+
+먼저 가상의 디바이스를 만듭니다.   
+![image](https://user-images.githubusercontent.com/43658658/143389188-10799e5a-65d1-4788-875e-74d74e7b51e0.png)   
+![image](https://user-images.githubusercontent.com/43658658/143389224-d52a929c-c413-4259-820f-e3138b7dd911.png)   
+가상 휴대폰의 외형 스펙을 설정합니다.   
+![image](https://user-images.githubusercontent.com/43658658/143389287-fbe3337f-3c73-47f4-8ac1-d36be52bdcbe.png)   
+가상 휴대폰의 OS를 설치합니다.   
+![image](https://user-images.githubusercontent.com/43658658/143389365-0de59161-4244-435e-bc81-e1b6b9671147.png)   
+![image](https://user-images.githubusercontent.com/43658658/143389465-9862e010-b6e9-4b72-8d45-fb6866086412.png)   
+설치가 모두 완료되면 `Finish`를 누르고, 설치한 OS를 선택합니다.   
+![image](https://user-images.githubusercontent.com/43658658/143389653-5e6e099f-6a17-4c7b-9b85-16d07d10c2b1.png)   
+추가적인 설정을 하는 단계입니다. `Advanced setting`을 클릭합니다.   
+![image](https://user-images.githubusercontent.com/43658658/143389823-320e1d90-0c04-4130-b433-deff3a411445.png)   
+`Network`항목에서 네트워크에 대한 설정을 할 수 있습니다.   
+내가 만든 앱이 인터넷 속도가 느린 곳에서도 잘 작동하는지를 테스트해 볼 수 있습니다.   
+(`Speed`의 항목이 아래로 갈 수록 속도가 느려집니다)   
+![image](https://user-images.githubusercontent.com/43658658/143390064-d2fa3df2-d377-47cb-83ca-b26c75c781cc.png)   
+`Finish`를 누르면 가상의 디바이스가 하나 만들어진 것을 확인할 수 있습니다.   
+![image](https://user-images.githubusercontent.com/43658658/143390433-4415d8aa-54d3-4c32-aaf3-78d58cf2682e.png)
+
+만약 실제 안드로이드 모바일 기기를 연결하고 싶다면, 모바일 기기의 설정을 열고 개발자 모드를 만들어서 진입합니다.   
+`USB 디버깅` 항목을 켜주고 PC와 USB 연결을 해주시면 됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/143390842-8f47c971-28ce-4cc3-a674-b4b2a73877a6.png)
+
+`[Shift]+[F10]`으로 안드로이드 스튜디오를 실행하면 애뮬레이터가 열립니다.   
+(또는 초록색 재생 버튼을 누릅니다)   
+![image](https://user-images.githubusercontent.com/43658658/143391338-f6b44204-a994-4a6f-aa8b-2fcacc39c337.png)
+
+애뮬레이터가 정상적으로 실행되는 것을 확인했다면, 프로젝트가 잘 생성되었다는 의미입니다.
+
+
+
 
 
