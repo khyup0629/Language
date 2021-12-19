@@ -53,7 +53,54 @@
 `proguard-rules.pro` : 코드를 사람이 읽게 어렵게 난독화하는 기능을 합니다. 그래서 쉽게 조작할 수 없습니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146668535-6d9070fc-544e-4fcd-be1f-82d9e619df17.png)
 
+## Activity
+
+![image](https://user-images.githubusercontent.com/43658658/146669345-64a3f487-1d40-4907-aa48-dfab203f26c5.png)
+
+Life Cycle(수명 주기)
+* onCreate : activity가 만들어질 때 단 한 번만 호출
+  - activity를 만들 때 단 한 번만 하면 되는 작업들을 여기서 해줍니다. 
+* onStart
+* onResume : 다시 앱으로 돌아올 때 무조건 호출
+  - activity가 다시 호출될 때 하면 되는 작업들을 여기서 해줍니다. 
+* onPause : 화면의 일부가 가려질 때 호출
+* onStop : 화면이 아예 보이지 않을 때 호출
+  - 사용자가 home 버튼을 눌러 잠시 앱을 나갈 때 호출. 
+* onDestory
+
+> <h3>실습</h3>
+
+`MainActivity` 파일을 열고 `Override Methods`를 통해 `수명 주기`와 관련된 내용들을 불러옵니다.   
+![image](https://user-images.githubusercontent.com/43658658/146669099-53e1cd7f-fb43-48cb-bc44-13455cf62bc3.png)   
+* [코드에서 우클릭] > [Generate] > [Override Methods] > 키보드로 찾고 싶은 함수 검색.
+
+`println`보다 `Log`를 사용해서 나중에 로그를 들여다보면서 체크하는 것이 좋습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146669208-9b4f67a0-c9cd-456d-a393-030275344edc.png)   
+* `Log`를 사용하기 위해서는 먼저 `import`를 해줍니다.
+* `Log.d(tag, message)` : tag에는 로그 메시지를 확인하기 위한 키워드를 적고, message는 로그 메시지를 작성합니다.
+
+앱을 실행하고, 아래쪽에 `life_cycle`이라는 키워드로 검색하면 아래와 같이 메시지가 나옵니다.   
+![image](https://user-images.githubusercontent.com/43658658/146669303-0deaf8f7-231b-47d4-83bb-04ab55434cbd.png)   
+* 앱을 실행했으므로 수명 주기는 `onCreate`, `onStart`, `onResume`까지 호출되었습니다.
+
+이제 앱에서 홈 버튼을 누르면 아래와 같이 수명 주기가 호출됩니다.   
+![image](https://user-images.githubusercontent.com/43658658/146669329-421cb404-e6c9-4331-b89a-7fd2b2e7dfa0.png)
+
+## Listener
+
+익명함수 : 이름이 없는 함수/클래스
+
+다음의 경로를 통해 Activity를 생성해줍니다.   
+![image](https://user-images.githubusercontent.com/43658658/146669462-92d897a4-f070-436f-b7e6-7fa920e890c6.png)
+
+`activity_layout`(Activity를 생성할 때 같이 만들어준 레이아웃 파일)을 열고, 아래와 같이 작성합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146669541-08e96be1-03a8-45bb-8943-96847b98ad0c.png)
 
 
-  -  
+![image](https://user-images.githubusercontent.com/43658658/146670009-06a17803-2773-4c14-bff1-e8fea78ab723.png)   
+
+
+
+
+
 
