@@ -644,7 +644,99 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```    
 
+## Task
+
+액티비티의 스택을 커스터마이징 하기 위해서는 `LaunchMode`와 `IntentFlag`라는 두 가지 기능이 있습니다.
+
+하지만 이 두 기능은 완벽하게 숙지하지 않으면 사용하지 않는 것이 좋습니다.   
+기본적으로 설정된 스택이 꼬이기 시작하면 굉장히 복잡해지기 때문입니다.
+
+안드로이드 스튜디오 공식 문서를 이용해 정확히 숙지를 하고 이용하시기 바랍니다.
+
+기본적으로 `스택 커스터마이징`은 `잘 건드리지 않는 부분`입니다.   
+꼭 필요할 때 사용합니다.
+
+## 인터넷 페이지 열기 과제
+
+Q. URL을 입력하고 `인터넷 페이지 이동` 버튼을 누르면 해당 인터넷 페이지로 이동하는 페이지를 만드세요.   
+![image](https://user-images.githubusercontent.com/43658658/146677297-63600cbf-7988-4c02-bae2-d4b8c04bea17.png)   
+* `EditText` 뷰를 이용합니다.
+* `EditText` 뷰에는 텍스트를 입력할 때마다 호출되는 리스너 함수가 있습니다.
+
+A.   
+
+``` xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Internet_page_open"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="인터넷 주소를 입력해주세요" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인터넷 페이지 열기"/>
 
 
+</LinearLayout>
+```
+
+``` kotlin
+package com.example.myapplication2
+
+import android.content.Intent
+import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+
+class Internet_page_open : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_internet_page_open)
+
+        val url: EditText = findViewById(R.id.url)
+        val button: Button = findViewById(R.id.button)
+
+        button.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url.text.toString()))
+            startActivity(intent)
+        }
+
+        url.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                Log.d("edit", "beforeTextChanged" + s)
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                Log.d("edit", "onTextChanged" + s)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                Log.d("edit", "afterTextChanged" + s)
+            }
+        })
+    }
+}
+```
+
+* `Uri.parse(url.text.toString)` : editText 뷰의 text 속성을 불러올 때 문자열로 바꿔주어야합니다.
+* `addTextChangedListener` : 텍스트가 변화할 때 마다 호출되는 리스너입니다.   
+![image](https://user-images.githubusercontent.com/43658658/146677326-bb44d518-4d4c-443a-be65-13a1ab09dd94.png)
 
 
