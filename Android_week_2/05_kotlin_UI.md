@@ -96,11 +96,288 @@ Life Cycle(수명 주기)
 `activity_layout`(Activity를 생성할 때 같이 만들어준 레이아웃 파일)을 열고, 아래와 같이 작성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146669541-08e96be1-03a8-45bb-8943-96847b98ad0c.png)
 
-
+다시 activity 페이지로 돌아와서 아래의 내용을 작성합니다.   
 ![image](https://user-images.githubusercontent.com/43658658/146670009-06a17803-2773-4c14-bff1-e8fea78ab723.png)   
+* `Listener` : 페이지에서 어떤 Input이 있을 때 호출되는 함수입니다.
+* `hello.setOnClickListener` : hello 뷰를 클릭했을 때 호출됩니다.
 
+> <h3>뷰를 조작하는 함수들</h3>
 
+![image](https://user-images.githubusercontent.com/43658658/146672347-a004afbf-6aa5-46c1-9712-5be9f47d821d.png)   
+* `hello.setText` : hello 뷰의 텍스트를 변경합니다.
+* `image.setImageResource` : image 뷰의 이미지 리소스를 변경합니다.
 
+실제로 `Listener`는 전부 기억하지 않고 필요할 때마다 `자동완성` 기능을 통해 알맞은 기능을 찾아서 사용합니다.
+
+## 더하기 계산기 과제
+
+Q. 아래와 같은 UI로 더하기 계산기를 만들어봅니다.   
+![image](https://user-images.githubusercontent.com/43658658/146672376-ab6c81f8-60c8-42bb-bb98-8dba2bf4178c.png)   
+* `CA` : 초기화 기능
+* 더하기를 누르기 전까지 숫자를 계속 입력할 수 있어야 합니다.
+
+A. 코드 첨부(xml, kotlin)   
+``` xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".plus_calculator">
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3D5AFE"
+        android:textColor="@color/white"
+        android:text="0"
+        android:gravity="center|right"
+        android:textSize="50dp"
+        android:paddingRight="5dp"/>
+
+    <!-- 첫 번째 줄 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/button1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/button2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="2"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/button3"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="3"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/buttonCA"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="CA"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#F50057"/>
+    </LinearLayout>
+    <!-- 두 번째 줄 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/button4"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="4"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/button5"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="5"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/button6"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="6"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/buttonPlus"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#F50057"/>
+    </LinearLayout>
+    <!-- 세 번째 줄 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/button7"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="7"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/button8"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="8"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/button9"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="9"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="#282828"/>
+        <TextView
+            android:id="@+id/button0"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:background="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>
+```
+
+``` kotlin
+package com.example.myapplication2
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.TextView
+
+class plus_calculator : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_plus_calculator)
+
+        val result: TextView = findViewById(R.id.result)
+        val button0: TextView = findViewById(R.id.button0)
+        val button1: TextView = findViewById(R.id.button1)
+        val button2: TextView = findViewById(R.id.button2)
+        val button3: TextView = findViewById(R.id.button3)
+        val button4: TextView = findViewById(R.id.button4)
+        val button5: TextView = findViewById(R.id.button5)
+        val button6: TextView = findViewById(R.id.button6)
+        val button7: TextView = findViewById(R.id.button7)
+        val button8: TextView = findViewById(R.id.button8)
+        val button9: TextView = findViewById(R.id.button9)
+        val buttonPlus: TextView = findViewById(R.id.buttonPlus)
+        val buttonCA: TextView = findViewById(R.id.buttonCA)
+
+        var hap: Int = 0
+        var num: String = "0"
+
+        result.setText(hap.toString()) // 초기 계산기 값은 0
+
+        button1.setOnClickListener {
+            num += "1"
+            result.setText(num)
+        }
+
+        button2.setOnClickListener {
+            num += "2"
+            result.setText(num)
+        }
+
+        button3.setOnClickListener {
+            num += "3"
+            result.setText(num)
+        }
+
+        button4.setOnClickListener {
+            num += "4"
+            result.setText(num)
+        }
+
+        button5.setOnClickListener {
+            num += "5"
+            result.setText(num)
+        }
+
+        button6.setOnClickListener {
+            num += "6"
+            result.setText(num)
+        }
+
+        button7.setOnClickListener {
+            num += "7"
+            result.setText(num)
+        }
+
+        button8.setOnClickListener {
+            num += "8"
+            result.setText(num)
+        }
+
+        button9.setOnClickListener {
+            num += "9"
+            result.setText(num)
+        }
+
+        button0.setOnClickListener {
+            num += "0"
+            result.setText(num)
+        }
+
+        buttonPlus.setOnClickListener {
+            hap += num.toInt()
+            num = "0"
+            result.setText(hap.toString())
+        }
+
+        buttonCA.setOnClickListener {
+            num = "0"
+            hap = 0
+            result.setText(hap.toString())
+        }
+    }
+}
+```
 
 
 
