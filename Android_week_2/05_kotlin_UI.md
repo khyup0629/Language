@@ -379,5 +379,256 @@ class plus_calculator : AppCompatActivity() {
 }
 ```
 
+## Intent
+
+: 의도, 요구, 의사 전달, 요청   
+: 요청 관계   
+- Activity와 Activity
+- Android System과 내 App (전화)
+- 다른 App과 내 App -> 무작정 할 수 없고, 상호합의가 있어야 합니다.
+
+: 요청의 종류   
+- 전달만 하는 요청
+- 리턴을 받는 요청
+
+> <h3>Activity와 Activity 간 이동</h3>
+
+먼저 `Intent1`, `Intent2` 액티비티를 만들어줍니다.   
+
+Intent1 - xml  
+``` xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Intent1">
+
+    <Button
+        android:id="@+id/change_activity"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="인텐트"/>
+
+
+</LinearLayout>
+```
+
+Intent1 - kt    
+``` kotlin
+package com.example.myapplication2
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+
+class Intent1 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_intent)
+
+        val change_activity: Button = findViewById(R.id.change_activity)
+        change_activity.setOnClickListener {
+            val intent = Intent(this@Intent1, Intent2::class.java)
+            startActivity(intent)
+        }
+    }
+}
+```
+
+* Intent를 사용할 때 꼭 형식을 `Intent(this@현재액티비티, 이동할액티비티::class.java)` 형식으로 사용합니다.
+* 꼭 startActivity를 통해 intent를 `전달만 하는 요청`으로 보냅니다.
+
+`Intent1`을 실행하고, `Button`을 누르면 `Intent2`로 이동합니다.   
+![image](https://user-images.githubusercontent.com/43658658/146673642-5806b633-27a4-4b0c-9be2-fd110fc0b8e3.png)   
+![image](https://user-images.githubusercontent.com/43658658/146673647-1d89fcd1-5b54-4d95-bf48-7b2bb0a78037.png)   
+* Intent2는 검은 화면입니다.
+* 뒤로 가기를 하면 다시 Intent1으로 넘어옵니다.
+
+`putExtra`를 이용해서 액티비티 사이에 값을 넘겨줄 수도 있습니다.   
+
+Intent1 - kotlin   
+``` kotlin
+package com.example.myapplication2
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+
+class Intent1 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_intent)
+
+        val change_activity: Button = findViewById(R.id.change_activity)
+        change_activity.setOnClickListener {
+            val intent = Intent(this@Intent1, Intent2::class.java)
+
+            // Key, Value 방식 -> key와 value를 쌍으로 만들어 저장한다. -> Dictionary
+            // Apply -> intent2를 this로 적어줄 수 있는데, 나중에 코드가 복잡해질 때 정리하기 좋습니다.
+            intent.apply {
+                this.putExtra("number1", 1)
+                this.putExtra("number2", 2)
+            }
+            startActivity(intent)
+        }
+    }
+}
+```
+
+Intent2 - kotlin   
+``` kotlin
+package com.example.myapplication2
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+
+class Intent2 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_intent2)
+
+        val number1 = intent.getIntExtra("number1", 0)
+        val number2 = intent.getIntExtra("number",0)
+
+        Log.d("number", ""+number1)
+        Log.d("number", ""+number2)
+    }
+}
+```
+
+값을 줄 때는 `putExtra` 값을 받을 때는 `getIntExtra`   
+* `putExtra(name, value)` : 넘겨줄 값과 값을 지칭하는 이름을 지정합니다.
+* `getIntExtra(name, default)` : 넘어온 값
+
+실행하고 Intent1의 버튼을 클릭하면, Intent2로 값이 넘어가서 로그로 남습니다.   
+![image](https://user-images.githubusercontent.com/43658658/146674166-27e73b79-d490-4e83-be9e-f22811e10123.png)
+
+Intent2에서 다시 Intent1으로 결과를 넘겨보겠습니다.   
+
+Intent2 - xml   
+``` xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".Intent2">
+
+    <Button
+        android:id="@+id/result"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="결과" />
+
+
+</LinearLayout>
+```
+
+Intent2 - kotlin   
+``` kotlin
+package com.example.myapplication2
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+
+class Intent2 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_intent2)
+
+        val result: Button = findViewById(R.id.result)
+
+        result.setOnClickListener {
+            val number1 = intent.getIntExtra("number1", 0)
+            val number2 = intent.getIntExtra("number", 0)
+
+            Log.d("number", "" + number1)
+            Log.d("number", "" + number2)
+
+            val resultSum = number1 + number2
+            val resultIntent = Intent()
+            resultIntent.putExtra("result", resultSum)
+            setResult(-1, resultIntent)
+            finish() // Activity 종료
+
+        }
+    }
+}
+```
+
+* `Intent2`에서 `Intent1`으로 `number1+number2`의 값을 넘깁니다.
+* 넘길 때는 `Intent()`로 현재 액티비티와 이동할 액티비티를 명시해주지 않아도 됩니다.
+* `setResult(resultCode, returnValue)` : 리턴값을 넣어주는 함수입니다. `Intent1`에서 `onActivityResult` 함수와 연계됩니다.
+  - resultCode `-1` : 정상
+  - resultCode `0` : 취소
+* finish() : Activity를 종료합니다.
+  - Activity는 Stack 개념입니다. 맨 처음에 실행하면 Intent1이 쌓이고, Intent를 통해 Intent2 Activity가 위에 쌓입니다.
+
+이제 `리턴을 받는 요청`과 함께 `Intent2`에서 보낸 결괏값을 받아보겠습니다.   
+결과를 받기 위해서는 애초에 `Intent1` 액티비티에서 요청을 보낼 때 `전달만 하는 요청(startActivity)`가 아닌 `리턴을 받는 요청(startActivityForResult)`로 보내야합니다.
+
+Intent1 - kotlin   
+``` kotlin
+package com.example.myapplication2
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+
+class Intent1 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_intent)
+
+        val change_activity: Button = findViewById(R.id.change_activity)
+        change_activity.setOnClickListener {
+            val intent = Intent(this@Intent1, Intent2::class.java)
+
+            // Key, Value 방식 -> key와 value를 쌍으로 만들어 저장한다. -> Dictionary
+            // apply -> intent2를 this로 적어줄 수 있는데, 나중에 코드가 복잡해질 때 정리하기 좋습니다.
+            intent.apply {
+                this.putExtra("number1", 1)
+                this.putExtra("number2", 2)
+            }
+            startActivityForResult(intent, 200)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 200) { // intent1이 보낸 요청이 맞는지 확인
+            Log.d("number", "" + requestCode)
+            Log.d("number", "" + resultCode)
+            val result = data?.getIntExtra("result", 0)
+            Log.d("number", "" + result)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+}
+```
+
+* `startActivityForResult(intent, requestCode)` : `리턴을 받는 요청`을 할 때 사용합니다.
+* `onActivityResult` : 리턴값을 처리할 때 이용하는 override 함수입니다.
+* `val result = data?.getIntExtra("result", 0)` : 리턴값을 받습니다.
+
+`Intent2`에서 `결과` 버튼을 클릭하면 리턴값을 `Intent1`으로 보냅니다.   
+`Intent1`이 `Intent2`에서 결괏값을 받았을 때, 보낸 요청이 맞다면(requestCode 확인) 로그를 남깁니다.
+![image](https://user-images.githubusercontent.com/43658658/146675346-e5f6edd5-45ba-4aba-97e5-256697c117e7.png)
+
+
+
+
 
 
