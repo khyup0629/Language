@@ -627,6 +627,22 @@ class Intent1 : AppCompatActivity() {
 `Intent1`이 `Intent2`에서 결괏값을 받았을 때, 보낸 요청이 맞다면(requestCode 확인) 로그를 남깁니다.
 ![image](https://user-images.githubusercontent.com/43658658/146675346-e5f6edd5-45ba-4aba-97e5-256697c117e7.png)
 
+> <h3>암시적 인텐트</h3>
+
+: 버튼을 클릭하면 특정 인터넷 페이지를 여는 인텐트
+
+``` kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_intent)
+
+    val change_activity: Button = findViewById(R.id.change_activity)
+    change_activity.setOnClickListener {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.naver.com"))
+        startActivity(intent)
+    }
+}
+```    
 
 
 
