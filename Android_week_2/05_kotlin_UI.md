@@ -754,8 +754,10 @@ class Internet_page_open : AppCompatActivity() {
 
 액티비티의 파트를 나누어서 책임질 수 있습니다.
 
-수명 주기가 존재합니다.   
-액티비티에 종속적입니다. 액티비티가 종료되면 Fragment도 종료됩니다.
+> <h3>Fragment의 특징</h3>
+
+* 수명 주기가 존재합니다.   
+* 액티비티에 종속적입니다. 액티비티가 종료되면 Fragment도 종료됩니다.
 
 
 
