@@ -759,6 +759,9 @@ class Internet_page_open : AppCompatActivity() {
 * 수명 주기가 존재합니다.   
 * 액티비티에 종속적입니다. 액티비티가 종료되면 Fragment도 종료됩니다.
 
+> <h3>사용 방법</h3>
 
+* XML에 ViewComponent로 추가합니다.
+* 코드로(동적으로) 추가합니다.
 
 
